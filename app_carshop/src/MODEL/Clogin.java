@@ -69,7 +69,7 @@ public class Clogin {
             ResultSet rs = pps.executeQuery();
             if(rs.next()){
                 user = new Clogin();
-                user.setId_user(rs.getInt("id_useario"));
+                user.setId_user(rs.getInt("id_usuario"));
                 user.setUsuario(rs.getString("usuario"));
                 user.setUsuario(rs.getString("password"));
                 user.setImagen(rs.getBlob("imagen"));
@@ -80,6 +80,20 @@ public class Clogin {
             Logger.getLogger(Clogin.class.getName()).log(Level.SEVERE, null, ex);
         }
         return user;
+    }
+    
+    public static String tipoUser(int id_usuario,Connection cn){
+        try{
+            PreparedStatement pps = cn.prepareStatement("SELECT tipo FROM usuarios WHERE id_usuario =?");
+            pps.setInt(1, id_usuario);
+            ResultSet rs = pps.executeQuery();
+            if(rs.next()){
+                return rs.getString("tipo");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Clogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "error en tipo";
     }
     
     

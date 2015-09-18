@@ -20,9 +20,10 @@ public class Controller_JFLoginPassword {
     JFLoginPassword loginPassword;
     Connection cn;
      public Controller_JFLoginPassword(Connection cn){
-        this.loginPassword.label_Bienvenido.setText("Bienvenido root");
-        this.cn=cn;
         this.loginPassword = new JFLoginPassword();
+        this.loginPassword.label_Bienvenido.setText("Bienvenido root");
+        this.loginPassword.label_tipoUser.setText("Tipo usuario: ROOT");
+        this.cn=cn;
         //Evento para controlar la salida
         this.loginPassword.addWindowListener(new WindowAdapter() {
             @Override
@@ -37,6 +38,7 @@ public class Controller_JFLoginPassword {
      public Controller_JFLoginPassword(Clogin usuario,Connection cn){
          
         this.loginPassword.label_Bienvenido.setText("Bienvenido "+usuario.getUsuario());
+        this.loginPassword.label_tipoUser.setText("Tipo usuario: "+Clogin.tipoUser(usuario.getId_user(), cn));
         this.cn=cn;
         this.loginPassword = new JFLoginPassword();
         //Evento para controlar la salida
