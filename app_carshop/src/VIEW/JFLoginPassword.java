@@ -36,8 +36,6 @@ public class JFLoginPassword extends javax.swing.JFrame {
        ImageIcon imageLogo = new ImageIcon(getClass().getResource("/ASSETS/LogoCARSHOP.png"));
        label_image.setIcon(new ImageIcon(imageLogo.getImage().getScaledInstance(label_image.getWidth(),label_image.getHeight(),Image.SCALE_SMOOTH)));
         //Settings button
-        btn_validarPassword.setOpaque(false);
-        btn_validarPassword.setBackground(new Color(137,238,90));
     }
 
     /**
@@ -52,13 +50,13 @@ public class JFLoginPassword extends javax.swing.JFrame {
         panel_backLogo = new javax.swing.JPanel();
         label_image = new javax.swing.JLabel();
         label_Bienvenido = new javax.swing.JLabel();
-        label_Bienvenido1 = new javax.swing.JLabel();
-        btn_validarPassword = new javax.swing.JButton();
+        label_contrasena = new javax.swing.JLabel();
         jLabel_ImageUser = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtP_Password = new javax.swing.JPasswordField();
         panel_backLogo1 = new javax.swing.JPanel();
         label_image1 = new javax.swing.JLabel();
         label_tipoUser = new javax.swing.JLabel();
+        btn_validarPass = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Validar password");
@@ -87,19 +85,15 @@ public class JFLoginPassword extends javax.swing.JFrame {
         label_Bienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_Bienvenido.setText("Bienvenido");
 
-        label_Bienvenido1.setFont(new java.awt.Font("Gulim", 0, 18)); // NOI18N
-        label_Bienvenido1.setForeground(new java.awt.Color(255, 255, 255));
-        label_Bienvenido1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_Bienvenido1.setText("Contraseña:");
-
-        btn_validarPassword.setFont(new java.awt.Font("Gulim", 1, 18)); // NOI18N
-        btn_validarPassword.setForeground(new java.awt.Color(255, 255, 255));
-        btn_validarPassword.setText("Validar");
+        label_contrasena.setFont(new java.awt.Font("Gulim", 0, 18)); // NOI18N
+        label_contrasena.setForeground(new java.awt.Color(255, 255, 255));
+        label_contrasena.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_contrasena.setText("Contraseña:");
 
         jLabel_ImageUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_ImageUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ASSETS/user168-1.png"))); // NOI18N
 
-        jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtP_Password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         panel_backLogo1.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -130,31 +124,39 @@ public class JFLoginPassword extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btn_validarPass.setBackground(new java.awt.Color(84, 222, 66));
+        btn_validarPass.setFont(new java.awt.Font("Gulim", 0, 17)); // NOI18N
+        btn_validarPass.setForeground(new java.awt.Color(255, 255, 255));
+        btn_validarPass.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_validarPass.setText("Validar");
+        btn_validarPass.setOpaque(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panel_backLogo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_Bienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_Bienvenido1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btn_validarPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110))
+            .addComponent(panel_backLogo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(67, 67, 67)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtP_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
+                        .addGap(122, 122, 122)
                         .addComponent(jLabel_ImageUser, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(panel_backLogo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_Bienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(btn_validarPass, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,12 +168,12 @@ public class JFLoginPassword extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jLabel_ImageUser, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(label_Bienvenido1)
+                .addComponent(label_contrasena)
                 .addGap(18, 18, 18)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_validarPassword)
-                .addGap(37, 37, 37)
+                .addComponent(txtP_Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_validarPass, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
                 .addComponent(panel_backLogo1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -214,15 +216,15 @@ public class JFLoginPassword extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btn_validarPassword;
+    public javax.swing.JLabel btn_validarPass;
     public javax.swing.JLabel jLabel_ImageUser;
-    private javax.swing.JPasswordField jPasswordField1;
     public javax.swing.JLabel label_Bienvenido;
-    private javax.swing.JLabel label_Bienvenido1;
+    public javax.swing.JLabel label_contrasena;
     private javax.swing.JLabel label_image;
     private javax.swing.JLabel label_image1;
     public javax.swing.JLabel label_tipoUser;
     private javax.swing.JPanel panel_backLogo;
     private javax.swing.JPanel panel_backLogo1;
+    public javax.swing.JPasswordField txtP_Password;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,8 +8,8 @@ package CONTROLLER;
 import MODEL.Clogin;
 import VIEW.JFLoginUser;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,10 +24,11 @@ public class Controller_JFLoginUser {
     public Controller_JFLoginUser(Connection cn){
         loginUser = new JFLoginUser();
         //Evento de validar usuario
-        this.loginUser.btn_validarUser.addActionListener(new ActionListener() {
+        this.loginUser.btn_validarUser.addMouseListener(new MouseAdapter() {
 
             @Override
-            public void actionPerformed(ActionEvent ActionEvent) {
+            public void mouseClicked(MouseEvent e) {
+                
                 String txtUser = Controller_JFLoginUser.this.loginUser.txt_user.getText();
                 if(!txtUser.isEmpty()){
                     if(txtUser.equals("root@carshop")){
@@ -68,6 +69,7 @@ public class Controller_JFLoginUser {
                 }
             }
         });
+        
         
     }
 }

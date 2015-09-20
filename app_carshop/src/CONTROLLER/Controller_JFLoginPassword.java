@@ -6,11 +6,15 @@
 package CONTROLLER;
 
 import MODEL.Clogin;
+import MODEL.UserROOT;
 import app_carshop.App_carshop;
 import VIEW.JFLoginPassword;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.Color;
+import java.awt.event.*;
+import java.io.*;
 import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,11 +23,51 @@ import java.sql.Connection;
 public class Controller_JFLoginPassword {
     JFLoginPassword loginPassword;
     Connection cn;
+    //Ingreso usuario root
      public Controller_JFLoginPassword(Connection cn){
         this.loginPassword = new JFLoginPassword();
         this.loginPassword.label_Bienvenido.setText("Bienvenido root");
         this.loginPassword.label_tipoUser.setText("Tipo usuario: ROOT");
         this.cn=cn;
+        //Evento para verificar la contraseña del root
+        UserROOT root = getROOT();
+        
+        this.loginPassword.btn_validarPass.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               if(root.getPassword().equals(loginPassword.txtP_Password.getText())){
+                   ControllerJFSettingsDB controllerJFSettingsDB = new ControllerJFSettingsDB(cn);
+                   loginPassword.dispose();
+               }else{
+                     Thread error;
+                            error = new Thread(new Runnable() {
+                                
+                                @Override
+                                public void run() {
+                                    int i = 0;
+                                    while(i<2){
+                                        i++;
+                                        loginPassword.txtP_Password.setForeground(Color.red);
+                                        loginPassword.label_contrasena.setText("!Contraseña incorrecta¡");
+                                        try {
+                                            Thread.sleep(1000);
+                                         
+                                        } catch (InterruptedException ex) {
+                                            Logger.getLogger(Controller_JFLoginUser.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+                                    }
+                                   loginPassword.txtP_Password.setForeground(Color.black);
+                                   loginPassword.txtP_Password.setText("");
+                                   loginPassword.label_contrasena.setText("Contraseña: ");
+                                    
+                                }
+                            });
+                            error.start();
+               }
+            }
+        });
+        
+        
         //Evento para controlar la salida
         this.loginPassword.addWindowListener(new WindowAdapter() {
             @Override
@@ -35,6 +79,7 @@ public class Controller_JFLoginPassword {
         
         
     }
+     //Ingreso usuario (EMPLEADO)
      public Controller_JFLoginPassword(Clogin usuario,Connection cn){
          
         this.loginPassword.label_Bienvenido.setText("Bienvenido "+usuario.getUsuario());
@@ -51,6 +96,33 @@ public class Controller_JFLoginPassword {
         });
         
         
+    }
+     
+     private UserROOT  getROOT(){
+        ObjectInputStream objectIn = null;
+        UserROOT userObj = null;
+        try {
+            File file = new File("src//SourceDB//settingsDBROOT.dat");
+            FileInputStream fileIn = new FileInputStream(file);
+            objectIn = new ObjectInputStream(fileIn);
+            userObj = (UserROOT) objectIn.readObject();
+            
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Controller_JFLoginUser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Controller_JFLoginUser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(App_carshop.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            try {
+                if(objectIn!=null)
+                     objectIn.close();
+            } catch (IOException ex) {
+                Logger.getLogger(App_carshop.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return userObj;
     }
     
 }
