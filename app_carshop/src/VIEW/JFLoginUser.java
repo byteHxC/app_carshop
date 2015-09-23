@@ -55,7 +55,7 @@ public class JFLoginUser extends javax.swing.JFrame {
         panel_backLogo = new javax.swing.JPanel();
         label_image = new javax.swing.JLabel();
         label_Bienvenido = new javax.swing.JLabel();
-        label_Bienvenido1 = new javax.swing.JLabel();
+        label_Usuario = new javax.swing.JLabel();
         txt_user = new javax.swing.JTextField();
         btn_validarUser = new javax.swing.JLabel();
 
@@ -87,10 +87,10 @@ public class JFLoginUser extends javax.swing.JFrame {
         label_Bienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_Bienvenido.setText("Bienvenido");
 
-        label_Bienvenido1.setFont(new java.awt.Font("Gulim", 0, 18)); // NOI18N
-        label_Bienvenido1.setForeground(new java.awt.Color(255, 255, 255));
-        label_Bienvenido1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_Bienvenido1.setText("Usuario:");
+        label_Usuario.setFont(new java.awt.Font("Gulim", 0, 18)); // NOI18N
+        label_Usuario.setForeground(new java.awt.Color(255, 255, 255));
+        label_Usuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_Usuario.setText("Usuario:");
 
         txt_user.setFont(new java.awt.Font("Gulim", 0, 18)); // NOI18N
         txt_user.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -112,7 +112,7 @@ public class JFLoginUser extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(label_Bienvenido1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(label_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(txt_user, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -134,7 +134,7 @@ public class JFLoginUser extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label_Bienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addComponent(label_Bienvenido1)
+                .addComponent(label_Usuario)
                 .addGap(18, 18, 18)
                 .addComponent(txt_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -186,7 +186,7 @@ public class JFLoginUser extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel btn_validarUser;
     private javax.swing.JLabel label_Bienvenido;
-    private javax.swing.JLabel label_Bienvenido1;
+    public javax.swing.JLabel label_Usuario;
     private javax.swing.JLabel label_image;
     private javax.swing.JPanel panel_backLogo;
     public javax.swing.JTextField txt_user;

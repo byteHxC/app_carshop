@@ -5,7 +5,8 @@
  */
 package CONTROLLER;
 
-import MODEL.Clogin;
+import MODEL.CUsuario;
+import MODEL.CLogin;
 import MODEL.UserROOT;
 import app_carshop.App_carshop;
 import VIEW.JFLoginPassword;
@@ -36,7 +37,7 @@ public class Controller_JFLoginPassword {
             @Override
             public void mouseClicked(MouseEvent e) {
                if(root.getPassword().equals(loginPassword.txtP_Password.getText())){
-                   ControllerJFSettingsDB controllerJFSettingsDB = new ControllerJFSettingsDB(cn);
+                   Controller_JFSettingsDB controllerJFSettingsDB = new Controller_JFSettingsDB(cn);
                    loginPassword.dispose();
                }else{
                      Thread error;
@@ -50,7 +51,7 @@ public class Controller_JFLoginPassword {
                                         loginPassword.txtP_Password.setForeground(Color.red);
                                         loginPassword.label_contrasena.setText("!Contraseña incorrecta¡");
                                         try {
-                                            Thread.sleep(1000);
+                                            Thread.sleep(800);
                                          
                                         } catch (InterruptedException ex) {
                                             Logger.getLogger(Controller_JFLoginUser.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,10 +81,10 @@ public class Controller_JFLoginPassword {
         
     }
      //Ingreso usuario (EMPLEADO)
-     public Controller_JFLoginPassword(Clogin usuario,Connection cn){
+     public Controller_JFLoginPassword(CLogin usuario,Connection cn){
          
         this.loginPassword.label_Bienvenido.setText("Bienvenido "+usuario.getUsuario());
-        this.loginPassword.label_tipoUser.setText("Tipo usuario: "+Clogin.tipoUser(usuario.getId_user(), cn));
+        this.loginPassword.label_tipoUser.setText("Tipo usuario: "+CUsuario.tipoUser(usuario.getId_usuario(), cn));
         this.cn=cn;
         this.loginPassword = new JFLoginPassword();
         //Evento para controlar la salida

@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package MODEL;
-
-import java.awt.Image;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,19 +12,23 @@ import java.util.logging.Logger;
  *
  * @author ByteDrive
  */
-public class Clogin {
-    private int id_user;
+public class CLogin {
+    private int id_usuario;
     private String usuario;
     private String password;
     private Blob imagen;
     private String nombreImagen;
 
-    public int getId_user() {
-        return id_user;
+    public CLogin() {
+    }
+    
+    
+    public int getId_usuario() {
+        return id_usuario;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setId_usuario(int id_user) {
+        this.id_usuario = id_user;
     }
 
     public String getUsuario() {
@@ -61,15 +63,15 @@ public class Clogin {
         this.nombreImagen = nombre;
     }
     
-    public static Clogin verificarUsuario(String txtUser,Connection cn){
-         Clogin user = null;
+    public static CLogin verificarLogin(String txtUser,Connection cn){
+         CLogin user = null;
         try {
             PreparedStatement pps = cn.prepareStatement("SELECT *from login where usuario = ?");
             pps.setString(1, txtUser);
             ResultSet rs = pps.executeQuery();
             if(rs.next()){
-                user = new Clogin();
-                user.setId_user(rs.getInt("id_usuario"));
+                user = new CLogin();
+                user.setId_usuario(rs.getInt("id_usuario"));
                 user.setUsuario(rs.getString("usuario"));
                 user.setUsuario(rs.getString("password"));
                 user.setImagen(rs.getBlob("imagen"));
@@ -77,24 +79,12 @@ public class Clogin {
                 return user;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Clogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
         return user;
     }
     
-    public static String tipoUser(int id_usuario,Connection cn){
-        try{
-            PreparedStatement pps = cn.prepareStatement("SELECT tipo FROM usuarios WHERE id_usuario =?");
-            pps.setInt(1, id_usuario);
-            ResultSet rs = pps.executeQuery();
-            if(rs.next()){
-                return rs.getString("tipo");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Clogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return "error en tipo";
-    }
+    
     
     
 }
