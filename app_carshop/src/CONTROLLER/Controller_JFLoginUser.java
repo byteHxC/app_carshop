@@ -36,11 +36,10 @@ public class Controller_JFLoginUser {
                         loginUser.dispose();
                     }else{
                         CLogin usuario = CLogin.verificarLogin(txtUser, cn);
-                        if (usuario != null){
-                            if(usuario.getUsuario().equals(txtUser)){
+                        if (usuario !=null){
                             Controller_JFLoginPassword ControllerPassword = new Controller_JFLoginPassword(usuario,cn);
                             loginUser.dispose();
-                            }
+                            
                         }
                         else{
                             Thread error;

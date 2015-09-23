@@ -130,6 +130,7 @@ public class CUsuario {
             pps.setString(6,getTipo());
             pps.setFloat(7,getSalario());
             pps.executeUpdate();
+            System.out.println("Usuario.SaveObject() sucessful");
         } catch (SQLException ex) {
             Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }

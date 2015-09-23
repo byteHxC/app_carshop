@@ -11,12 +11,20 @@ import MODEL.ConnectionMySQL;
 import MODEL.UserROOT;
 import VIEW.JFSettingsDB;
 import app_carshop.App_carshop;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Blob;
 import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -47,6 +55,11 @@ public class Controller_JFSettingsDB {
                     fileChooser.setFileFilter(filterChooser);
                     fileChooser.showOpenDialog(viewSettingsDB);
                     fileSelected = fileChooser.getSelectedFile();
+                    
+                    //poner imagen en label
+                    ImageIcon image = new ImageIcon(fileSelected.getAbsolutePath());
+                    viewSettingsDB.ChooserImageGerente.setIcon(new ImageIcon(image.getImage().getScaledInstance(viewSettingsDB.ChooserImageGerente.getWidth(),viewSettingsDB.ChooserImageGerente.getHeight(),Image.SCALE_SMOOTH)));
+        
                 }
             });
         //Boton para crear la cuenta de un gerente
@@ -62,10 +75,10 @@ public class Controller_JFSettingsDB {
                 String apellido_pat = viewSettingsDB.txtApellidoPG.getText();
                 String apellido_mat = viewSettingsDB.txtApellidoMG.getText();
                 String direccion = viewSettingsDB.txtDireccionG.getText();
-                String telefono = viewSettingsDB.txtTelefonoG.getName();
+                String telefono = viewSettingsDB.txtTelefonoG.getText();
                 float salario = Float.parseFloat(viewSettingsDB.txtSalarioG.getText());
                 String tipo = "Gerente";
-                if(nombre.length()>5 && apellido_mat.length()>5 && apellido_pat.length()>5 && direccion.length()>10 && telefono.length()>5 && salario>0){
+                //if(nombre.length()>5 && apellido_mat.length()>5 && apellido_pat.length()>5 && direccion.length()>10 && telefono.length()>5 && salario>0){
                     usuario.setNombre(nombre);
                     usuario.setApellido_pat(apellido_pat);
                     usuario.setApellido_mat(apellido_mat);
@@ -74,7 +87,7 @@ public class Controller_JFSettingsDB {
                     usuario.setSalario(salario);
                     usuario.setTipo(tipo);
                     userSuc = true;
-                }
+                //}
                 
                 
                 String erroresR= "Llene bien los siguientes campos: \n";
@@ -94,8 +107,14 @@ public class Controller_JFSettingsDB {
                                //Se guarda usuario 
                                 usuario.saveObject(cn);
                                 usuario = CUsuario.getObject(usuario.getNombre(), usuario.getApellido_pat(), usuario.getApellido_mat(), cn);
-                               //Crear su login 
-                               
+                               //Crear su login  y guardar
+                               login.setId_usuario(usuario.getId_usuario());
+                               login.setUsuario(txtUsuario);
+                               login.setPassword(txtPass);
+                               login.setAbsolutePathimagen(fileSelected.getAbsolutePath());
+                               login.setNombreImagen(fileSelected.getName());
+                               login.saveObject(cn);
+                               cleanFields();
                              
                          }else erroresR+="\n-Corroborar los datos del gerente";
                         }
@@ -164,5 +183,37 @@ public class Controller_JFSettingsDB {
                 }
             }
         });
+        
+        
+    }
+    
+    public Blob getBlobImage(File file){
+        FileInputStream fileIn = null;
+        try{
+            fileIn = new FileInputStream(file.getAbsolutePath());
+            return (Blob) fileIn;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Controller_JFSettingsDB.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            if(fileIn!=null)
+                try {
+                    fileIn.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Controller_JFSettingsDB.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return (Blob) fileIn;
+    }
+    public void cleanFields(){
+       viewSettingsDB.txtUsuario.setText(null);
+       viewSettingsDB.txtP_Password.setText(null);
+       viewSettingsDB.txtP_PasswordConfirm.setText(null);
+       
+       viewSettingsDB.txtNombreG.setText(null);
+       viewSettingsDB.txtApellidoPG.setText(null);
+       viewSettingsDB.txtApellidoMG.setText(null);
+       viewSettingsDB.txtDireccionG.setText(null);
+       viewSettingsDB.txtTelefonoG.setText(null);
+       viewSettingsDB.txtSalarioG.setText(null);
     }
 }

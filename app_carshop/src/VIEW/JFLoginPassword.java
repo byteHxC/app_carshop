@@ -51,7 +51,7 @@ public class JFLoginPassword extends javax.swing.JFrame {
         label_image = new javax.swing.JLabel();
         label_Bienvenido = new javax.swing.JLabel();
         label_contrasena = new javax.swing.JLabel();
-        jLabel_ImageUser = new javax.swing.JLabel();
+        label_ImageUser = new javax.swing.JLabel();
         txtP_Password = new javax.swing.JPasswordField();
         panel_backLogo1 = new javax.swing.JPanel();
         label_image1 = new javax.swing.JLabel();
@@ -80,7 +80,7 @@ public class JFLoginPassword extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        label_Bienvenido.setFont(new java.awt.Font("Walkway UltraExpand", 0, 24)); // NOI18N
+        label_Bienvenido.setFont(new java.awt.Font("Walkway UltraExpand", 0, 14)); // NOI18N
         label_Bienvenido.setForeground(new java.awt.Color(255, 255, 255));
         label_Bienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_Bienvenido.setText("Bienvenido");
@@ -90,8 +90,8 @@ public class JFLoginPassword extends javax.swing.JFrame {
         label_contrasena.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_contrasena.setText("Contraseña:");
 
-        jLabel_ImageUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_ImageUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ASSETS/user168-1.png"))); // NOI18N
+        label_ImageUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_ImageUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ASSETS/user168-1.png"))); // NOI18N
 
         txtP_Password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -144,7 +144,7 @@ public class JFLoginPassword extends javax.swing.JFrame {
                         .addComponent(txtP_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(122, 122, 122)
-                        .addComponent(jLabel_ImageUser, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(label_ImageUser, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +166,7 @@ public class JFLoginPassword extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(label_Bienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(jLabel_ImageUser, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(label_ImageUser, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(label_contrasena)
                 .addGap(18, 18, 18)
@@ -217,8 +217,8 @@ public class JFLoginPassword extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel btn_validarPass;
-    public javax.swing.JLabel jLabel_ImageUser;
     public javax.swing.JLabel label_Bienvenido;
+    public javax.swing.JLabel label_ImageUser;
     public javax.swing.JLabel label_contrasena;
     private javax.swing.JLabel label_image;
     private javax.swing.JLabel label_image1;

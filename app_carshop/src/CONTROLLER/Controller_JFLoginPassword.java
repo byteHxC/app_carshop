@@ -11,11 +11,17 @@ import MODEL.UserROOT;
 import app_carshop.App_carshop;
 import VIEW.JFLoginPassword;
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
+import java.sql.Blob;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -82,11 +88,12 @@ public class Controller_JFLoginPassword {
     }
      //Ingreso usuario (EMPLEADO)
      public Controller_JFLoginPassword(CLogin usuario,Connection cn){
-         
+        this.loginPassword = new JFLoginPassword();
         this.loginPassword.label_Bienvenido.setText("Bienvenido "+usuario.getUsuario());
         this.loginPassword.label_tipoUser.setText("Tipo usuario: "+CUsuario.tipoUser(usuario.getId_usuario(), cn));
         this.cn=cn;
-        this.loginPassword = new JFLoginPassword();
+        //poner imagen de usuario
+        this.loginPassword.label_ImageUser.setIcon(new ImageIcon(getImageWithBlob(usuario.getImageBlob(),usuario.getNombreImagen()).getImage().getScaledInstance(loginPassword.label_ImageUser.getWidth(), loginPassword.label_ImageUser.getHeight(), Image.SCALE_DEFAULT)));
         //Evento para controlar la salida
         this.loginPassword.addWindowListener(new WindowAdapter() {
             @Override
@@ -125,5 +132,23 @@ public class Controller_JFLoginPassword {
         }
         return userObj;
     }
+     
+     private ImageIcon getImageWithBlob(Blob blob,String nombre){
+         ImageIcon image = null;
+        try {
+            byte[] data = blob.getBytes(1,(int)blob.length());
+            BufferedImage img = null;
+            img = ImageIO.read(new ByteArrayInputStream(data));
+            //Crear la imagen
+             image = new ImageIcon(img);
+            return image;
+        } catch (SQLException ex) {
+            Logger.getLogger(Controller_JFLoginPassword.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Controller_JFLoginPassword.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return image;
+     }
+     
     
 }
