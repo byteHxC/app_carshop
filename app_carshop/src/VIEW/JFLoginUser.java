@@ -101,6 +101,7 @@ public class JFLoginUser extends javax.swing.JFrame {
         btn_validarUser.setForeground(new java.awt.Color(255, 255, 255));
         btn_validarUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btn_validarUser.setText("Validar");
+        btn_validarUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_validarUser.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

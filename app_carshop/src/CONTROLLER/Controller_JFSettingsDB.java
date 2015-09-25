@@ -45,7 +45,6 @@ public class Controller_JFSettingsDB {
         this.cn = cn;
         fileSelected = null;
         userRoot = UserROOT.getROOTDB();
-        
         //Boton para seleccionar imagen del gerente
             this.viewSettingsDB.ChooserImageGerente.addMouseListener(new MouseAdapter() {
                 @Override
@@ -57,9 +56,14 @@ public class Controller_JFSettingsDB {
                     fileSelected = fileChooser.getSelectedFile();
                     
                     //poner imagen en label
-                    ImageIcon image = new ImageIcon(fileSelected.getAbsolutePath());
-                    viewSettingsDB.ChooserImageGerente.setIcon(new ImageIcon(image.getImage().getScaledInstance(viewSettingsDB.ChooserImageGerente.getWidth(),viewSettingsDB.ChooserImageGerente.getHeight(),Image.SCALE_SMOOTH)));
-        
+                     ImageIcon image;
+                    try{
+                     image = new ImageIcon(fileSelected.getAbsolutePath());
+                    }catch(NullPointerException er){
+                       image = new ImageIcon(getClass().getResource("/ASSETS/user168-1.png"));
+                    }
+                   viewSettingsDB.ChooserImageGerente.setIcon(new ImageIcon(image.getImage().getScaledInstance(viewSettingsDB.ChooserImageGerente.getWidth(),viewSettingsDB.ChooserImageGerente.getHeight(),Image.SCALE_SMOOTH)));
+
                 }
             });
         //Boton para crear la cuenta de un gerente
@@ -68,17 +72,29 @@ public class Controller_JFSettingsDB {
             @Override
             public void mouseClicked(MouseEvent e) {
                 CUsuario usuario = new CUsuario();
-                boolean userSuc = false;
                 CLogin login = new CLogin();
-                
+                // DATOS OBTENIDOS DE LA VENTANA DE AGREGAR GERENTE
                 String nombre = viewSettingsDB.txtNombreG.getText();
                 String apellido_pat = viewSettingsDB.txtApellidoPG.getText();
                 String apellido_mat = viewSettingsDB.txtApellidoMG.getText();
                 String direccion = viewSettingsDB.txtDireccionG.getText();
-                String telefono = viewSettingsDB.txtTelefonoG.getText();
-                float salario = Float.parseFloat(viewSettingsDB.txtSalarioG.getText());
+                String telefono = viewSettingsDB.txtTelefonoG.getText();        
+                String txtUsuario = viewSettingsDB.txtUsuario.getText();
+                String txtPass = viewSettingsDB.txtP_Password.getText();
+                String txtPassC = viewSettingsDB.txtP_PasswordConfirm.getText();
+                float salario;
+                try{
+                salario = Float.parseFloat((viewSettingsDB.txtSalarioG.getText().equals(""))?"0":viewSettingsDB.txtSalarioG.getText());
+                }catch(NumberFormatException err){
+                salario = 0;
+                }
                 String tipo = "Gerente";
-                //if(nombre.length()>5 && apellido_mat.length()>5 && apellido_pat.length()>5 && direccion.length()>10 && telefono.length()>5 && salario>0){
+                if(fileSelected==null){
+                    fileSelected = new File("src//ASSETS//user168-1.png");
+                }
+                
+                
+                //Set data in object Usuario
                     usuario.setNombre(nombre);
                     usuario.setApellido_pat(apellido_pat);
                     usuario.setApellido_mat(apellido_mat);
@@ -86,45 +102,37 @@ public class Controller_JFSettingsDB {
                     usuario.setTelefono(telefono);
                     usuario.setSalario(salario);
                     usuario.setTipo(tipo);
-                    userSuc = true;
-                //}
-                
-                
-                String erroresR= "Llene bien los siguientes campos: \n";
-                String txtUsuario = viewSettingsDB.txtUsuario.getText();
-                String txtPass = viewSettingsDB.txtP_Password.getText();
-                String txtPassC = viewSettingsDB.txtP_PasswordConfirm.getText();
-                if(fileSelected==null){
-                    fileSelected = new File("//ASSETS//user168-1.png");
+                    usuario.setEstado(true);
+                    usuario.setClave_elector(viewSettingsDB.txtClaveElector.getText());
+                //Set data in object Login
+                    login.setUsuario(txtUsuario);
+                    login.setPassword(txtPass);
+                    login.setAbsolutePathimagen(fileSelected.getAbsolutePath());
+                    login.setNombreImagen(fileSelected.getName());
+                //Verify data login & user
+                  
+                 if (usuario.validarDatos(viewSettingsDB) & login.validarDatos(viewSettingsDB, txtPass)) {
+                    if(CUsuario.ifExistsTipo(cn,"Gerente")){
+                       int resp = JOptionPane.showConfirmDialog(viewSettingsDB, "¿Ya existe un gerente,dar de baja y poner este como nuevo gerente?","Informacion",JOptionPane.WARNING_MESSAGE,JOptionPane.YES_NO_OPTION);
+                       if(resp == JOptionPane.YES_OPTION){
+                           CUsuario.bajaEstado(cn,"Gerente");
+                           usuario.saveObject(cn);
+                           usuario = CUsuario.getObject(usuario.getClave_elector(), cn);
+                           //Crear su login  y guardar
+                           login.setClave_elector(usuario.getClave_elector());
+                           login.saveObject(cn);
+                           cleanFields();
+                       }
+                    }else{
+                       
+                       usuario.saveObject(cn);
+                       usuario = CUsuario.getObject(usuario.getClave_elector(), cn);
+                       //Crear su login  y guardar
+                       login.setClave_elector(usuario.getClave_elector());
+                       login.saveObject(cn);
+                       cleanFields();
+                 }
                 }
-                //Validacion login
-                if(txtUsuario.length()>=8){
-                    if(txtPass.equals(txtPassC)){
-                        if(txtPass.length()<6) erroresR+="\t-La contraseña debe contener 6 o mas caracteres\n";
-                        else{
-                          
-                         if(userSuc == true){
-                               //Se guarda usuario 
-                                usuario.saveObject(cn);
-                                usuario = CUsuario.getObject(usuario.getNombre(), usuario.getApellido_pat(), usuario.getApellido_mat(), cn);
-                               //Crear su login  y guardar
-                               login.setId_usuario(usuario.getId_usuario());
-                               login.setUsuario(txtUsuario);
-                               login.setPassword(txtPass);
-                               login.setAbsolutePathimagen(fileSelected.getAbsolutePath());
-                               login.setNombreImagen(fileSelected.getName());
-                               login.saveObject(cn);
-                               cleanFields();
-                             
-                         }else erroresR+="\n-Corroborar los datos del gerente";
-                        }
-                    }else erroresR+="\t-La confirmacion de contraseña es incorrecta\n";
-                    
-                }else erroresR+="\t-El nombre de usuario debe ser mayor o igual a 8 caracteres\n";
-                
-                JOptionPane.showMessageDialog(viewSettingsDB,erroresR,"Corregir datos",JOptionPane.WARNING_MESSAGE);
-               
-                
             }
         });
         
@@ -215,5 +223,8 @@ public class Controller_JFSettingsDB {
        viewSettingsDB.txtDireccionG.setText(null);
        viewSettingsDB.txtTelefonoG.setText(null);
        viewSettingsDB.txtSalarioG.setText(null);
+       viewSettingsDB.txtClaveElector.setText(null);
+       viewSettingsDB.ChooserImageGerente.setIcon(null);
+       fileSelected = null;
     }
 }

@@ -21,7 +21,7 @@ public class ConnectionMySQL {
         Connection cn = null;
         try{
         Class.forName("com.mysql.jdbc.Driver");
-        cn = DriverManager.getConnection("jdbc:mysql://"+ip+":"+port+"/carshopTEST", user, password);
+        cn = DriverManager.getConnection("jdbc:mysql://"+ip+":"+port+"/carshopDEV", user, password);
             System.out.println("Connection succesful");
         
         }catch(SQLException sqle){

@@ -92,12 +92,14 @@ public class JFSettingsUser extends javax.swing.JFrame {
         jLabel8.setText("Confirmar contraseña");
 
         ChooserImageGerente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        ChooserImageGerente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         btn_cancelar.setBackground(new java.awt.Color(255, 102, 102));
         btn_cancelar.setFont(new java.awt.Font("Gulim", 0, 17)); // NOI18N
         btn_cancelar.setForeground(new java.awt.Color(255, 255, 255));
         btn_cancelar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btn_cancelar.setText("Cancelar");
+        btn_cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_cancelar.setOpaque(true);
 
         btn_guardar.setBackground(new java.awt.Color(84, 222, 66));
@@ -105,6 +107,7 @@ public class JFSettingsUser extends javax.swing.JFrame {
         btn_guardar.setForeground(new java.awt.Color(255, 255, 255));
         btn_guardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btn_guardar.setText("Guardar");
+        btn_guardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_guardar.setOpaque(true);
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));

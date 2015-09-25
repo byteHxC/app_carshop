@@ -80,7 +80,7 @@ public class JFLoginPassword extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        label_Bienvenido.setFont(new java.awt.Font("Walkway UltraExpand", 0, 14)); // NOI18N
+        label_Bienvenido.setFont(new java.awt.Font("Walkway UltraExpand", 0, 16)); // NOI18N
         label_Bienvenido.setForeground(new java.awt.Color(255, 255, 255));
         label_Bienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_Bienvenido.setText("Bienvenido");
@@ -129,6 +129,7 @@ public class JFLoginPassword extends javax.swing.JFrame {
         btn_validarPass.setForeground(new java.awt.Color(255, 255, 255));
         btn_validarPass.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btn_validarPass.setText("Validar");
+        btn_validarPass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_validarPass.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

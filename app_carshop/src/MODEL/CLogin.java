@@ -4,24 +4,34 @@
  * and open the template in the editor.
  */
 package MODEL;
+import VIEW.JFSettingsDB;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author ByteDrive
  */
 public class CLogin {
-    private int id_usuario;
+    private String clave_elector;
     private String usuario;
     private String password;
     private String AbsolutePathimagen;
     private Blob imageBlob;
     private String nombreImagen;
+
+    public String getClave_elector() {
+        return clave_elector;
+    }
+
+    public void setClave_elector(String clave_elector) {
+        this.clave_elector = clave_elector;
+    }
 
     public CLogin() {
     }
@@ -31,13 +41,7 @@ public class CLogin {
     }
     
     
-    public int getId_usuario() {
-        return id_usuario;
-    }
-
-    public void setId_usuario(int id_user) {
-        this.id_usuario = id_user;
-    }
+  
 
     public String getUsuario() {
         return usuario;
@@ -78,21 +82,42 @@ public class CLogin {
         this.nombreImagen = nombre;
     }
     
+    public void updateObject(Connection cn){
+        FileInputStream fileIn = null;
+        try{
+            PreparedStatement pps = cn.prepareStatement("UPDATE login set imagen=?,nombre_imagen=?,usuario=?,password=? where cve_elector=?");
+            fileIn = new FileInputStream(getAbsolutePathimagen());
+            pps.setBlob(1,fileIn);
+            pps.setString(2,getNombreImagen());
+            pps.setString(3,getUsuario());
+            pps.setString(4,getPassword());
+            pps.setString(5,getClave_elector());
+            pps.executeUpdate();
+            System.out.println("Login.UpdateObject() successful");
+        } catch (SQLException | FileNotFoundException ex) {
+            Logger.getLogger(CLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+           if(fileIn!=null)
+            try {
+                fileIn.close();
+           } catch (IOException ex) {
+               Logger.getLogger(CLogin.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        }
+    }
     public void saveObject(Connection cn){
         FileInputStream fileIn = null;
         try{
             fileIn = new FileInputStream(getAbsolutePathimagen());
-            PreparedStatement pps = cn.prepareStatement("INSERT INTO login (usuario,password,imagen,nombre_imagen,id_usuario) values (?,?,?,?,?)");
+            PreparedStatement pps = cn.prepareStatement("INSERT INTO login (usuario,password,imagen,nombre_imagen,usuario_cve) values (?,?,?,?,?)");
             pps.setString(1, getUsuario());
             pps.setString(2, getPassword());
             pps.setBlob(3, fileIn);
             pps.setString(4, getNombreImagen());
-            pps.setInt(5, getId_usuario());
+            pps.setString(5, getClave_elector());
             pps.executeUpdate();
             System.out.println("Login.SaveObject() sucessful");
-        } catch (SQLException ex) {
-            Logger.getLogger(CLogin.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
+        } catch (SQLException | FileNotFoundException ex) {
             Logger.getLogger(CLogin.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             if(fileIn!=null)
@@ -103,29 +128,54 @@ public class CLogin {
             }
         }
     }
+    
+    
     public static CLogin verificarLogin(String txtUser,Connection cn){
-         CLogin user = null;
+         CLogin login = null;
         try {
      
-            PreparedStatement pps = cn.prepareStatement("SELECT *from login where usuario = ?");
+            PreparedStatement pps = cn.prepareStatement("select usuario,password,imagen,nombre_imagen,usuarios.cve_elector,estado from login join usuarios on login.usuario_cve=usuarios.cve_elector where login.usuario=?;");
             pps.setString(1, txtUser);
             ResultSet rs = pps.executeQuery();
             if(rs.next()){
-                user = new CLogin();
-                user.setId_usuario(rs.getInt("id_usuario"));
-                user.setUsuario(rs.getString("usuario"));
-                user.setPassword(rs.getString("password"));
-                user.setImageBlob(rs.getBlob("imagen"));
-                user.setNombreImagen(rs.getString("nombre_imagen"));
-                return user;
+                login = new CLogin();
+                login.setClave_elector(rs.getString("cve_elector"));
+                login.setUsuario(rs.getString("usuario"));
+                login.setPassword(rs.getString("password"));
+                login.setImageBlob(rs.getBlob("imagen"));
+                login.setNombreImagen(rs.getString("nombre_imagen"));
+                if(rs.getBoolean("estado")==true)
+                    return login;
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(CLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return user;
+        return null;
     }
     
-    
+    public boolean validarDatos(JFSettingsDB frame, String confirmationPass){
+        String txtError = "Verificar datos login\n";
+        Boolean errores = false;
+        if(getPassword().length() < 6){
+            txtError += "\t-La contraseña debe ser mayor a 6 caracteres\n";
+            errores = true;
+        }
+        
+        if(!(getPassword().equals(confirmationPass))){
+            txtError += "\t-La confirmacion de contraseña es diferente\n";
+            errores = true;
+        }
+         if(!(getUsuario().matches("[a-zA-Z0-9]+[@][a-zA-Z]+"))){
+             txtError += "\t-El nombre de usuario debe tener mas de 8 caracteres.\n";
+             errores= true;
+         }
+         if(errores){
+              JOptionPane.showMessageDialog(frame, txtError, "Validación de datos del login", JOptionPane.WARNING_MESSAGE);
+               return false;
+         }
+         return true;
+    }
     
     
 }
