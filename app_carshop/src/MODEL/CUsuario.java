@@ -117,8 +117,10 @@ public class CUsuario {
             PreparedStatement pps = cn.prepareStatement("SELECT *from usuarios where tipo=?");
             pps.setString(1, tipo);
             ResultSet rs = pps.executeQuery();
-            if(rs.next() && rs.getBoolean("estado")){
-                 return true;
+           
+            while(rs.next()){
+                if(rs.getBoolean("estado"))
+                    return true;
             }
                
         } catch (SQLException ex) {
@@ -186,10 +188,19 @@ public class CUsuario {
         return "error en tipo";
     }
     
- public boolean validarDatos(JFSettingsDB frame){
-        String txtError = "Corregir datos usuario\n";
+ public boolean validarDatos(JFSettingsDB frame,Connection cn){
+        //try{
+        String txtError = "Verificar datos de  usuario incorrectos\n";
         Boolean errores = false;
         String sAux = getSalario() + "";
+        if(!(clave_elector.matches("[a-zA-Z]{6}[0-9]{6}[0-9]{2}[A-Za-z]{1}[0-9]{3}"))){
+            txtError += "\t-Clave elector invalida [18 caracteres]\n";
+            errores = true;
+        }
+        if(exist_cve_elector(cn,clave_elector)){
+            txtError += "\t-La clave de elector ya existe,ingresar otra\n";
+            errores = true;
+        }
         if(!(nombre.matches("[a-zA-Z]{3,30}"))){
             txtError += "\t-Nombre invalido\n";
             errores = true;
@@ -202,21 +213,16 @@ public class CUsuario {
             txtError += "\t-Apellido materno invalido\n";
             errores = true;
         }  
-        if(direccion.length()>=200){
-            txtError += "\t-La direccion solo tiene capacidad de 200 caracteres\n";
-            errores = true;
+        if(!(direccion.length()>=200 || direccion.matches("[a-zA-Z]+([ ]*[a-zA-Z0-9]+)+"))){   
+                txtError += "\t-Verificar direccion [200] caracteres\n";
+                errores = true;
         }
         if(!(telefono.matches("[0-9]{5,15}"))){
             txtError += "\t-Telefono invalido\n";
             errores = true;
         }
-        // "([1-9]+)[.][0-9]{0,2}"
         if(!sAux.matches("([1-9])[0-9]+(([.])([0-9]{1,2})?)?")){
             txtError += "\t-Salario invalido\n";
-            errores = true;
-        }
-        if(getClave_elector().length()!=18){
-            txtError += "\t-Clave elector [18] caracteres\n";
             errores = true;
         }
         if(errores){
@@ -236,6 +242,21 @@ public class CUsuario {
         } catch (SQLException ex) {
             Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    //Validar que no exista al pk cve_elector
+    
+    public static boolean exist_cve_elector(Connection cn,String cve_elector){
+        try{
+            PreparedStatement pps = cn.prepareStatement("SELECT cve_elector from usuarios where cve_elector=?");
+            pps.setString(1, cve_elector);
+            ResultSet rs = pps.executeQuery();
+            while(rs.next())
+                return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
  
  

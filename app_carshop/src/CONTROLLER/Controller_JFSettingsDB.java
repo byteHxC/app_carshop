@@ -111,27 +111,30 @@ public class Controller_JFSettingsDB {
                     login.setNombreImagen(fileSelected.getName());
                 //Verify data login & user
                   
-                 if (usuario.validarDatos(viewSettingsDB) & login.validarDatos(viewSettingsDB, txtPass)) {
-                    if(CUsuario.ifExistsTipo(cn,"Gerente")){
-                       int resp = JOptionPane.showConfirmDialog(viewSettingsDB, "¿Ya existe un gerente,dar de baja y poner este como nuevo gerente?","Informacion",JOptionPane.WARNING_MESSAGE,JOptionPane.YES_NO_OPTION);
-                       if(resp == JOptionPane.YES_OPTION){
-                           CUsuario.bajaEstado(cn,"Gerente");
+                 if (usuario.validarDatos(viewSettingsDB,cn) & login.validarDatos(viewSettingsDB, txtPass,cn) ) {
+                        if(CUsuario.ifExistsTipo(cn,"Gerente")){
+
+                           int resp = JOptionPane.showConfirmDialog(viewSettingsDB, "¿Ya existe un gerente,dar de baja y poner este como nuevo gerente?","Informacion",JOptionPane.WARNING_MESSAGE,JOptionPane.YES_NO_OPTION);
+                               if(resp == JOptionPane.YES_OPTION){
+                                   CUsuario.bajaEstado(cn,"Gerente");
+                                   usuario.saveObject(cn);
+                                   usuario = CUsuario.getObject(usuario.getClave_elector(), cn);
+                                   //Crear su login  y guardar
+                                   login.setClave_elector(usuario.getClave_elector());
+                                   login.saveObject(cn);
+                                   cleanFields();
+                               }
+
+                        }else{
+                            
                            usuario.saveObject(cn);
                            usuario = CUsuario.getObject(usuario.getClave_elector(), cn);
                            //Crear su login  y guardar
                            login.setClave_elector(usuario.getClave_elector());
                            login.saveObject(cn);
                            cleanFields();
-                       }
-                    }else{
-                       
-                       usuario.saveObject(cn);
-                       usuario = CUsuario.getObject(usuario.getClave_elector(), cn);
-                       //Crear su login  y guardar
-                       login.setClave_elector(usuario.getClave_elector());
-                       login.saveObject(cn);
-                       cleanFields();
-                 }
+
+                     }
                 }
             }
         });
@@ -227,4 +230,5 @@ public class Controller_JFSettingsDB {
        viewSettingsDB.ChooserImageGerente.setIcon(null);
        fileSelected = null;
     }
+    
 }

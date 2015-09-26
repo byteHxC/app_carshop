@@ -82,10 +82,11 @@ public class CLogin {
         this.nombreImagen = nombre;
     }
     
-    public void updateObject(Connection cn){
+    public boolean updateObject(Connection cn){
         FileInputStream fileIn = null;
         try{
-            PreparedStatement pps = cn.prepareStatement("UPDATE login set imagen=?,nombre_imagen=?,usuario=?,password=? where cve_elector=?");
+            PreparedStatement pps = cn.prepareStatement("UPDATE login set imagen=?,nombre_imagen=?,usuario=?,password=? where usuario_cve=?");
+          
             fileIn = new FileInputStream(getAbsolutePathimagen());
             pps.setBlob(1,fileIn);
             pps.setString(2,getNombreImagen());
@@ -94,8 +95,10 @@ public class CLogin {
             pps.setString(5,getClave_elector());
             pps.executeUpdate();
             System.out.println("Login.UpdateObject() successful");
+            return true;
         } catch (SQLException | FileNotFoundException ex) {
             Logger.getLogger(CLogin.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }finally{
            if(fileIn!=null)
             try {
@@ -154,7 +157,7 @@ public class CLogin {
         return null;
     }
     
-    public boolean validarDatos(JFSettingsDB frame, String confirmationPass){
+    public boolean validarDatos(JFSettingsDB frame, String confirmationPass,Connection cn){
         String txtError = "Verificar datos login\n";
         Boolean errores = false;
         if(getPassword().length() < 6){
@@ -167,8 +170,13 @@ public class CLogin {
             errores = true;
         }
          if(!(getUsuario().matches("[a-zA-Z0-9]+[@][a-zA-Z]+"))){
-             txtError += "\t-El nombre de usuario debe tener mas de 8 caracteres.\n";
+             txtError += "\t-El nombre de usuario debe tener mas de 8 caracteres\n";
              errores= true;
+         }
+         
+         if(existsUsuario(cn,getUsuario())){
+            txtError += "\t-El usuario ya existe elija otro.\n";
+            errores =true;
          }
          if(errores){
               JOptionPane.showMessageDialog(frame, txtError, "Validación de datos del login", JOptionPane.WARNING_MESSAGE);
@@ -176,6 +184,24 @@ public class CLogin {
          }
          return true;
     }
+    
+    public static boolean existsUsuario(Connection cn,String txtUser){
+        try{
+            PreparedStatement pps = cn.prepareStatement("SELECT usuario from login where usuario = ?");
+            pps.setString(1, txtUser);
+            ResultSet rs = pps.executeQuery();
+            if(rs.next())
+                return true;
+                
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+   
+    
+    
     
     
 }

@@ -80,7 +80,7 @@ public class JFLoginPassword extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        label_Bienvenido.setFont(new java.awt.Font("Walkway UltraExpand", 0, 16)); // NOI18N
+        label_Bienvenido.setFont(new java.awt.Font("Gulim", 0, 16)); // NOI18N
         label_Bienvenido.setForeground(new java.awt.Color(255, 255, 255));
         label_Bienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_Bienvenido.setText("Bienvenido");

@@ -79,6 +79,8 @@ public class Controller_JFGerenteHome {
         this.viewGerenteHome.btn_settings.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
+                Controller_JFSettingsUser JFSettingsUser = new Controller_JFSettingsUser(login, cn);
+                viewGerenteHome.dispose();
             }
         });
         
