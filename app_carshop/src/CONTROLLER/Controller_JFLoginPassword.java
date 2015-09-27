@@ -89,10 +89,12 @@ public class Controller_JFLoginPassword {
     }
      //Ingreso usuario (EMPLEADO)
      public Controller_JFLoginPassword(CLogin login,Connection cn){
+         CUsuario usuario = CUsuario.getObject(login.getClave_elector(), cn);
         this.login=login;
         this.loginPassword = new JFLoginPassword();
         this.loginPassword.label_Bienvenido.setText("Bienvenido "+login.getUsuario());
-        this.loginPassword.label_tipoUser.setText("Tipo usuario: \n"+CUsuario.tipoUser(login.getClave_elector(), cn));
+        this.loginPassword.label_tipoUser.setText("Tipo usuario: \n"+usuario.getTipo());
+      
         this.cn=cn;
         //poner imagen de usuario
         this.loginPassword.label_ImageUser.setIcon(new ImageIcon(getImageWithBlob(login.getImageBlob(),login.getNombreImagen()).getImage().getScaledInstance(loginPassword.label_ImageUser.getWidth(), loginPassword.label_ImageUser.getHeight(), Image.SCALE_DEFAULT)));
@@ -102,8 +104,18 @@ public class Controller_JFLoginPassword {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(login.getPassword().equals(loginPassword.txtP_Password.getText())){
-                    Controller_JFGerenteHome JFGerenteHome = new Controller_JFGerenteHome(login, cn);
-                    loginPassword.dispose();
+                    switch (usuario.getTipo()){
+                        case ("Gerente"):
+                                Controller_JFGerenteHome JFGerenteHome = new Controller_JFGerenteHome(login, cn);
+                                loginPassword.dispose();
+                            break;
+                        case("Financiamiento"):
+                                System.out.println("Entra financiemianto");
+                            break;
+                        case("Comercio"):
+                                System.out.println("Entra comercio");
+                            break;
+                    }
                 }else{
                     Thread error;
                             error = new Thread(new Runnable() {

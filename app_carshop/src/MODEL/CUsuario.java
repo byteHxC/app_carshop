@@ -5,11 +5,14 @@
  */
 package MODEL;
 
+import VIEW.JFGerenteHome;
 import VIEW.JFSettingsDB;
+import VIEW.JFShowEmpleados;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -174,7 +177,7 @@ public class CUsuario {
     }
     
     
- public static String tipoUser(String cve_elector,Connection cn){
+    public static String tipoUser(String cve_elector,Connection cn){
         try{
             PreparedStatement pps = cn.prepareStatement("SELECT tipo FROM usuarios WHERE cve_elector =?");
             pps.setString(1,cve_elector);
@@ -188,7 +191,7 @@ public class CUsuario {
         return "error en tipo";
     }
     
- public boolean validarDatos(JFSettingsDB frame,Connection cn){
+    public boolean validarDatos(JFSettingsDB frame,Connection cn){
         //try{
         String txtError = "Verificar datos de  usuario incorrectos\n";
         Boolean errores = false;
@@ -231,7 +234,49 @@ public class CUsuario {
         }
         return true;
     }
- 
+    public boolean validarDatos(JFGerenteHome frame,Connection cn){
+        //try{
+        String txtError = "Verificar datos de  usuario incorrectos\n";
+        Boolean errores = false;
+        String sAux = getSalario() + "";
+        if(!(clave_elector.matches("[a-zA-Z]{6}[0-9]{6}[0-9]{2}[A-Za-z]{1}[0-9]{3}"))){
+            txtError += "\t-Clave elector invalida [18 caracteres]\n";
+            errores = true;
+        }
+        if(exist_cve_elector(cn,clave_elector)){
+            txtError += "\t-La clave de elector ya existe,ingresar otra\n";
+            errores = true;
+        }
+        if(!(nombre.matches("[a-zA-Z]{3,30}"))){
+            txtError += "\t-Nombre invalido\n";
+            errores = true;
+        }
+        if(!(apellido_pat.matches("[a-zA-Z]{3,30}"))){
+            txtError += "\t-Apellido paterno invalido\n";
+            errores = true;
+        }
+        if(!(apellido_mat.matches("[a-zA-Z]{3,30}"))){
+            txtError += "\t-Apellido materno invalido\n";
+            errores = true;
+        }  
+        if(!(direccion.length()>=200 || direccion.matches("[a-zA-Z]+([ ]*[a-zA-Z0-9]+)+"))){   
+                txtError += "\t-Verificar direccion [200] caracteres\n";
+                errores = true;
+        }
+        if(!(telefono.matches("[0-9]{5,15}"))){
+            txtError += "\t-Telefono invalido\n";
+            errores = true;
+        }
+        if(!sAux.matches("([1-9])[0-9]+(([.])([0-9]{1,2})?)?")){
+            txtError += "\t-Salario invalido\n";
+            errores = true;
+        }
+        if(errores){
+            JOptionPane.showMessageDialog(frame, txtError, "Validacion de datos de usuarios", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        return true;
+    }
     public static void bajaEstado(Connection cn,String tipo){
         try{
             PreparedStatement pps = cn.prepareStatement("update usuarios set estado=? where tipo=?");
@@ -243,9 +288,19 @@ public class CUsuario {
             Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+     public static void bajaEstado(String cve_elector,Connection cn){
+        try{
+            PreparedStatement pps = cn.prepareStatement("update usuarios set estado=? where cve_elector=?");
+            pps.setBoolean(1,false);
+            pps.setString(2,cve_elector);
+            pps.executeUpdate();
+            System.out.println("Baja usuario");
+        } catch (SQLException ex) {
+            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     //Validar que no exista al pk cve_elector
-    
+
     public static boolean exist_cve_elector(Connection cn,String cve_elector){
         try{
             PreparedStatement pps = cn.prepareStatement("SELECT cve_elector from usuarios where cve_elector=?");
@@ -258,6 +313,130 @@ public class CUsuario {
         }
         return false;
     }
- 
+    
+    public static ArrayList<CUsuario> queryAll(Connection cn){
+       ArrayList<CUsuario> usuarios = new ArrayList<>();
+       try{
+           PreparedStatement pps = cn.prepareStatement("SELECT *FROM USUARIOS");
+           ResultSet rs = pps.executeQuery();
+           while(rs.next()){
+               CUsuario usuario = new CUsuario();
+               usuario.setClave_elector(rs.getString("cve_elector"));
+               usuario.setNombre(rs.getString("nombre"));
+               usuario.setApellido_pat(rs.getString("apellido_pat"));
+               usuario.setApellido_mat(rs.getString("apellido_mat"));
+               usuario.setDireccion(rs.getString("direccion"));
+               usuario.setTelefono(rs.getString("telefono"));
+               usuario.setTipo(rs.getString("tipo"));
+               usuario.setSalario(rs.getFloat("salario"));
+               usuario.setEstado(rs.getBoolean("estado"));
+               if(!rs.getString("tipo").equals("Gerente"))
+                   usuarios.add(usuario);
+           }
+       }catch (SQLException ex) {
+            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+       }  
+       return usuarios;
+    }
+    
+     public static ArrayList<CUsuario> queryForClaveElector(Connection cn,String cveElector){
+       ArrayList<CUsuario> usuarios = new ArrayList<>();
+       try{
+           PreparedStatement pps = cn.prepareStatement("SELECT *FROM USUARIOS where cve_elector = ?");
+           pps.setString(1, cveElector);
+           ResultSet rs = pps.executeQuery();
+           while(rs.next()){
+               CUsuario usuario = new CUsuario();
+               usuario.setClave_elector(rs.getString("cve_elector"));
+               usuario.setNombre(rs.getString("nombre"));
+               usuario.setApellido_pat(rs.getString("apellido_pat"));
+               usuario.setApellido_mat(rs.getString("apellido_mat"));
+               usuario.setDireccion(rs.getString("direccion"));
+               usuario.setTelefono(rs.getString("telefono"));
+               usuario.setTipo(rs.getString("tipo"));
+               usuario.setSalario(rs.getFloat("salario"));
+               usuario.setEstado(rs.getBoolean("estado"));
+               if(!rs.getString("tipo").equals("Gerente"))
+                   usuarios.add(usuario);
+           }
+       }catch (SQLException ex) {
+            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+       }  
+       return usuarios;
+    }
+     
+     public static ArrayList<CUsuario> queryForNombre(Connection cn,String nombre){
+       ArrayList<CUsuario> usuarios = new ArrayList<>();
+       try{
+           PreparedStatement pps = cn.prepareStatement("SELECT *FROM USUARIOS where nombre = ?");
+           pps.setString(1, nombre);
+           ResultSet rs = pps.executeQuery();
+           while(rs.next()){
+               CUsuario usuario = new CUsuario();
+               usuario.setClave_elector(rs.getString("cve_elector"));
+               usuario.setNombre(rs.getString("nombre"));
+               usuario.setApellido_pat(rs.getString("apellido_pat"));
+               usuario.setApellido_mat(rs.getString("apellido_mat"));
+               usuario.setDireccion(rs.getString("direccion"));
+               usuario.setTelefono(rs.getString("telefono"));
+               usuario.setTipo(rs.getString("tipo"));
+               usuario.setSalario(rs.getFloat("salario"));
+               usuario.setEstado(rs.getBoolean("estado"));
+               if(!rs.getString("tipo").equals("Gerente"))
+                   usuarios.add(usuario);
+           }
+       }catch (SQLException ex) {
+            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+       }  
+       return usuarios;
+    }
+     
+     public static ArrayList<CUsuario> queryForType(Connection cn,String type){
+       ArrayList<CUsuario> usuarios = new ArrayList<>();
+       try{
+           PreparedStatement pps = cn.prepareStatement("SELECT *FROM USUARIOS where tipo = ?");
+           pps.setString(1, type);
+           ResultSet rs = pps.executeQuery();
+           while(rs.next()){
+               CUsuario usuario = new CUsuario();
+               usuario.setClave_elector(rs.getString("cve_elector"));
+               usuario.setNombre(rs.getString("nombre"));
+               usuario.setApellido_pat(rs.getString("apellido_pat"));
+               usuario.setApellido_mat(rs.getString("apellido_mat"));
+               usuario.setDireccion(rs.getString("direccion"));
+               usuario.setTelefono(rs.getString("telefono"));
+               usuario.setTipo(rs.getString("tipo"));
+               usuario.setSalario(rs.getFloat("salario"));
+               usuario.setEstado(rs.getBoolean("estado"));
+               if(!rs.getString("tipo").equals("Gerente"))
+                   usuarios.add(usuario);
+           }
+       }catch (SQLException ex) {
+            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+       }  
+       return usuarios;
+    }
+     
+    public static boolean updateObject(String cve_elector,String direccion,String telefono,float salario,Connection cn){
+        try{
+        String sAux = salario + "";
+        if(!(direccion.length()>=200 || direccion.matches("[a-zA-Z]+([ ]*[a-zA-Z0-9]+)+"))) return false;
+        if(!(telefono.matches("[0-9]{5,15}"))) return false;
+        if(!sAux.matches("([1-9])[0-9]+(([.])([0-9]{1,2})?)?")) return false;
+        
+        PreparedStatement pps = cn.prepareStatement("update usuarios set direccion = ?, telefono = ?, salario = ? where cve_elector = ?");
+            pps.setString(1,direccion);
+            pps.setString(2,telefono);
+            pps.setFloat(3,salario);
+            pps.setString(4,cve_elector);
+        pps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return true;
+    }
+
+    
+    
  
 }

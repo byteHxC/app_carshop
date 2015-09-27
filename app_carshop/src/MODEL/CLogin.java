@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package MODEL;
+import VIEW.JFGerenteHome;
 import VIEW.JFSettingsDB;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -158,6 +159,33 @@ public class CLogin {
     }
     
     public boolean validarDatos(JFSettingsDB frame, String confirmationPass,Connection cn){
+        String txtError = "Verificar datos login\n";
+        Boolean errores = false;
+        if(getPassword().length() < 6){
+            txtError += "\t-La contraseña debe ser mayor a 6 caracteres\n";
+            errores = true;
+        }
+        
+        if(!(getPassword().equals(confirmationPass))){
+            txtError += "\t-La confirmacion de contraseña es diferente\n";
+            errores = true;
+        }
+         if(!(getUsuario().matches("[a-zA-Z0-9]+[@][a-zA-Z]+"))){
+             txtError += "\t-El nombre de usuario debe tener mas de 8 caracteres\n";
+             errores= true;
+         }
+         
+         if(existsUsuario(cn,getUsuario())){
+            txtError += "\t-El usuario ya existe elija otro.\n";
+            errores =true;
+         }
+         if(errores){
+              JOptionPane.showMessageDialog(frame, txtError, "Validación de datos del login", JOptionPane.WARNING_MESSAGE);
+               return false;
+         }
+         return true;
+    }
+    public boolean validarDatos(JFGerenteHome frame, String confirmationPass,Connection cn){
         String txtError = "Verificar datos login\n";
         Boolean errores = false;
         if(getPassword().length() < 6){
