@@ -36,8 +36,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Controller_JFGerenteHome {
     JFGerenteHome viewGerenteHome;
     Connection cn;
-    CLogin login;
     File fileSelected;
+        CLogin login;
     public Controller_JFGerenteHome(CLogin login,Connection cn){
         viewGerenteHome = new JFGerenteHome();
                    
