@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CONTROLLER;
+package CONTROL;
 
-import MODEL.CLogin;
-import MODEL.CUsuario;
+import MODEL.ELogin;
+import MODEL.EUsuario;
 import VIEW.JFShowEmpleados;
 import app_carshop.App_carshop;
 import java.awt.Color;
@@ -44,12 +44,12 @@ public class Controller_JFShowEmpleados {
  
 
     //Cuando entra el gerente
-    public Controller_JFShowEmpleados(CLogin login,Connection cn){
+    public Controller_JFShowEmpleados(ELogin login,Connection cn){
         viewEmpleados = new  JFShowEmpleados();
         viewEmpleados.label_usuario.setText("USUARIO: "+login.getUsuario());
         this.viewEmpleados.label_ImageEmpleado.setIcon(new ImageIcon(getImageWithBlob(login.getImageBlob(),login.getNombreImagen()).getImage().getScaledInstance(viewEmpleados.label_ImageEmpleado.getWidth(),viewEmpleados.label_ImageEmpleado.getHeight(),Image.SCALE_SMOOTH)));
        
-        loadTable(viewEmpleados.table_showEmpleados,CUsuario.queryAll(cn));
+        loadTable(viewEmpleados.table_showEmpleados,EUsuario.queryAll(cn));
         //Botojn de editar empleado
         this.viewEmpleados.btn_EditarEmpleado.addMouseListener(new MouseAdapter() {
             @Override
@@ -75,8 +75,8 @@ public class Controller_JFShowEmpleados {
                    //No hay seleccion
                     JOptionPane.showMessageDialog(viewEmpleados,"Seleccione un registro","Error",JOptionPane.WARNING_MESSAGE);
                 }else{
-                    CUsuario.bajaEstado(viewEmpleados.table_showEmpleados.getValueAt(viewEmpleados.table_showEmpleados.getSelectedRow(),0).toString(), cn);
-                    loadTable(viewEmpleados.table_showEmpleados,CUsuario.queryAll(cn));
+                    EUsuario.bajaEstado(viewEmpleados.table_showEmpleados.getValueAt(viewEmpleados.table_showEmpleados.getSelectedRow(),0).toString(), cn);
+                    loadTable(viewEmpleados.table_showEmpleados,EUsuario.queryAll(cn));
                 }
             }
         });
@@ -89,21 +89,21 @@ public class Controller_JFShowEmpleados {
                     case ("Clave elector"):
                         
                             if(!value.isEmpty()){
-                                  loadTable(viewEmpleados.table_showEmpleados,CUsuario.queryForClaveElector(cn,value));
+                                  loadTable(viewEmpleados.table_showEmpleados,EUsuario.queryForClaveElector(cn,value));
                             }else{
                                 JOptionPane.showMessageDialog(viewEmpleados, "Ingrese un valor para buscar","Revisar campos",JOptionPane.WARNING_MESSAGE);
                             }
                         break;
                     case ("Nombre"):
                         if(!value.isEmpty()){
-                                  loadTable(viewEmpleados.table_showEmpleados,CUsuario.queryForNombre(cn,value));
+                                  loadTable(viewEmpleados.table_showEmpleados,EUsuario.queryForNombre(cn,value));
                             }else{
                                 JOptionPane.showMessageDialog(viewEmpleados, "Ingrese un valor para buscar","Revisar campos",JOptionPane.WARNING_MESSAGE);
                             }
                         break;
                     case("Tipo"):
                         if(!value.isEmpty()){
-                                  loadTable(viewEmpleados.table_showEmpleados,CUsuario.queryForType(cn,value));
+                                  loadTable(viewEmpleados.table_showEmpleados,EUsuario.queryForType(cn,value));
                             }else{
                                 JOptionPane.showMessageDialog(viewEmpleados, "Ingrese un valor para buscar","Revisar campos",JOptionPane.WARNING_MESSAGE);
                             }
@@ -119,7 +119,7 @@ public class Controller_JFShowEmpleados {
             public void actionPerformed(ActionEvent e) {
                   viewEmpleados.txt_valueSearch.setText(null);
                   if(viewEmpleados.cbox_searchFor.getSelectedItem().toString().equals("Todos")){
-                       loadTable(viewEmpleados.table_showEmpleados,CUsuario.queryAll(cn));
+                       loadTable(viewEmpleados.table_showEmpleados,EUsuario.queryAll(cn));
         
                   }
             }
@@ -148,7 +148,7 @@ public class Controller_JFShowEmpleados {
         
     }
     
-    public void loadTable(JTable tabla,ArrayList<CUsuario> usuarios){
+    public void loadTable(JTable tabla,ArrayList<EUsuario> usuarios){
         
         DefaultTableModel model = new DefaultTableModel(){
             @Override
@@ -166,7 +166,7 @@ public class Controller_JFShowEmpleados {
         model.addColumn("Salario");
         model.addColumn("Estado");
         
-        for (CUsuario usuario  :usuarios){
+        for (EUsuario usuario  :usuarios){
             Object[] user = new Object[8];
                 user[0] = usuario.getClave_elector();
                 user[1] = usuario.getNombre();

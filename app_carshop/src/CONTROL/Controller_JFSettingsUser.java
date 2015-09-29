@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CONTROLLER;
+package CONTROL;
 
-import MODEL.CLogin;
+import MODEL.ELogin;
 import MODEL.UserROOT;
 import VIEW.JFSettingsUser;
 import app_carshop.App_carshop;
@@ -82,6 +82,7 @@ public class Controller_JFSettingsUser {
 
             @Override
             public void mouseClicked(MouseEvent e) {
+                
                 Controller_JFSettingsDB controllerSettingsDB = new Controller_JFSettingsDB(cn);
                 viewSettingsUser.dispose();
             
@@ -100,7 +101,7 @@ public class Controller_JFSettingsUser {
     
     //Constructor usuario empleado
     
-    public Controller_JFSettingsUser(CLogin login,Connection cn){
+    public Controller_JFSettingsUser(String JFController, ELogin login, Connection cn){
         viewSettingsUser = new JFSettingsUser();
         this.cn = cn;
         viewSettingsUser.label_usuario.setText("USUARIO: "+login.getUsuario());
@@ -166,8 +167,21 @@ public class Controller_JFSettingsUser {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                Controller_JFGerenteHome JFGerenteHome = new Controller_JFGerenteHome(login, cn);
-                viewSettingsUser.dispose();
+                switch(JFController){
+                    case ("ControllerGerente"):
+                         Controller_JFGerenteHome JFGerenteHome = new Controller_JFGerenteHome(login, cn);
+                            viewSettingsUser.dispose();
+                        break;
+                    case ("ControllerComercio"):
+                         Controller_JFComercioHome JFComercioHome = new Controller_JFComercioHome(login, cn);
+                            viewSettingsUser.dispose();
+                        break;
+                    case ("ControllerFinanciamiento"):
+                         
+                        break;                        
+                        
+                }
+               
             
             }
         });
@@ -176,8 +190,20 @@ public class Controller_JFSettingsUser {
         this.viewSettingsUser.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                Controller_JFGerenteHome JFGerenteHome = new Controller_JFGerenteHome(login, cn);
-                viewSettingsUser.dispose();
+               switch(JFController){
+                    case ("ControllerGerente"):
+                         Controller_JFGerenteHome JFGerenteHome = new Controller_JFGerenteHome(login, cn);
+                            viewSettingsUser.dispose();
+                        break;
+                    case ("ControllerComercio"):
+                         Controller_JFComercioHome JFComercioHome = new Controller_JFComercioHome(login, cn);
+                            viewSettingsUser.dispose();
+                        break;
+                    case ("ControllerFinanciamiento"):
+                         
+                        break;                        
+                        
+                }
             }
         });
     }
@@ -199,10 +225,10 @@ public class Controller_JFSettingsUser {
         return image;
      }
       
-      public boolean validarDatos(CLogin login,String password,String confirmationPass,String usuario){
+      public boolean validarDatos(ELogin login,String password,String confirmationPass,String usuario){
         String txtError = "Verificar datos login\n";
         Boolean errores = false;
-        if(CLogin.existsUsuario(cn,usuario) && !usuario.equals(login.getUsuario())){
+        if(ELogin.existsUsuario(cn,usuario) && !usuario.equals(login.getUsuario())){
             txtError+="\t-El usuario ya existe elija otro";
             errores = true;
         }

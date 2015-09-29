@@ -5,7 +5,7 @@
  */
 package MODEL;
 
-import CONTROLLER.Controller_JFLoginUser;
+import CONTROL.Controller_JFLoginUser;
 import app_carshop.App_carshop;
 import java.io.File;
 import java.io.FileInputStream;

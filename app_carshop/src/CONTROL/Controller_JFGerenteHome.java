@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CONTROLLER;
+package CONTROL;
 
-import MODEL.CLogin;
-import MODEL.CUsuario;
+import MODEL.ELogin;
+import MODEL.EUsuario;
 import VIEW.JFGerenteHome;
 import app_carshop.App_carshop;
 import java.awt.Image;
@@ -37,11 +37,9 @@ public class Controller_JFGerenteHome {
     JFGerenteHome viewGerenteHome;
     Connection cn;
     File fileSelected;
-        CLogin login;
-    public Controller_JFGerenteHome(CLogin login,Connection cn){
-        viewGerenteHome = new JFGerenteHome();
-                   
-        this.login = login;
+    
+    public Controller_JFGerenteHome(ELogin login,Connection cn){
+        this.viewGerenteHome = new JFGerenteHome();
         this.cn = cn;
         //Settings view labels identifications
         this.viewGerenteHome.label_usuario.setText("Bienvenido "+login.getUsuario());
@@ -55,9 +53,14 @@ public class Controller_JFGerenteHome {
                     fileChooser.setFileFilter(filterChooser);
                     fileChooser.showOpenDialog(viewGerenteHome);
                     fileSelected = fileChooser.getSelectedFile();
-                    
+            
                     //poner imagen en label
-                    ImageIcon image = new ImageIcon(fileSelected.getAbsolutePath());
+                     ImageIcon image;
+                    try{
+                     image = new ImageIcon(fileSelected.getAbsolutePath());
+                    }catch(NullPointerException er){
+                     image = new ImageIcon(getClass().getResource("/ASSETS/user168-1.png"));
+                    }
                     viewGerenteHome.ChooserImageGerente.setIcon(new ImageIcon(image.getImage().getScaledInstance(viewGerenteHome.ChooserImageGerente.getWidth(),viewGerenteHome.ChooserImageGerente.getHeight(),Image.SCALE_SMOOTH)));
         
             }
@@ -66,8 +69,8 @@ public class Controller_JFGerenteHome {
         this.viewGerenteHome.btn_guardarUsuario.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
-                CUsuario usuario = new CUsuario();
-                CLogin login = new CLogin();
+                EUsuario usuario = new EUsuario();
+                ELogin login = new ELogin();
                 // DATOS OBTENIDOS DE LA VENTANA DE AGREGAR GERENTE
                 String nombre = viewGerenteHome.txtNombreG.getText();
                 String apellido_pat = viewGerenteHome.txtApellidoPG.getText();
@@ -109,7 +112,7 @@ public class Controller_JFGerenteHome {
                   
                  if (usuario.validarDatos(viewGerenteHome,cn) & login.validarDatos(viewGerenteHome, txtPass,cn) ) {
                        usuario.saveObject(cn);
-                       usuario = CUsuario.getObject(usuario.getClave_elector(), cn);
+                       usuario = EUsuario.getObject(usuario.getClave_elector(), cn);
                        //Crear su login  y guardar
                        login.setClave_elector(usuario.getClave_elector());
                        login.saveObject(cn);
@@ -132,7 +135,7 @@ public class Controller_JFGerenteHome {
         this.viewGerenteHome.btn_settings.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
-                Controller_JFSettingsUser JFSettingsUser = new Controller_JFSettingsUser(login, cn);
+                Controller_JFSettingsUser JFSettingsUser = new Controller_JFSettingsUser("ControllerGerente",login, cn);
                 viewGerenteHome.dispose();
             }
         });
@@ -172,7 +175,7 @@ public class Controller_JFGerenteHome {
         this.viewGerenteHome.btn_logout.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
-                int resp = JOptionPane.showConfirmDialog(viewGerenteHome,"¿Confirnar cierre de sesion?","Cerrar sesion",JOptionPane.YES_NO_OPTION);
+                int resp = JOptionPane.showConfirmDialog(viewGerenteHome,"¿Confirmar cierre de sesion?","Cerrar sesion",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
                     viewGerenteHome.dispose();
                     App_carshop.init();
@@ -184,7 +187,7 @@ public class Controller_JFGerenteHome {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                int resp = JOptionPane.showConfirmDialog(viewGerenteHome,"¿Desea salir de la app?","Salir",JOptionPane.YES_NO_OPTION);
+                int resp = JOptionPane.showConfirmDialog(viewGerenteHome,"¿Si sale de aqui, se cerrara su sesion?","Salir",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
                     App_carshop.init();
                     viewGerenteHome.dispose();

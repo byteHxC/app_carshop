@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author ByteDrive
  */
-public class CLogin {
+public class ELogin {
     private String clave_elector;
     private String usuario;
     private String password;
@@ -34,7 +34,7 @@ public class CLogin {
         this.clave_elector = clave_elector;
     }
 
-    public CLogin() {
+    public ELogin() {
     }
 
     public void setAbsolutePathimagen(String AbsolutePathimagen) {
@@ -98,14 +98,14 @@ public class CLogin {
             System.out.println("Login.UpdateObject() successful");
             return true;
         } catch (SQLException | FileNotFoundException ex) {
-            Logger.getLogger(CLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ELogin.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }finally{
            if(fileIn!=null)
             try {
                 fileIn.close();
            } catch (IOException ex) {
-               Logger.getLogger(CLogin.class.getName()).log(Level.SEVERE, null, ex);
+               Logger.getLogger(ELogin.class.getName()).log(Level.SEVERE, null, ex);
            }
         }
     }
@@ -122,27 +122,27 @@ public class CLogin {
             pps.executeUpdate();
             System.out.println("Login.SaveObject() sucessful");
         } catch (SQLException | FileNotFoundException ex) {
-            Logger.getLogger(CLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ELogin.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             if(fileIn!=null)
                 try {
                     fileIn.close();
             } catch (IOException ex) {
-                Logger.getLogger(CLogin.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ELogin.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
     
     
-    public static CLogin verificarLogin(String txtUser,Connection cn){
-         CLogin login = null;
+    public static ELogin verificarLogin(String txtUser,Connection cn){
+         ELogin login = null;
         try {
      
             PreparedStatement pps = cn.prepareStatement("select usuario,password,imagen,nombre_imagen,usuarios.cve_elector,estado from login join usuarios on login.usuario_cve=usuarios.cve_elector where login.usuario=?;");
             pps.setString(1, txtUser);
             ResultSet rs = pps.executeQuery();
             if(rs.next()){
-                login = new CLogin();
+                login = new ELogin();
                 login.setClave_elector(rs.getString("cve_elector"));
                 login.setUsuario(rs.getString("usuario"));
                 login.setPassword(rs.getString("password"));
@@ -153,7 +153,7 @@ public class CLogin {
                 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(CLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ELogin.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -223,7 +223,7 @@ public class CLogin {
                 
             
         } catch (SQLException ex) {
-            Logger.getLogger(CLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ELogin.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }

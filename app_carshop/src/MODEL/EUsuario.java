@@ -7,7 +7,6 @@ package MODEL;
 
 import VIEW.JFGerenteHome;
 import VIEW.JFSettingsDB;
-import VIEW.JFShowEmpleados;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,8 +20,7 @@ import javax.swing.JOptionPane;
  *
  * @author ByteDrive
  */
-public class CUsuario {
-    private int id_usuario;
+public class EUsuario {
     private String nombre;
     private String apellido_pat;
     private String apellido_mat;
@@ -31,7 +29,10 @@ public class CUsuario {
     private String tipo;
     private Boolean estado;
     private String clave_elector;
+     private float salario;
 
+    public EUsuario() {
+    }
     public Boolean getEstado() {
         return estado;
     }
@@ -47,19 +48,6 @@ public class CUsuario {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
-    private float salario;
-
-    public CUsuario() {
-    }
-
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
-    }
-    
-    public int getId_usuario() {
-        return id_usuario;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -127,18 +115,19 @@ public class CUsuario {
             }
                
         } catch (SQLException ex) {
-            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
-    public  static CUsuario getObject(String clave_elector,Connection cn){
-        CUsuario user = null;
+    
+    public  static EUsuario getObject(String clave_elector,Connection cn){
+        EUsuario user = null;
         try{
             PreparedStatement pps = cn.prepareStatement("SELECT *from usuarios where cve_elector=?");
             pps.setString(1, clave_elector);
             ResultSet rs = pps.executeQuery();
             if(rs.next()){
-                user = new CUsuario();
+                user = new EUsuario();
                 user.setNombre(rs.getString("nombre"));
                 user.setApellido_pat(rs.getString("apellido_pat"));
                 user.setApellido_mat(rs.getString("apellido_mat"));
@@ -152,7 +141,7 @@ public class CUsuario {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         return user;
     }
@@ -172,7 +161,7 @@ public class CUsuario {
             pps.executeUpdate();
             System.out.println("Usuario.SaveObject() sucessful");
         } catch (SQLException ex) {
-            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -186,7 +175,7 @@ public class CUsuario {
                 return rs.getString("tipo");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(CLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ELogin.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "error en tipo";
     }
@@ -201,7 +190,7 @@ public class CUsuario {
             errores = true;
         }
         if(exist_cve_elector(cn,clave_elector)){
-            txtError += "\t-La clave de elector ya existe,ingresar otra\n";
+            txtError += "\t-La clave de elector ya existe, verificar\n";
             errores = true;
         }
         if(!(nombre.matches("[a-zA-Z]{3,30}"))){
@@ -285,7 +274,7 @@ public class CUsuario {
             pps.executeUpdate();
             System.out.println("Baja usuario");
         } catch (SQLException ex) {
-            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
      public static void bajaEstado(String cve_elector,Connection cn){
@@ -296,7 +285,7 @@ public class CUsuario {
             pps.executeUpdate();
             System.out.println("Baja usuario");
         } catch (SQLException ex) {
-            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     //Validar que no exista al pk cve_elector
@@ -309,18 +298,18 @@ public class CUsuario {
             while(rs.next())
                 return true;
         } catch (SQLException ex) {
-            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
     
-    public static ArrayList<CUsuario> queryAll(Connection cn){
-       ArrayList<CUsuario> usuarios = new ArrayList<>();
+    public static ArrayList<EUsuario> queryAll(Connection cn){
+       ArrayList<EUsuario> usuarios = new ArrayList<>();
        try{
            PreparedStatement pps = cn.prepareStatement("SELECT *FROM USUARIOS");
            ResultSet rs = pps.executeQuery();
            while(rs.next()){
-               CUsuario usuario = new CUsuario();
+               EUsuario usuario = new EUsuario();
                usuario.setClave_elector(rs.getString("cve_elector"));
                usuario.setNombre(rs.getString("nombre"));
                usuario.setApellido_pat(rs.getString("apellido_pat"));
@@ -334,19 +323,19 @@ public class CUsuario {
                    usuarios.add(usuario);
            }
        }catch (SQLException ex) {
-            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EUsuario.class.getName()).log(Level.SEVERE, null, ex);
        }  
        return usuarios;
     }
     
-     public static ArrayList<CUsuario> queryForClaveElector(Connection cn,String cveElector){
-       ArrayList<CUsuario> usuarios = new ArrayList<>();
+     public static ArrayList<EUsuario> queryForClaveElector(Connection cn,String cveElector){
+       ArrayList<EUsuario> usuarios = new ArrayList<>();
        try{
            PreparedStatement pps = cn.prepareStatement("SELECT *FROM USUARIOS where cve_elector = ?");
            pps.setString(1, cveElector);
            ResultSet rs = pps.executeQuery();
            while(rs.next()){
-               CUsuario usuario = new CUsuario();
+               EUsuario usuario = new EUsuario();
                usuario.setClave_elector(rs.getString("cve_elector"));
                usuario.setNombre(rs.getString("nombre"));
                usuario.setApellido_pat(rs.getString("apellido_pat"));
@@ -360,19 +349,19 @@ public class CUsuario {
                    usuarios.add(usuario);
            }
        }catch (SQLException ex) {
-            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EUsuario.class.getName()).log(Level.SEVERE, null, ex);
        }  
        return usuarios;
     }
      
-     public static ArrayList<CUsuario> queryForNombre(Connection cn,String nombre){
-       ArrayList<CUsuario> usuarios = new ArrayList<>();
+     public static ArrayList<EUsuario> queryForNombre(Connection cn,String nombre){
+       ArrayList<EUsuario> usuarios = new ArrayList<>();
        try{
            PreparedStatement pps = cn.prepareStatement("SELECT *FROM USUARIOS where nombre = ?");
            pps.setString(1, nombre);
            ResultSet rs = pps.executeQuery();
            while(rs.next()){
-               CUsuario usuario = new CUsuario();
+               EUsuario usuario = new EUsuario();
                usuario.setClave_elector(rs.getString("cve_elector"));
                usuario.setNombre(rs.getString("nombre"));
                usuario.setApellido_pat(rs.getString("apellido_pat"));
@@ -386,19 +375,19 @@ public class CUsuario {
                    usuarios.add(usuario);
            }
        }catch (SQLException ex) {
-            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EUsuario.class.getName()).log(Level.SEVERE, null, ex);
        }  
        return usuarios;
     }
      
-     public static ArrayList<CUsuario> queryForType(Connection cn,String type){
-       ArrayList<CUsuario> usuarios = new ArrayList<>();
+     public static ArrayList<EUsuario> queryForType(Connection cn,String type){
+       ArrayList<EUsuario> usuarios = new ArrayList<>();
        try{
            PreparedStatement pps = cn.prepareStatement("SELECT *FROM USUARIOS where tipo = ?");
            pps.setString(1, type);
            ResultSet rs = pps.executeQuery();
            while(rs.next()){
-               CUsuario usuario = new CUsuario();
+               EUsuario usuario = new EUsuario();
                usuario.setClave_elector(rs.getString("cve_elector"));
                usuario.setNombre(rs.getString("nombre"));
                usuario.setApellido_pat(rs.getString("apellido_pat"));
@@ -412,7 +401,7 @@ public class CUsuario {
                    usuarios.add(usuario);
            }
        }catch (SQLException ex) {
-            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EUsuario.class.getName()).log(Level.SEVERE, null, ex);
        }  
        return usuarios;
     }
@@ -431,7 +420,7 @@ public class CUsuario {
             pps.setString(4,cve_elector);
         pps.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
             return true;
     }

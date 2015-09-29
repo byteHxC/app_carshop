@@ -1,5 +1,5 @@
 package app_carshop;
-import CONTROLLER.Controller_JFLoginUser;
+import CONTROL.Controller_JFLoginUser;
 import MODEL.ConnectionMySQL;
 import MODEL.UserROOT;
 import VIEW.JFLoginUser;

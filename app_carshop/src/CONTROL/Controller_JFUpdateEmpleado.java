@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CONTROLLER;
+package CONTROL;
 
-import MODEL.CLogin;
-import MODEL.CUsuario;
+import MODEL.ELogin;
+import MODEL.EUsuario;
 import VIEW.JFUpdateEmpleado;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 public class Controller_JFUpdateEmpleado {
     Connection cn;
     JFUpdateEmpleado viewUpdateEmpleado;
-    public Controller_JFUpdateEmpleado(CLogin login,Connection cn,String claveElector,String nombre){
+    public Controller_JFUpdateEmpleado(ELogin login,Connection cn,String claveElector,String nombre){
         viewUpdateEmpleado = new JFUpdateEmpleado();
         viewUpdateEmpleado.labelUsuario.setText("Editar usuario: "+nombre);
         this.cn = cn;
@@ -39,7 +39,7 @@ public class Controller_JFUpdateEmpleado {
                 }catch(Exception er){
                     salario = 0;
                 }
-                if(CUsuario.updateObject(claveElector,direccion, telefono, salario, cn)){
+                if(EUsuario.updateObject(claveElector,direccion, telefono, salario, cn)){
                     JOptionPane.showMessageDialog(viewUpdateEmpleado,"Empleado actualizado","Mensaje de informacion",JOptionPane.INFORMATION_MESSAGE);
                     Controller_JFShowEmpleados viewshowEmpleados = new  Controller_JFShowEmpleados(login, cn);
                      viewUpdateEmpleado.dispose();

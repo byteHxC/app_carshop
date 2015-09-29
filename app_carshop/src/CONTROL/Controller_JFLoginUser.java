@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CONTROLLER;
+package CONTROL;
 
-import MODEL.CLogin;
+import MODEL.ELogin;
 import VIEW.JFLoginUser;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
@@ -35,7 +35,7 @@ public class Controller_JFLoginUser {
                         Controller_JFLoginPassword ControllerPassword = new Controller_JFLoginPassword(cn);
                         loginUser.dispose();
                     }else{
-                        CLogin usuario = CLogin.verificarLogin(txtUser, cn);
+                        ELogin usuario = ELogin.verificarLogin(txtUser, cn);
                         if (usuario !=null){
                             Controller_JFLoginPassword ControllerPassword = new Controller_JFLoginPassword(usuario,cn);
                             loginUser.dispose();

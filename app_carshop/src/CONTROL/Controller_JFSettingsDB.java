@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CONTROLLER;
+package CONTROL;
 
-import MODEL.CUsuario;
-import MODEL.CLogin;
+import MODEL.EUsuario;
+import MODEL.ELogin;
 import MODEL.ConnectionMySQL;
 import MODEL.UserROOT;
 import VIEW.JFSettingsDB;
@@ -71,8 +71,8 @@ public class Controller_JFSettingsDB {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                CUsuario usuario = new CUsuario();
-                CLogin login = new CLogin();
+                EUsuario usuario = new EUsuario();
+                ELogin login = new ELogin();
                 // DATOS OBTENIDOS DE LA VENTANA DE AGREGAR GERENTE
                 String nombre = viewSettingsDB.txtNombreG.getText();
                 String apellido_pat = viewSettingsDB.txtApellidoPG.getText();
@@ -112,13 +112,13 @@ public class Controller_JFSettingsDB {
                 //Verify data login & user
                   
                  if (usuario.validarDatos(viewSettingsDB,cn) & login.validarDatos(viewSettingsDB, txtPass,cn) ) {
-                        if(CUsuario.ifExistsTipo(cn,"Gerente")){
+                        if(EUsuario.ifExistsTipo(cn,"Gerente")){
 
                            int resp = JOptionPane.showConfirmDialog(viewSettingsDB, "¿Ya existe un gerente,dar de baja y poner este como nuevo gerente?","Informacion",JOptionPane.WARNING_MESSAGE,JOptionPane.YES_NO_OPTION);
                                if(resp == JOptionPane.YES_OPTION){
-                                   CUsuario.bajaEstado(cn,"Gerente");
+                                   EUsuario.bajaEstado(cn,"Gerente");
                                    usuario.saveObject(cn);
-                                   usuario = CUsuario.getObject(usuario.getClave_elector(), cn);
+                                   usuario = EUsuario.getObject(usuario.getClave_elector(), cn);
                                    //Crear su login  y guardar
                                    login.setClave_elector(usuario.getClave_elector());
                                    login.saveObject(cn);
@@ -128,7 +128,7 @@ public class Controller_JFSettingsDB {
                         }else{
                             
                            usuario.saveObject(cn);
-                           usuario = CUsuario.getObject(usuario.getClave_elector(), cn);
+                           usuario = EUsuario.getObject(usuario.getClave_elector(), cn);
                            //Crear su login  y guardar
                            login.setClave_elector(usuario.getClave_elector());
                            login.saveObject(cn);
