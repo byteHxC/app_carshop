@@ -89,7 +89,7 @@ public class JFAddCliente extends javax.swing.JFrame {
         txt_direccion = new javax.swing.JTextField();
         txt_telefono = new javax.swing.JTextField();
         btn_cancelar = new javax.swing.JLabel();
-        btn_guardarUsuario = new javax.swing.JLabel();
+        btn_guardarCliente = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txt_ingresoMensual = new javax.swing.JTextField();
 
@@ -136,13 +136,13 @@ public class JFAddCliente extends javax.swing.JFrame {
         btn_cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_cancelar.setOpaque(true);
 
-        btn_guardarUsuario.setBackground(new java.awt.Color(84, 222, 66));
-        btn_guardarUsuario.setFont(new java.awt.Font("Gulim", 0, 17)); // NOI18N
-        btn_guardarUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        btn_guardarUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btn_guardarUsuario.setText("Guardar");
-        btn_guardarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_guardarUsuario.setOpaque(true);
+        btn_guardarCliente.setBackground(new java.awt.Color(84, 222, 66));
+        btn_guardarCliente.setFont(new java.awt.Font("Gulim", 0, 17)); // NOI18N
+        btn_guardarCliente.setForeground(new java.awt.Color(255, 255, 255));
+        btn_guardarCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_guardarCliente.setText("Guardar");
+        btn_guardarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_guardarCliente.setOpaque(true);
 
         jLabel8.setText("Ingreso mensual:");
 
@@ -191,7 +191,7 @@ public class JFAddCliente extends javax.swing.JFrame {
                                                     .addGap(428, 428, 428)
                                                     .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(btn_guardarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addComponent(btn_guardarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGroup(panel_inicioLayout.createSequentialGroup()
                                                 .addGap(12, 12, 12)
                                                 .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,7 +241,7 @@ public class JFAddCliente extends javax.swing.JFrame {
                     .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_guardarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_guardarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(7, Short.MAX_VALUE))
         );
@@ -344,7 +344,7 @@ public class JFAddCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel btn_cancelar;
-    public javax.swing.JLabel btn_guardarUsuario;
+    public javax.swing.JLabel btn_guardarCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
@@ -361,13 +361,13 @@ public class JFAddCliente extends javax.swing.JFrame {
     public javax.swing.JLabel label_usuario;
     private javax.swing.JPanel panel_image;
     private javax.swing.JPanel panel_inicio;
-    private javax.swing.JTextField txt_RFC;
-    private javax.swing.JTextField txt_apellidoMat;
-    private javax.swing.JTextField txt_apellidoPat;
-    private javax.swing.JTextField txt_cveElector;
-    private javax.swing.JTextField txt_direccion;
-    private javax.swing.JTextField txt_ingresoMensual;
-    private javax.swing.JTextField txt_nombre;
-    private javax.swing.JTextField txt_telefono;
+    public javax.swing.JTextField txt_RFC;
+    public javax.swing.JTextField txt_apellidoMat;
+    public javax.swing.JTextField txt_apellidoPat;
+    public javax.swing.JTextField txt_cveElector;
+    public javax.swing.JTextField txt_direccion;
+    public javax.swing.JTextField txt_ingresoMensual;
+    public javax.swing.JTextField txt_nombre;
+    public javax.swing.JTextField txt_telefono;
     // End of variables declaration//GEN-END:variables
 }

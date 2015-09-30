@@ -5,7 +5,7 @@
  */
 package CONTROL;
 
-import MODEL.ELogin;
+import MODEL.CLogin;
 import VIEW.JFLoginUser;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
@@ -35,7 +35,7 @@ public class Controller_JFLoginUser {
                         Controller_JFLoginPassword ControllerPassword = new Controller_JFLoginPassword(cn);
                         loginUser.dispose();
                     }else{
-                        ELogin usuario = ELogin.verificarLogin(txtUser, cn);
+                        CLogin usuario = CLogin.verificarLogin(txtUser, cn);
                         if (usuario !=null){
                             Controller_JFLoginPassword ControllerPassword = new Controller_JFLoginPassword(usuario,cn);
                             loginUser.dispose();

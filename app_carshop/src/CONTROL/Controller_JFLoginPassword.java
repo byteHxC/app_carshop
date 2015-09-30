@@ -5,8 +5,8 @@
  */
 package CONTROL;
 
-import MODEL.EUsuario;
-import MODEL.ELogin;
+import MODEL.CUsuario;
+import MODEL.CLogin;
 import MODEL.UserROOT;
 import app_carshop.App_carshop;
 import VIEW.JFLoginPassword;
@@ -30,7 +30,7 @@ import javax.swing.ImageIcon;
 public class Controller_JFLoginPassword {
     JFLoginPassword loginPassword;
     Connection cn;
-    ELogin login;
+    CLogin login;
     //Ingreso usuario root
      public Controller_JFLoginPassword(Connection cn){
         this.loginPassword = new JFLoginPassword();
@@ -88,8 +88,8 @@ public class Controller_JFLoginPassword {
         
     }
      //Ingreso usuario (EMPLEADO)
-     public Controller_JFLoginPassword(ELogin login,Connection cn){
-         EUsuario usuario = EUsuario.getObject(login.getClave_elector(), cn);
+     public Controller_JFLoginPassword(CLogin login,Connection cn){
+         CUsuario usuario = CUsuario.getObject(login.getClave_elector(), cn);
         this.login=login;
         this.loginPassword = new JFLoginPassword();
         this.loginPassword.label_Bienvenido.setText("Bienvenido "+login.getUsuario());

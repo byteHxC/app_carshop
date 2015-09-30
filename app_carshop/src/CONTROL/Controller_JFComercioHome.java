@@ -5,7 +5,7 @@
  */
 package CONTROL;
 
-import MODEL.ELogin;
+import MODEL.CLogin;
 import VIEW.JFComercioHome;
 import app_carshop.App_carshop;
 import java.awt.Image;
@@ -33,14 +33,31 @@ public class Controller_JFComercioHome {
     Connection cn;
     JFComercioHome viewComercio;
     
-    public Controller_JFComercioHome(ELogin login,Connection cn){
+    public Controller_JFComercioHome(CLogin login,Connection cn){
         this.viewComercio = new JFComercioHome();
         this.cn = cn;
         
         //Settings view labels identifications
         this.viewComercio.label_usuario.setText("USUARIO: "+login.getUsuario());
         this.viewComercio.label_ImageEmpleado.setIcon(new ImageIcon(getImageWithBlob(login.getImageBlob(), login.getNombreImagen()).getImage().getScaledInstance(viewComercio.label_ImageEmpleado.getWidth(),viewComercio.label_ImageEmpleado.getHeight(),Image.SCALE_SMOOTH)));
-        
+        //Button of addVenta
+        this.viewComercio.btn_addVenta.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            Controller_JFAddVenta JFAddVenta = new Controller_JFAddVenta(login,cn);
+            viewComercio.dispose();
+            
+            }
+        });
+        //Button of addCliente
+        this.viewComercio.btn_addCliente.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Controller_JFAddCliente JFAddCLiente = new Controller_JFAddCliente(login, cn);
+                viewComercio.dispose();
+            }
+        });
         
          //Button the settings in this account
         this.viewComercio.btn_settings.addMouseListener(new MouseAdapter(){

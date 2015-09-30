@@ -12,12 +12,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author ByteDrive
  */
-public class ECliente {
+public class CCliente {
    private String claveElector;
    private String nombre;
    private String apellido_pat;
@@ -27,7 +28,7 @@ public class ECliente {
    private String direccion;
    private float ingresoMensual;
 
-    public ECliente() {
+    public CCliente() {
     }
 
     public String getClaveElector() {
@@ -108,32 +109,83 @@ public class ECliente {
             pps.executeUpdate();
             System.out.println("ECliente.saveObject() successful");
         } catch (SQLException ex) {
-           Logger.getLogger(ECliente.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(CCliente.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
     
     public static boolean existClaveElector(Connection cn,String cveElector){
         try{
-            PreparedStatement pps = cn.prepareStatement("SELECT cveElector FROM clientes WHERE cve_elector = ?");
+            PreparedStatement pps = cn.prepareStatement("SELECT cve_elector FROM clientes WHERE cve_elector = ?");
             pps.setString(1, cveElector);
             ResultSet rs = pps.executeQuery();
             while(rs.next())
                 return true;
         } catch (SQLException ex) {
-           Logger.getLogger(ECliente.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(CCliente.class.getName()).log(Level.SEVERE, null, ex);
        }
         return false;
     }
     
     public boolean validarDatos(JFAddCliente frame,Connection cn){
-        String txtErrores = "Verficiar datos del cliente\n";
+        String txtErrores = "Verficar datos del cliente\n";
         boolean errores = false;
+        String sAux = getIngresoMensual() + "";
         //Aqui valida mujer
         if(existClaveElector(cn, claveElector)){
-            txtErrores+="La clave de elector ya existe,verificar";
+            txtErrores += "La clave de elector ya existe, verificar";
             errores = true;
         }
-        return errores;
+        if(!(claveElector.matches("[a-zA-Z]{6}[0-9]{6}[0-9]{2}[A-Za-z]{1}[0-9]{3}"))){
+            txtErrores += "\t-Clave elector invalida [18 caracteres]\n";
+            errores = true;
+        }
+        /*
+        El rfc se compone de 13 caracteres
+            los primeros dos son las primeras dos letras del apellido paterno
+            el siguiente caracter es la primer letra del apellido materno
+            el siguiente caracter es la primer letra del primer nombre
+            los 6 siguientes caracteres son numeros [fecha de nacimiento], empezando por
+                el aÒo, mes, dia
+            los ultimos 3 caracteres son asignados por el sat, pueden ser numeros y/o letras    
+        */
+        if(rfc.length()>0){
+            if(!(rfc.matches("[a-zA-Z]{4}[0-9]{6}[a-zA-Z1-9]{3}"))){
+            txtErrores += "\t-RFC invalido [13] caracteres]\n";
+            errores = true;
+        }
+        }
+        
+        if(!(nombre.matches("[a-zA-Z]+([ ]*[a-zA-Z]+)+"))){
+            txtErrores += "\t-Nombre invalido\n";
+            errores = true;
+        }
+        if(!(apellido_pat.matches("[a-zA-Z]{3,30}"))){
+            txtErrores += "\t-Apellido paterno invalido\n";
+            errores = true;
+        }
+        if(!(apellido_mat.matches("[a-zA-Z]{3,30}"))){
+            txtErrores += "\t-Apellido materno invalido\n";
+            errores = true;
+        }
+        if(!(sAux.equals("0.0"))){
+            if(!sAux.matches("([1-9])[0-9]+(([.])([0-9]{1,2})?)?") ){
+                txtErrores += "\t-Ingreso mensual invalido\n";
+                errores = true;
+            }
+        }
+        if(!(direccion.length()>=200 || direccion.matches("[a-zA-Z]+([ ]*[a-zA-Z0-9]+)+"))){   
+                txtErrores += "\t-Verificar direccion [200] caracteres\n";
+                errores = true;
+        }
+        if(!(telefono.matches("[0-9]{5,15}")) ){
+            txtErrores += "\t-Telefono invalido\n";
+            errores = true;
+        }
+        if(errores){
+            JOptionPane.showMessageDialog(frame, txtErrores, "Validacion de datos de clientes", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        return true;
     }
    
     

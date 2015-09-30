@@ -5,8 +5,8 @@
  */
 package CONTROL;
 
-import MODEL.EUsuario;
-import MODEL.ELogin;
+import MODEL.CUsuario;
+import MODEL.CLogin;
 import MODEL.ConnectionMySQL;
 import MODEL.UserROOT;
 import VIEW.JFSettingsDB;
@@ -63,7 +63,7 @@ public class Controller_JFSettingsDB {
                        image = new ImageIcon(getClass().getResource("/ASSETS/user168-1.png"));
                     }
                    viewSettingsDB.ChooserImageGerente.setIcon(new ImageIcon(image.getImage().getScaledInstance(viewSettingsDB.ChooserImageGerente.getWidth(),viewSettingsDB.ChooserImageGerente.getHeight(),Image.SCALE_SMOOTH)));
-
+                    
                 }
             });
         //Boton para crear la cuenta de un gerente
@@ -71,8 +71,8 @@ public class Controller_JFSettingsDB {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                EUsuario usuario = new EUsuario();
-                ELogin login = new ELogin();
+                CUsuario usuario = new CUsuario();
+                CLogin login = new CLogin();
                 // DATOS OBTENIDOS DE LA VENTANA DE AGREGAR GERENTE
                 String nombre = viewSettingsDB.txtNombreG.getText();
                 String apellido_pat = viewSettingsDB.txtApellidoPG.getText();
@@ -112,27 +112,31 @@ public class Controller_JFSettingsDB {
                 //Verify data login & user
                   
                  if (usuario.validarDatos(viewSettingsDB,cn) & login.validarDatos(viewSettingsDB, txtPass,cn) ) {
-                        if(EUsuario.ifExistsTipo(cn,"Gerente")){
+                        if(CUsuario.ifExistsTipo(cn,"Gerente")){
 
                            int resp = JOptionPane.showConfirmDialog(viewSettingsDB, "¿Ya existe un gerente,dar de baja y poner este como nuevo gerente?","Informacion",JOptionPane.WARNING_MESSAGE,JOptionPane.YES_NO_OPTION);
                                if(resp == JOptionPane.YES_OPTION){
-                                   EUsuario.bajaEstado(cn,"Gerente");
+                                   CUsuario.bajaEstado(cn,"Gerente");
                                    usuario.saveObject(cn);
-                                   usuario = EUsuario.getObject(usuario.getClave_elector(), cn);
+                                   usuario = CUsuario.getObject(usuario.getClave_elector(), cn);
                                    //Crear su login  y guardar
                                    login.setClave_elector(usuario.getClave_elector());
                                    login.saveObject(cn);
                                    cleanFields();
+                                   JOptionPane.showMessageDialog(viewSettingsDB,"El gerente fue agregado satisfactoriamente","Mensaje de informacion",JOptionPane.INFORMATION_MESSAGE);
+
                                }
 
                         }else{
                             
                            usuario.saveObject(cn);
-                           usuario = EUsuario.getObject(usuario.getClave_elector(), cn);
+                           usuario = CUsuario.getObject(usuario.getClave_elector(), cn);
                            //Crear su login  y guardar
                            login.setClave_elector(usuario.getClave_elector());
                            login.saveObject(cn);
                            cleanFields();
+                           JOptionPane.showMessageDialog(viewSettingsDB,"El gerente fue agregado satisfactoriamente","Mensaje de informacion",JOptionPane.INFORMATION_MESSAGE);
+
 
                      }
                 }

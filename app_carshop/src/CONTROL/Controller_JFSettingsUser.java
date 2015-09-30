@@ -5,7 +5,7 @@
  */
 package CONTROL;
 
-import MODEL.ELogin;
+import MODEL.CLogin;
 import MODEL.UserROOT;
 import VIEW.JFSettingsUser;
 import app_carshop.App_carshop;
@@ -101,7 +101,7 @@ public class Controller_JFSettingsUser {
     
     //Constructor usuario empleado
     
-    public Controller_JFSettingsUser(String JFController, ELogin login, Connection cn){
+    public Controller_JFSettingsUser(String JFController, CLogin login, Connection cn){
         viewSettingsUser = new JFSettingsUser();
         this.cn = cn;
         viewSettingsUser.label_usuario.setText("USUARIO: "+login.getUsuario());
@@ -225,10 +225,10 @@ public class Controller_JFSettingsUser {
         return image;
      }
       
-      public boolean validarDatos(ELogin login,String password,String confirmationPass,String usuario){
+      public boolean validarDatos(CLogin login,String password,String confirmationPass,String usuario){
         String txtError = "Verificar datos login\n";
         Boolean errores = false;
-        if(ELogin.existsUsuario(cn,usuario) && !usuario.equals(login.getUsuario())){
+        if(CLogin.existsUsuario(cn,usuario) && !usuario.equals(login.getUsuario())){
             txtError+="\t-El usuario ya existe elija otro";
             errores = true;
         }

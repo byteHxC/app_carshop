@@ -5,8 +5,8 @@
  */
 package CONTROL;
 
-import MODEL.ELogin;
-import MODEL.EUsuario;
+import MODEL.CLogin;
+import MODEL.CUsuario;
 import VIEW.JFGerenteHome;
 import app_carshop.App_carshop;
 import java.awt.Image;
@@ -38,7 +38,7 @@ public class Controller_JFGerenteHome {
     Connection cn;
     File fileSelected;
     
-    public Controller_JFGerenteHome(ELogin login,Connection cn){
+    public Controller_JFGerenteHome(CLogin login,Connection cn){
         this.viewGerenteHome = new JFGerenteHome();
         this.cn = cn;
         //Settings view labels identifications
@@ -69,8 +69,8 @@ public class Controller_JFGerenteHome {
         this.viewGerenteHome.btn_guardarUsuario.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
-                EUsuario usuario = new EUsuario();
-                ELogin login = new ELogin();
+                CUsuario usuario = new CUsuario();
+                CLogin login = new CLogin();
                 // DATOS OBTENIDOS DE LA VENTANA DE AGREGAR GERENTE
                 String nombre = viewGerenteHome.txtNombreG.getText();
                 String apellido_pat = viewGerenteHome.txtApellidoPG.getText();
@@ -112,14 +112,13 @@ public class Controller_JFGerenteHome {
                   
                  if (usuario.validarDatos(viewGerenteHome,cn) & login.validarDatos(viewGerenteHome, txtPass,cn) ) {
                        usuario.saveObject(cn);
-                       usuario = EUsuario.getObject(usuario.getClave_elector(), cn);
+                       usuario = CUsuario.getObject(usuario.getClave_elector(), cn);
                        //Crear su login  y guardar
                        login.setClave_elector(usuario.getClave_elector());
                        login.saveObject(cn);
                        JOptionPane.showMessageDialog(viewGerenteHome,"Empleado agregado", "Mensaje de informacion", JOptionPane.INFORMATION_MESSAGE);
-                       
                        cleanFields();
-                   
+                      
                 }
             }               
         });
