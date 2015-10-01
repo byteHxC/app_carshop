@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -188,5 +189,119 @@ public class CCliente {
         return true;
     }
    
+    public static ArrayList<CCliente> queryAll(Connection cn){
+        ArrayList <CCliente> clientes = new ArrayList<>();
+        try{
+            PreparedStatement pps = cn.prepareStatement("SELECT *FROM clientes");
+            ResultSet rs = pps.executeQuery();
+            while(rs.next()){
+                CCliente cliente = new CCliente();
+                cliente.setClaveElector(rs.getString("cve_elector"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setApellido_pat(rs.getString("apellido_pat"));
+                cliente.setApellido_mat(rs.getString("apellido_mat"));
+                cliente.setTelefono(rs.getString("telefono"));
+                cliente.setRfc(rs.getString("rfc"));
+                cliente.setDireccion(rs.getString("direccion"));
+                cliente.setIngresoMensual(rs.getFloat("ingreso_mensual"));
+                clientes.add(cliente);
+            }
+        } catch (SQLException ex) {
+           Logger.getLogger(CCliente.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        return clientes;
+    }
+     public static ArrayList<CCliente> queryForClaveElector(Connection cn,String cve_elector){
+        ArrayList <CCliente> clientes = new ArrayList<>();
+        try{
+            PreparedStatement pps = cn.prepareStatement("SELECT *FROM clientes where cve_elector = ?");
+            pps.setString(1, cve_elector);
+            ResultSet rs = pps.executeQuery();
+            while(rs.next()){
+                CCliente cliente = new CCliente();
+                cliente.setClaveElector(rs.getString("cve_elector"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setApellido_pat(rs.getString("apellido_pat"));
+                cliente.setApellido_mat(rs.getString("apellido_mat"));
+                cliente.setTelefono(rs.getString("telefono"));
+                cliente.setRfc(rs.getString("rfc"));
+                cliente.setDireccion(rs.getString("direccion"));
+                cliente.setIngresoMensual(rs.getFloat("ingreso_mensual"));
+                clientes.add(cliente);
+            }
+        } catch (SQLException ex) {
+           Logger.getLogger(CCliente.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        return clientes;
+    }
+    public static ArrayList<CCliente> queryForName(Connection cn,String name){
+        ArrayList <CCliente> clientes = new ArrayList<>();
+        try{
+            PreparedStatement pps = cn.prepareStatement("SELECT *FROM clientes where nombre = ?");
+            pps.setString(1, name);
+            ResultSet rs = pps.executeQuery();
+            while(rs.next()){
+                CCliente cliente = new CCliente();
+                cliente.setClaveElector(rs.getString("cve_elector"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setApellido_pat(rs.getString("apellido_pat"));
+                cliente.setApellido_mat(rs.getString("apellido_mat"));
+                cliente.setTelefono(rs.getString("telefono"));
+                cliente.setRfc(rs.getString("rfc"));
+                cliente.setDireccion(rs.getString("direccion"));
+                cliente.setIngresoMensual(rs.getFloat("ingreso_mensual"));
+                clientes.add(cliente);
+            }
+        } catch (SQLException ex) {
+           Logger.getLogger(CCliente.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        return clientes;
+    }
+    public static ArrayList<CCliente> queryForApellido_Pat(Connection cn,String apellido_pat){
+        ArrayList <CCliente> clientes = new ArrayList<>();
+        try{
+            PreparedStatement pps = cn.prepareStatement("SELECT *FROM clientes where apellido_pat = ?");
+            pps.setString(1, apellido_pat);
+            ResultSet rs = pps.executeQuery();
+            while(rs.next()){
+                CCliente cliente = new CCliente();
+                cliente.setClaveElector(rs.getString("cve_elector"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setApellido_pat(rs.getString("apellido_pat"));
+                cliente.setApellido_mat(rs.getString("apellido_mat"));
+                cliente.setTelefono(rs.getString("telefono"));
+                cliente.setRfc(rs.getString("rfc"));
+                cliente.setDireccion(rs.getString("direccion"));
+                cliente.setIngresoMensual(rs.getFloat("ingreso_mensual"));
+                clientes.add(cliente);
+            }
+        } catch (SQLException ex) {
+           Logger.getLogger(CCliente.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        return clientes;
+    }
+    public static ArrayList<CCliente> queryForRFC(Connection cn,String rfc){
+        ArrayList <CCliente> clientes = new ArrayList<>();
+        try{
+            PreparedStatement pps = cn.prepareStatement("SELECT *FROM clientes where rfc = ?");
+            pps.setString(1, rfc);
+            ResultSet rs = pps.executeQuery();
+            while(rs.next()){
+                CCliente cliente = new CCliente();
+                cliente.setClaveElector(rs.getString("cve_elector"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setApellido_pat(rs.getString("apellido_pat"));
+                cliente.setApellido_mat(rs.getString("apellido_mat"));
+                cliente.setTelefono(rs.getString("telefono"));
+                cliente.setRfc(rs.getString("rfc"));
+                cliente.setDireccion(rs.getString("direccion"));
+                cliente.setIngresoMensual(rs.getFloat("ingreso_mensual"));
+                clientes.add(cliente);
+            }
+        } catch (SQLException ex) {
+           Logger.getLogger(CCliente.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        return clientes;
+    }
     
 }

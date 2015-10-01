@@ -41,6 +41,7 @@ public class App_carshop{
        //UserROOT.escribirDefaultROOTDB("123456","localhost","3306","root","#%mysql/1");
        getConnection(UserROOT.getROOTDB());
        controladorLogin = new Controller_JFLoginUser(cn);
+        
     }
     public static void  init(){
        getConnection(UserROOT.getROOTDB());

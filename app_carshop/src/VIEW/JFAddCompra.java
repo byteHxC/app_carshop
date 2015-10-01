@@ -13,16 +13,15 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author ByteDrive
+ * @author Byter
  */
-public class JFAddVenta extends javax.swing.JFrame {
+public class JFAddCompra extends javax.swing.JFrame {
 
     /**
-     * Creates new form JFAddVenta
+     * Creates new form JFAddCompra
      */
-    public JFAddVenta() {
-        initComponents();
-        settingsFrame();
+    public JFAddCompra() {
+        initComponents(); settingsFrame();
     }
  private void settingsFrame(){
         //Configuraciones jframe
@@ -48,7 +47,7 @@ public class JFAddVenta extends javax.swing.JFrame {
         Color color = new Color(255,255,255,200);
         panel_inicio.setBackground(color);
         Color color2 = new Color(0,0,0,200);
-        panel_detallesVenta.setBackground(color2);
+        panel_detallesCompra.setBackground(color2);
         Color color3 = new Color(0,0,0,100);
         panel_cliente.setBackground(color3);
         panel_auto.setBackground(color3);
@@ -57,13 +56,14 @@ public class JFAddVenta extends javax.swing.JFrame {
         Image searchU = new ImageIcon(getClass().getResource("/ASSETS/searchU.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
         this.btn_searchCliente.setIcon(new ImageIcon(searchU));
         Image searchA = new ImageIcon(getClass().getResource("/ASSETS/searchA.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-        this.btn_searchAuto.setIcon(new ImageIcon(searchA));
+        this.btn_AddAuto.setIcon(new ImageIcon(searchA));
         
         //Cambiar icono
         
         Image icon = Toolkit.getDefaultToolkit().getImage("/ASSETS/LogoCARSHOP.png");
         this.setIconImage(icon);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,7 +81,7 @@ public class JFAddVenta extends javax.swing.JFrame {
         panel_inicio = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel15 = new javax.swing.JLabel();
-        panel_detallesVenta = new javax.swing.JPanel();
+        panel_detallesCompra = new javax.swing.JPanel();
         panel_cliente = new javax.swing.JPanel();
         txt_numFactura1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -96,22 +96,16 @@ public class JFAddVenta extends javax.swing.JFrame {
         txt_numFactura5 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        btn_searchAuto = new javax.swing.JLabel();
+        btn_AddAuto = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txt_encargadoVenta = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        cbox_tipoPago = new javax.swing.JComboBox();
-        jLabel9 = new javax.swing.JLabel();
-        txt_Descuento = new javax.swing.JTextField();
-        txt_total = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         txt_fecha = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
         btn_cancelar = new javax.swing.JLabel();
         btn_enviarSolicitud = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Nueva venta");
+        setTitle("Nueva compra");
 
         label_usuario.setFont(new java.awt.Font("Neou", 0, 13)); // NOI18N
         label_usuario.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,10 +123,10 @@ public class JFAddVenta extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Neou", 0, 14)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Agregar venta");
+        jLabel15.setText("Agregar compra");
 
-        panel_detallesVenta.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles de venta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gulim", 0, 12))); // NOI18N
-        panel_detallesVenta.setOpaque(false);
+        panel_detallesCompra.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles de compra", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gulim", 0, 12))); // NOI18N
+        panel_detallesCompra.setOpaque(false);
 
         panel_cliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gulim", 0, 12))); // NOI18N
         panel_cliente.setOpaque(false);
@@ -211,12 +205,12 @@ public class JFAddVenta extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        btn_searchAuto.setBackground(new java.awt.Color(51, 153, 255));
-        btn_searchAuto.setFont(new java.awt.Font("Gulim", 1, 15)); // NOI18N
-        btn_searchAuto.setForeground(new java.awt.Color(255, 255, 255));
-        btn_searchAuto.setText("Buscar auto");
-        btn_searchAuto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_searchAuto.setOpaque(true);
+        btn_AddAuto.setBackground(new java.awt.Color(51, 153, 255));
+        btn_AddAuto.setFont(new java.awt.Font("Gulim", 1, 15)); // NOI18N
+        btn_AddAuto.setForeground(new java.awt.Color(255, 255, 255));
+        btn_AddAuto.setText("Agregar auto");
+        btn_AddAuto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_AddAuto.setOpaque(true);
 
         javax.swing.GroupLayout panel_autoLayout = new javax.swing.GroupLayout(panel_auto);
         panel_auto.setLayout(panel_autoLayout);
@@ -236,7 +230,7 @@ public class JFAddVenta extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_autoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_searchAuto)
+                .addComponent(btn_AddAuto)
                 .addContainerGap())
         );
         panel_autoLayout.setVerticalGroup(
@@ -254,97 +248,63 @@ public class JFAddVenta extends javax.swing.JFrame {
                     .addComponent(txt_numFactura5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_searchAuto)
+                .addComponent(btn_AddAuto)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel7.setText("Encargado de venta:");
+        jLabel7.setText("Encargado compra:");
 
         txt_encargadoVenta.setEditable(false);
         txt_encargadoVenta.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
 
-        jLabel8.setFont(new java.awt.Font("Gulim", 0, 14)); // NOI18N
-        jLabel8.setText("Tipo de pago:");
-
-        cbox_tipoPago.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Contado", "6 meses", "12 meses" }));
-
-        jLabel9.setFont(new java.awt.Font("Gulim", 0, 14)); // NOI18N
-        jLabel9.setText("Descuento:");
-
-        txt_Descuento.setEditable(false);
-
-        txt_total.setEditable(false);
-
-        jLabel10.setFont(new java.awt.Font("Gulim", 0, 14)); // NOI18N
-        jLabel10.setText("Total:");
+        txt_fecha.setEditable(false);
 
         jLabel11.setFont(new java.awt.Font("Gulim", 0, 14)); // NOI18N
         jLabel11.setText("Fecha:");
 
-        txt_fecha.setEditable(false);
-
-        javax.swing.GroupLayout panel_detallesVentaLayout = new javax.swing.GroupLayout(panel_detallesVenta);
-        panel_detallesVenta.setLayout(panel_detallesVentaLayout);
-        panel_detallesVentaLayout.setHorizontalGroup(
-            panel_detallesVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_detallesVentaLayout.createSequentialGroup()
+        javax.swing.GroupLayout panel_detallesCompraLayout = new javax.swing.GroupLayout(panel_detallesCompra);
+        panel_detallesCompra.setLayout(panel_detallesCompraLayout);
+        panel_detallesCompraLayout.setHorizontalGroup(
+            panel_detallesCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_detallesCompraLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel_detallesVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panel_detallesVentaLayout.createSequentialGroup()
+                .addGroup(panel_detallesCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_detallesCompraLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panel_detallesVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel_detallesVentaLayout.createSequentialGroup()
-                        .addGroup(panel_detallesVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panel_detallesVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbox_tipoPago, 0, 140, Short.MAX_VALUE)
-                            .addComponent(txt_Descuento)
-                            .addComponent(txt_total)))
-                    .addComponent(panel_auto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panel_detallesVentaLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_encargadoVenta)
-                        .addContainerGap())))
-        );
-        panel_detallesVentaLayout.setVerticalGroup(
-            panel_detallesVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_detallesVentaLayout.createSequentialGroup()
-                .addGroup(panel_detallesVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel_detallesVentaLayout.createSequentialGroup()
-                        .addGroup(panel_detallesVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panel_detallesVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel11))
-                            .addGroup(panel_detallesVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel_detallesCompraLayout.createSequentialGroup()
+                        .addGroup(panel_detallesCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel_detallesCompraLayout.createSequentialGroup()
+                                .addComponent(panel_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(panel_auto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panel_detallesCompraLayout.createSequentialGroup()
                                 .addComponent(jLabel7)
-                                .addComponent(txt_encargadoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(panel_auto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panel_detallesVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(cbox_tipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panel_detallesVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_Descuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panel_detallesVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panel_detallesVentaLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_encargadoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        panel_detallesCompraLayout.setVerticalGroup(
+            panel_detallesCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_detallesCompraLayout.createSequentialGroup()
+                .addGroup(panel_detallesCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_detallesCompraLayout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(panel_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(panel_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel_detallesCompraLayout.createSequentialGroup()
+                        .addGroup(panel_detallesCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addGap(15, 15, 15)
+                        .addComponent(panel_auto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addGroup(panel_detallesCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txt_encargadoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         btn_cancelar.setBackground(new java.awt.Color(255, 102, 102));
@@ -378,7 +338,7 @@ public class JFAddVenta extends javax.swing.JFrame {
                         .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(panel_inicioLayout.createSequentialGroup()
-                        .addComponent(panel_detallesVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panel_detallesCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -395,7 +355,7 @@ public class JFAddVenta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel_detallesVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel_detallesCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_enviarSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -428,11 +388,11 @@ public class JFAddVenta extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(label_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(216, 216, 216)
+                        .addComponent(label_image, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(211, 211, 211)
-                        .addComponent(label_image, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addComponent(label_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -447,13 +407,14 @@ public class JFAddVenta extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(6, 6, 6)
                             .addComponent(label_image, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(label_usuario)))
                     .addComponent(label_ImageEmpleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -476,31 +437,29 @@ public class JFAddVenta extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFAddVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFAddCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFAddVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFAddCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFAddVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFAddCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFAddVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFAddCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFAddVenta().setVisible(true);
+                new JFAddCompra().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel btn_AddAuto;
     public javax.swing.JLabel btn_cancelar;
     public javax.swing.JLabel btn_enviarSolicitud;
-    public javax.swing.JLabel btn_searchAuto;
     public javax.swing.JLabel btn_searchCliente;
-    public javax.swing.JComboBox cbox_tipoPago;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
@@ -509,8 +468,6 @@ public class JFAddVenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -520,16 +477,14 @@ public class JFAddVenta extends javax.swing.JFrame {
     public javax.swing.JLabel label_usuario;
     private javax.swing.JPanel panel_auto;
     private javax.swing.JPanel panel_cliente;
-    private javax.swing.JPanel panel_detallesVenta;
+    private javax.swing.JPanel panel_detallesCompra;
     private javax.swing.JPanel panel_image;
     private javax.swing.JPanel panel_inicio;
-    public javax.swing.JTextField txt_Descuento;
     public javax.swing.JTextField txt_encargadoVenta;
     public javax.swing.JTextField txt_fecha;
     public javax.swing.JTextField txt_numFactura1;
     public javax.swing.JTextField txt_numFactura2;
     public javax.swing.JTextField txt_numFactura3;
     public javax.swing.JTextField txt_numFactura5;
-    public javax.swing.JTextField txt_total;
     // End of variables declaration//GEN-END:variables
 }

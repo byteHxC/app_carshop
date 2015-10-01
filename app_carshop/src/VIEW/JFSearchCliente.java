@@ -16,20 +16,27 @@ import javax.swing.JLabel;
  * @author ByteDrive
  */
 public class JFSearchCliente extends javax.swing.JFrame {
-
+    String type;
     /**
      * Creates new form JFSearchCliente
+     * @param type
      */
-    public JFSearchCliente() {
+    public JFSearchCliente(String type) {
+        this.type = type;
         initComponents();
+        
         settingsFrame();
+        if(type.equals("Show")){
+            this.btn_seleccionar.setVisible(false);
+            this.btn_addNuevo.setVisible(false);
+        }
     }
     private void settingsFrame(){
         //Configuraciones jframe
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.setSize(820, 650);
+        this.setSize(940, 675);
         this.getContentPane().setBackground(Color.black);
         
         //Set imageIcon logo
@@ -70,7 +77,14 @@ public class JFSearchCliente extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel15 = new javax.swing.JLabel();
         btn_cancelar = new javax.swing.JLabel();
-        btn_guardarUsuario = new javax.swing.JLabel();
+        btn_seleccionar = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        cbox_searchFor = new javax.swing.JComboBox();
+        txt_valueSearch = new javax.swing.JTextField();
+        btn_buscar = new javax.swing.JLabel();
+        btn_addNuevo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table_showClientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Buscar cliente");
@@ -101,13 +115,45 @@ public class JFSearchCliente extends javax.swing.JFrame {
         btn_cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_cancelar.setOpaque(true);
 
-        btn_guardarUsuario.setBackground(new java.awt.Color(84, 222, 66));
-        btn_guardarUsuario.setFont(new java.awt.Font("Gulim", 0, 17)); // NOI18N
-        btn_guardarUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        btn_guardarUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btn_guardarUsuario.setText("Enviar solicitud");
-        btn_guardarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_guardarUsuario.setOpaque(true);
+        btn_seleccionar.setBackground(new java.awt.Color(84, 222, 66));
+        btn_seleccionar.setFont(new java.awt.Font("Gulim", 0, 17)); // NOI18N
+        btn_seleccionar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_seleccionar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_seleccionar.setText("Seleccionar");
+        btn_seleccionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_seleccionar.setOpaque(true);
+
+        jLabel2.setFont(new java.awt.Font("Gulim", 0, 16)); // NOI18N
+        jLabel2.setText("Buscar por:");
+
+        cbox_searchFor.setBackground(java.awt.Color.lightGray);
+        cbox_searchFor.setFont(new java.awt.Font("Gulim", 0, 16)); // NOI18N
+        cbox_searchFor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Clave elector", "Nombre", "Apellido paterno", "RFC", "Todos" }));
+
+        btn_buscar.setBackground(new java.awt.Color(51, 153, 255));
+        btn_buscar.setFont(new java.awt.Font("Gulim", 0, 16)); // NOI18N
+        btn_buscar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ASSETS/database22_1.png"))); // NOI18N
+        btn_buscar.setText("Buscar");
+        btn_buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_buscar.setOpaque(true);
+
+        btn_addNuevo.setBackground(new java.awt.Color(51, 153, 255));
+        btn_addNuevo.setFont(new java.awt.Font("Gulim", 0, 16)); // NOI18N
+        btn_addNuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btn_addNuevo.setText("Agregar nuevo");
+        btn_addNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_addNuevo.setOpaque(true);
+
+        table_showClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(table_showClientes);
 
         javax.swing.GroupLayout panel_inicioLayout = new javax.swing.GroupLayout(panel_inicio);
         panel_inicio.setLayout(panel_inicioLayout);
@@ -115,20 +161,33 @@ public class JFSearchCliente extends javax.swing.JFrame {
             panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_inicioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(169, 169, 169))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createSequentialGroup()
-                        .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(panel_inicioLayout.createSequentialGroup()
+                .addGap(215, 215, 215)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_guardarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbox_searchFor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_valueSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_addNuevo)
+                        .addGap(114, 114, 114))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createSequentialGroup()
+                        .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_seleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         panel_inicioLayout.setVerticalGroup(
             panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,11 +196,24 @@ public class JFSearchCliente extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 459, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createSequentialGroup()
+                            .addGap(1, 1, 1)
+                            .addComponent(txt_valueSearch))
+                        .addComponent(cbox_searchFor)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_addNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_guardarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_seleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panel_imageLayout = new javax.swing.GroupLayout(panel_image);
@@ -157,8 +229,8 @@ public class JFSearchCliente extends javax.swing.JFrame {
             panel_imageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_imageLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panel_inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(panel_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -169,10 +241,10 @@ public class JFSearchCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(label_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                        .addComponent(label_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(238, 238, 238)
+                        .addGap(302, 302, 302)
                         .addComponent(label_image, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,15 +302,20 @@ public class JFSearchCliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFSearchCliente().setVisible(true);
+                new JFSearchCliente("Show").setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel btn_addNuevo;
+    public javax.swing.JLabel btn_buscar;
     public javax.swing.JLabel btn_cancelar;
-    public javax.swing.JLabel btn_guardarUsuario;
+    public javax.swing.JLabel btn_seleccionar;
+    public javax.swing.JComboBox cbox_searchFor;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     public javax.swing.JLabel label_ImageEmpleado;
@@ -246,5 +323,7 @@ public class JFSearchCliente extends javax.swing.JFrame {
     public javax.swing.JLabel label_usuario;
     private javax.swing.JPanel panel_image;
     private javax.swing.JPanel panel_inicio;
+    public javax.swing.JTable table_showClientes;
+    public javax.swing.JTextField txt_valueSearch;
     // End of variables declaration//GEN-END:variables
 }

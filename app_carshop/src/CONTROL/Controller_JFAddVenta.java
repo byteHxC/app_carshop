@@ -34,13 +34,14 @@ import javax.swing.ImageIcon;
 public class Controller_JFAddVenta {
     JFAddVenta viewAddVenta;
     Connection cn;
-    CCliente cliente = null;
+    CCliente cliente;
     
     
 
     public Controller_JFAddVenta(CLogin login,Connection cn){
         this.viewAddVenta = new JFAddVenta();
         this.cn = cn;
+        this.cliente = new CCliente();
         CUsuario usuario = CUsuario.getObject(login.getClave_elector(), cn);
         
         this.viewAddVenta.label_usuario.setText("USUARIOS: "+login.getUsuario());
@@ -49,7 +50,7 @@ public class Controller_JFAddVenta {
             this.viewAddVenta.txt_encargadoVenta.setText(usuario.getNombre()+" "+usuario.getApellido_pat()+" "+usuario.getApellido_pat());
             
         }
-        this.viewAddVenta.btn_guardarUsuario.addMouseListener(new MouseAdapter() {
+        this.viewAddVenta.btn_enviarSolicitud.addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
