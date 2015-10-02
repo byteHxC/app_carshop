@@ -188,6 +188,28 @@ public class CCliente {
         }
         return true;
     }
+    public static CCliente getObject(Connection cn,String cve_elector){
+        CCliente cliente = null;
+        try{
+            PreparedStatement pps = cn.prepareStatement("select *from clientes where cve_elector = ?");
+            pps.setString(1, cve_elector);
+            ResultSet rs = pps.executeQuery();
+            if(rs.next()){
+                cliente = new CCliente();
+                cliente.setClaveElector(rs.getString("cve_elector"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setApellido_pat(rs.getString("apellido_pat"));
+                cliente.setApellido_mat(rs.getString("apellido_mat"));
+                cliente.setTelefono(rs.getString("telefono"));
+                cliente.setRfc(rs.getString("rfc"));
+                cliente.setDireccion(rs.getString("direccion"));
+                cliente.setIngresoMensual(rs.getFloat("ingreso_mensual"));
+            }
+        } catch (SQLException ex) {
+           Logger.getLogger(CCliente.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        return cliente;
+    }
    
     public static ArrayList<CCliente> queryAll(Connection cn){
         ArrayList <CCliente> clientes = new ArrayList<>();

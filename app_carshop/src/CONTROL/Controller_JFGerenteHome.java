@@ -44,11 +44,13 @@ public class Controller_JFGerenteHome {
         //Settings view labels identifications
         this.viewGerenteHome.label_usuario.setText("Bienvenido "+login.getUsuario());
         this.viewGerenteHome.label_ImageEmpleado.setIcon(new ImageIcon(getImageWithBlob(login.getImageBlob(),login.getNombreImagen()).getImage().getScaledInstance(viewGerenteHome.label_ImageEmpleado.getWidth(),viewGerenteHome.label_ImageEmpleado.getHeight(),Image.SCALE_SMOOTH)));
-        
+       
+        //Chooser image for the  empleado
         this.viewGerenteHome.ChooserImageGerente.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
-                 JFileChooser fileChooser = new JFileChooser();
+                    
+                    JFileChooser fileChooser = new JFileChooser();
                     FileNameExtensionFilter filterChooser = new FileNameExtensionFilter("Imagenes","jpg","png");
                     fileChooser.setFileFilter(filterChooser);
                     fileChooser.showOpenDialog(viewGerenteHome);

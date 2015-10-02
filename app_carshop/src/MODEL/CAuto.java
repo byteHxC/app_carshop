@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -162,7 +163,7 @@ public class CAuto {
         FileInputStream fileIn = null;
         try{
             fileIn = new FileInputStream(AbsolutePathimagen);
-            PreparedStatement pps = cn.prepareStatement("INSERT INTO catalogo_autos (numero_serie,marca,tipo,modelo,numero_pasajeros,cilindros,color,detalle,certificado_mecanico,precio_venta,precio_compra,imagen,nombre_imagen,estado) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,)");
+            PreparedStatement pps = cn.prepareStatement("INSERT INTO catalogo_autos (numero_serie,marca,tipo,modelo,numero_pasajeros,cilindros,color,detalle,certificado_mecanico,precio_venta,precio_compra,imagen,nombre_imagen,estado) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pps.setString(1,numero_serie);
             pps.setString(2,marca);
             pps.setString(3, tipo);
@@ -174,9 +175,9 @@ public class CAuto {
             pps.setInt(9, certificado_mecanico);
             pps.setFloat(10, precio_venta);
             pps.setFloat(11, precio_compra);
-            pps.setFloat(12, precio_venta);
-            pps.setBlob(13, fileIn);
-            pps.setString(14, nombreImagen);
+            pps.setBlob(12, fileIn);
+            pps.setString(13, nombreImagen);
+            pps.setString(14, estado);
             pps.executeUpdate();
             System.out.println("CAuto.saveObject() successful");
         } catch (SQLException ex) {
@@ -185,6 +186,39 @@ public class CAuto {
             Logger.getLogger(CAuto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    public static CAuto getObject(Connection cn,String numero_serie){
+         CAuto auto = null;
+        try{
+           
+            PreparedStatement pps = cn.prepareStatement("SELECT *FROM catalogo_autos where numero_serie = ?");
+            pps.setString(1,numero_serie);
+            ResultSet rs = pps.executeQuery();
+            if(rs.next()){
+                auto = new CAuto();
+                auto.setNumero_serie(rs.getString("numero_serie"));
+                auto.setMarca(rs.getString("marca"));
+                auto.setTipo(rs.getString("tipo"));
+                auto.setModelo(rs.getString("modelo"));
+                auto.setNumero_pasajeros(rs.getInt("numero_pasajeros"));
+                auto.setCilindros(rs.getInt("cilindros"));
+                auto.setColor(rs.getString("color"));
+                auto.setDetalle(rs.getString("detalle"));
+                auto.setCertificado_mecanico(rs.getInt("certificado_mecanico"));
+                auto.setPrecio_compra(rs.getFloat("precio_compra"));
+                try{
+                    auto.setPrecio_venta(rs.getFloat("precio_compra"));
+                }catch(Exception e){
+                    auto.setPrecio_venta(0);
+                }
+                auto.setImageBlob(rs.getBlob("imagen"));
+                auto.setNombreImagen(rs.getString("nombre_imagen"));
+                auto.setEstado(rs.getString("estado"));
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CAuto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return auto;
+    }
     
 }

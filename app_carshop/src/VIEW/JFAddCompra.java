@@ -83,19 +83,19 @@ public class JFAddCompra extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         panel_detallesCompra = new javax.swing.JPanel();
         panel_cliente = new javax.swing.JPanel();
-        txt_numFactura1 = new javax.swing.JTextField();
+        txt_clienteCveElector = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txt_numFactura2 = new javax.swing.JTextField();
+        txt_ClienteNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         btn_searchCliente = new javax.swing.JLabel();
         panel_auto = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        txt_numFactura3 = new javax.swing.JTextField();
+        txt_numSerie = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txt_numFactura5 = new javax.swing.JTextField();
+        txt_Precio = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtArea_descripcion = new javax.swing.JTextArea();
         btn_AddAuto = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txt_encargadoVenta = new javax.swing.JTextField();
@@ -131,12 +131,12 @@ public class JFAddCompra extends javax.swing.JFrame {
         panel_cliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gulim", 0, 12))); // NOI18N
         panel_cliente.setOpaque(false);
 
-        txt_numFactura1.setEditable(false);
+        txt_clienteCveElector.setEditable(false);
 
         jLabel2.setFont(new java.awt.Font("Gulim", 0, 14)); // NOI18N
         jLabel2.setText("Clave elector:");
 
-        txt_numFactura2.setEditable(false);
+        txt_ClienteNombre.setEditable(false);
 
         jLabel3.setFont(new java.awt.Font("Gulim", 0, 14)); // NOI18N
         jLabel3.setText("Nombre: ");
@@ -159,8 +159,8 @@ public class JFAddCompra extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panel_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_numFactura1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                    .addComponent(txt_numFactura2))
+                    .addComponent(txt_clienteCveElector, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addComponent(txt_ClienteNombre))
                 .addGap(6, 6, 6))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_clienteLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -173,11 +173,11 @@ public class JFAddCompra extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panel_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txt_numFactura1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_clienteCveElector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txt_numFactura2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_ClienteNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(btn_searchCliente)
                 .addContainerGap())
@@ -189,7 +189,7 @@ public class JFAddCompra extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Gulim", 0, 14)); // NOI18N
         jLabel4.setText("Numero serie:");
 
-        txt_numFactura3.setEditable(false);
+        txt_numSerie.setEditable(false);
 
         jLabel5.setFont(new java.awt.Font("Gulim", 0, 14)); // NOI18N
         jLabel5.setText("Descripción:");
@@ -197,13 +197,13 @@ public class JFAddCompra extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Gulim", 0, 14)); // NOI18N
         jLabel6.setText("Precio: ");
 
-        txt_numFactura5.setEditable(false);
+        txt_Precio.setEditable(false);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtArea_descripcion.setEditable(false);
+        txtArea_descripcion.setColumns(20);
+        txtArea_descripcion.setLineWrap(true);
+        txtArea_descripcion.setRows(5);
+        jScrollPane1.setViewportView(txtArea_descripcion);
 
         btn_AddAuto.setBackground(new java.awt.Color(51, 153, 255));
         btn_AddAuto.setFont(new java.awt.Font("Gulim", 1, 15)); // NOI18N
@@ -224,8 +224,8 @@ public class JFAddCompra extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panel_autoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_numFactura3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_numFactura5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_numSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_autoLayout.createSequentialGroup()
@@ -238,14 +238,14 @@ public class JFAddCompra extends javax.swing.JFrame {
             .addGroup(panel_autoLayout.createSequentialGroup()
                 .addGroup(panel_autoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txt_numFactura3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_numSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_autoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_autoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_numFactura5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_AddAuto)
@@ -471,7 +471,6 @@ public class JFAddCompra extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    public javax.swing.JTextArea jTextArea1;
     public javax.swing.JLabel label_ImageEmpleado;
     private javax.swing.JLabel label_image;
     public javax.swing.JLabel label_usuario;
@@ -480,11 +479,12 @@ public class JFAddCompra extends javax.swing.JFrame {
     private javax.swing.JPanel panel_detallesCompra;
     private javax.swing.JPanel panel_image;
     private javax.swing.JPanel panel_inicio;
+    public javax.swing.JTextArea txtArea_descripcion;
+    public javax.swing.JTextField txt_ClienteNombre;
+    public javax.swing.JTextField txt_Precio;
+    public javax.swing.JTextField txt_clienteCveElector;
     public javax.swing.JTextField txt_encargadoVenta;
     public javax.swing.JTextField txt_fecha;
-    public javax.swing.JTextField txt_numFactura1;
-    public javax.swing.JTextField txt_numFactura2;
-    public javax.swing.JTextField txt_numFactura3;
-    public javax.swing.JTextField txt_numFactura5;
+    public javax.swing.JTextField txt_numSerie;
     // End of variables declaration//GEN-END:variables
 }

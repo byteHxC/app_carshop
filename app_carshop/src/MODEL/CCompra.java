@@ -7,7 +7,6 @@ package MODEL;
 
 import VIEW.JFAddCompra;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,6 +29,9 @@ public class CCompra {
     private String cliente_cve;
 
     public CCompra() {
+        cliente_cve = "";
+        encargado_cve = "";
+        auto_numserie = "";
     }
 
     public String getNumero_factura() {
@@ -85,6 +87,21 @@ public class CCompra {
 
     public void setCliente_cve(String cliente_cve) {
         this.cliente_cve = cliente_cve;
+    }
+    public void saveObject(Connection cn){
+        try{
+            PreparedStatement pps = cn.prepareStatement("INSERT INTO compras(fecha,precio,aprobacion,auto_numserie,encargado_cve,cliente_cve) values (?,?,?,?,?,?)");
+            pps.setString(1, DateTime.getNow().toString());
+            pps.setFloat(2, precio);
+            pps.setBoolean(3,aprobacion);
+            pps.setString(4,auto_numserie);
+            pps.setString(5,encargado_cve);
+            pps.setString(6,cliente_cve);
+            pps.executeUpdate();
+            System.out.println("Compra.saveObject() successful");
+        } catch (SQLException ex) {
+            Logger.getLogger(CCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public boolean validarCompra(JFAddCompra frame, Connection cn){
