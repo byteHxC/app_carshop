@@ -101,16 +101,17 @@ public class Controller_JFAddAuto {
                 auto.setNombreImagen(fileSelected.getName());
                 auto.setEstado("En proceso");
                 
-                //Validar datos auto
-                JOptionPane.showMessageDialog(viewAddAuto,"Auto agregado a la compra", "Mensaje de informacion", JOptionPane.INFORMATION_MESSAGE);
-                
-                Controller_JFAddCompra JFAddCompra = new Controller_JFAddCompra(login, cn);
-                JFAddCompra.setAuto(auto);
-                JFAddCompra.setCompra(compra);
-                JFAddCompra.setData();
-                JFAddCompra.viewAddCompra.btn_AddAuto.setEnabled(false);
-                JFAddCompra.viewAddCompra.btn_searchCliente.setEnabled(false);
-                viewAddAuto.dispose();
+                if(auto.validarAuto(viewAddAuto, cn)){
+                    JOptionPane.showMessageDialog(viewAddAuto,"Auto agregado a la compra", "Mensaje de informacion", JOptionPane.INFORMATION_MESSAGE);
+
+                    Controller_JFAddCompra JFAddCompra = new Controller_JFAddCompra(login, cn);
+                    JFAddCompra.setAuto(auto);
+                    JFAddCompra.setCompra(compra);
+                    JFAddCompra.setData();
+                    JFAddCompra.viewAddCompra.btn_AddAuto.setEnabled(false);
+                    JFAddCompra.viewAddCompra.btn_searchCliente.setEnabled(false);
+                    viewAddAuto.dispose();
+                }
             }
      });
      //Action for choose image of this auto

@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -150,5 +150,28 @@ public class CCompra {
         }
         return false;
     }
+     
+     public static ArrayList<CCompra> getCompras(Connection cn){
+         ArrayList<CCompra> compras = new ArrayList<>();
+         try{
+             PreparedStatement pps = cn.prepareStatement("SELECT * FROM compras where aprobacion = ?");
+             pps.setBoolean(1,false);
+             ResultSet rs = pps.executeQuery();
+             while(rs.next()){
+                 CCompra compra = new CCompra();
+                 compra.setNumero_factura(rs.getString("numero_factura"));
+                 compra.setFecha(rs.getString("fecha"));
+                 compra.setPrecio(rs.getFloat("precio"));
+                 compra.setAuto_numserie(rs.getString("auto_numserie"));
+                 compra.setEncargado_cve(rs.getString("encargado_cve"));
+                 compra.setEncargado_cve(rs.getString("cliente_cve"));
+               compras.add(compra);
+             }
+             
+         } catch (SQLException ex) {
+            Logger.getLogger(CCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return compras;
+     }
     
 }

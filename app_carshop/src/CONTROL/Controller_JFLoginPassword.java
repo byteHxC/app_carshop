@@ -110,7 +110,8 @@ public class Controller_JFLoginPassword {
                                 loginPassword.dispose();
                             break;
                         case("Financiamiento"):
-                                System.out.println("Entra financiemianto");
+                                Controller_JFFinanciamientoHome JFFinaciemiento = new Controller_JFFinanciamientoHome(login, cn);
+                                loginPassword.dispose();
                             break;
                         case("Comercio"):
                                 Controller_JFComercioHome JFComercioHome = new Controller_JFComercioHome(login, cn);
