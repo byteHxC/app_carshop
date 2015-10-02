@@ -53,11 +53,11 @@ public class JFAddCompra extends javax.swing.JFrame {
         panel_auto.setBackground(color3);
         
         //Icon buttons
-        Image searchU = new ImageIcon(getClass().getResource("/ASSETS/searchU.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-        this.btn_searchCliente.setIcon(new ImageIcon(searchU));
-        Image searchA = new ImageIcon(getClass().getResource("/ASSETS/searchA.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-        this.btn_AddAuto.setIcon(new ImageIcon(searchA));
-        
+//        Image searchU = new ImageIcon(getClass().getResource("/ASSETS/searchU.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+//        this.btn_searchCliente.setIcon(new ImageIcon(searchU));
+//        Image searchA = new ImageIcon(getClass().getResource("/ASSETS/searchA.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+//        this.btn_AddAuto.setIcon(new ImageIcon(searchA));
+//        
         //Cambiar icono
         
         Image icon = Toolkit.getDefaultToolkit().getImage("/ASSETS/LogoCARSHOP.png");
@@ -142,8 +142,9 @@ public class JFAddCompra extends javax.swing.JFrame {
         jLabel3.setText("Nombre: ");
 
         btn_searchCliente.setBackground(new java.awt.Color(51, 153, 255));
-        btn_searchCliente.setFont(new java.awt.Font("Gulim", 1, 15)); // NOI18N
+        btn_searchCliente.setFont(new java.awt.Font("Avenir Next", 0, 18)); // NOI18N
         btn_searchCliente.setForeground(new java.awt.Color(255, 255, 255));
+        btn_searchCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btn_searchCliente.setText("Buscar cliente");
         btn_searchCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_searchCliente.setOpaque(true);
@@ -164,7 +165,7 @@ public class JFAddCompra extends javax.swing.JFrame {
                 .addGap(6, 6, 6))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_clienteLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_searchCliente)
+                .addComponent(btn_searchCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panel_clienteLayout.setVerticalGroup(
@@ -206,8 +207,9 @@ public class JFAddCompra extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtArea_descripcion);
 
         btn_AddAuto.setBackground(new java.awt.Color(51, 153, 255));
-        btn_AddAuto.setFont(new java.awt.Font("Gulim", 1, 15)); // NOI18N
+        btn_AddAuto.setFont(new java.awt.Font("Avenir Next", 0, 18)); // NOI18N
         btn_AddAuto.setForeground(new java.awt.Color(255, 255, 255));
+        btn_AddAuto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btn_AddAuto.setText("Agregar auto");
         btn_AddAuto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_AddAuto.setOpaque(true);
@@ -230,7 +232,7 @@ public class JFAddCompra extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_autoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_AddAuto)
+                .addComponent(btn_AddAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panel_autoLayout.setVerticalGroup(
@@ -414,7 +416,7 @@ public class JFAddCompra extends javax.swing.JFrame {
                     .addComponent(label_ImageEmpleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();

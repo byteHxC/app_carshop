@@ -68,6 +68,7 @@ public class Controller_JFSearchCliente {
       
                     JFAddCompra.setCompra(compra);
                     JFAddCompra.setData();
+                    JFAddCompra.viewAddCompra.btn_searchCliente.setEnabled(false);
                     viewSearchCliente.dispose();
                 }
             }

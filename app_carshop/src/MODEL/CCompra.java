@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class CCompra {
     private String numero_factura;
-    private LocalDateTime fecha;
+    private String fecha;
     private float precio;
     private boolean aprobacion;
     private String auto_numserie;
@@ -42,11 +42,11 @@ public class CCompra {
         this.numero_factura = numero_factura;
     }
 
-    public LocalDateTime getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDateTime fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
     public float getPrecio() {
@@ -110,10 +110,6 @@ public class CCompra {
          String sAux = getPrecio() + "";
         if(!sAux.matches("([1-9])[0-9]+(([.])([0-9]{1,2})?)?")){
             txtError += "\t-Precio invalido\n";
-            errores = true;
-        }
-        if (validarAuto(getAuto_numserie(), cn) ==false ) {
-            txtError += "\t-Error con numero de serie del auto\n";
             errores = true;
         }
         if (validarCliente(getCliente_cve(), cn) ==false ) {

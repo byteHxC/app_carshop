@@ -131,16 +131,18 @@ public class JFSearchCliente extends javax.swing.JFrame {
         cbox_searchFor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Clave elector", "Nombre", "Apellido paterno", "RFC", "Todos" }));
 
         btn_buscar.setBackground(new java.awt.Color(51, 153, 255));
-        btn_buscar.setFont(new java.awt.Font("Gulim", 0, 16)); // NOI18N
+        btn_buscar.setFont(new java.awt.Font("Avenir Next", 0, 18)); // NOI18N
         btn_buscar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_buscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ASSETS/database22_1.png"))); // NOI18N
         btn_buscar.setText("Buscar");
         btn_buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_buscar.setOpaque(true);
 
         btn_addNuevo.setBackground(new java.awt.Color(51, 153, 255));
-        btn_addNuevo.setFont(new java.awt.Font("Gulim", 0, 16)); // NOI18N
+        btn_addNuevo.setFont(new java.awt.Font("Avenir Next", 0, 18)); // NOI18N
         btn_addNuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btn_addNuevo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btn_addNuevo.setText("Agregar nuevo");
         btn_addNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_addNuevo.setOpaque(true);

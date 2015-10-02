@@ -117,8 +117,9 @@ public class JFShowEmpleados extends javax.swing.JFrame {
         cbox_searchFor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Clave elector", "Nombre", "Tipo", "Todos" }));
 
         btn_search.setBackground(new java.awt.Color(51, 153, 255));
-        btn_search.setFont(new java.awt.Font("Gulim", 0, 16)); // NOI18N
+        btn_search.setFont(new java.awt.Font("Avenir Next", 0, 18)); // NOI18N
         btn_search.setForeground(new java.awt.Color(255, 255, 255));
+        btn_search.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btn_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ASSETS/database22_1.png"))); // NOI18N
         btn_search.setText("Buscar");
         btn_search.setOpaque(true);

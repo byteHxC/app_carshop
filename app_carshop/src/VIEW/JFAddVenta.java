@@ -54,11 +54,11 @@ public class JFAddVenta extends javax.swing.JFrame {
         panel_auto.setBackground(color3);
         
         //Icon buttons
-        Image searchU = new ImageIcon(getClass().getResource("/ASSETS/searchU.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-        this.btn_searchCliente.setIcon(new ImageIcon(searchU));
-        Image searchA = new ImageIcon(getClass().getResource("/ASSETS/searchA.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-        this.btn_searchAuto.setIcon(new ImageIcon(searchA));
-        
+//        Image searchU = new ImageIcon(getClass().getResource("/ASSETS/searchU.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+//        this.btn_searchCliente.setIcon(new ImageIcon(searchU));
+//        Image searchA = new ImageIcon(getClass().getResource("/ASSETS/searchA.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
+//        this.btn_searchAuto.setIcon(new ImageIcon(searchA));
+//        
         //Cambiar icono
         
         Image icon = Toolkit.getDefaultToolkit().getImage("/ASSETS/LogoCARSHOP.png");
@@ -96,7 +96,7 @@ public class JFAddVenta extends javax.swing.JFrame {
         txt_numFactura5 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        btn_searchAuto = new javax.swing.JLabel();
+        btn_AddAuto = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txt_encargadoVenta = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -148,8 +148,9 @@ public class JFAddVenta extends javax.swing.JFrame {
         jLabel3.setText("Nombre: ");
 
         btn_searchCliente.setBackground(new java.awt.Color(51, 153, 255));
-        btn_searchCliente.setFont(new java.awt.Font("Gulim", 1, 15)); // NOI18N
+        btn_searchCliente.setFont(new java.awt.Font("Avenir Next", 0, 18)); // NOI18N
         btn_searchCliente.setForeground(new java.awt.Color(255, 255, 255));
+        btn_searchCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btn_searchCliente.setText("Buscar cliente");
         btn_searchCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_searchCliente.setOpaque(true);
@@ -170,7 +171,7 @@ public class JFAddVenta extends javax.swing.JFrame {
                 .addGap(6, 6, 6))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_clienteLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_searchCliente)
+                .addComponent(btn_searchCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panel_clienteLayout.setVerticalGroup(
@@ -185,8 +186,7 @@ public class JFAddVenta extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(txt_numFactura2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(btn_searchCliente)
-                .addContainerGap())
+                .addComponent(btn_searchCliente))
         );
 
         panel_auto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos auto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gulim", 0, 12))); // NOI18N
@@ -211,12 +211,13 @@ public class JFAddVenta extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        btn_searchAuto.setBackground(new java.awt.Color(51, 153, 255));
-        btn_searchAuto.setFont(new java.awt.Font("Gulim", 1, 15)); // NOI18N
-        btn_searchAuto.setForeground(new java.awt.Color(255, 255, 255));
-        btn_searchAuto.setText("Buscar auto");
-        btn_searchAuto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_searchAuto.setOpaque(true);
+        btn_AddAuto.setBackground(new java.awt.Color(51, 153, 255));
+        btn_AddAuto.setFont(new java.awt.Font("Avenir Next", 0, 18)); // NOI18N
+        btn_AddAuto.setForeground(new java.awt.Color(255, 255, 255));
+        btn_AddAuto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_AddAuto.setText("Agregar auto");
+        btn_AddAuto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_AddAuto.setOpaque(true);
 
         javax.swing.GroupLayout panel_autoLayout = new javax.swing.GroupLayout(panel_auto);
         panel_auto.setLayout(panel_autoLayout);
@@ -236,7 +237,7 @@ public class JFAddVenta extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_autoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_searchAuto)
+                .addComponent(btn_AddAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panel_autoLayout.setVerticalGroup(
@@ -253,9 +254,8 @@ public class JFAddVenta extends javax.swing.JFrame {
                 .addGroup(panel_autoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_numFactura5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_searchAuto)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_AddAuto))
         );
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -495,9 +495,9 @@ public class JFAddVenta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel btn_AddAuto;
     public javax.swing.JLabel btn_cancelar;
     public javax.swing.JLabel btn_enviarSolicitud;
-    public javax.swing.JLabel btn_searchAuto;
     public javax.swing.JLabel btn_searchCliente;
     public javax.swing.JComboBox cbox_tipoPago;
     private javax.swing.JLabel jLabel10;

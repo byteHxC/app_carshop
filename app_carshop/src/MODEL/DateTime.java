@@ -19,7 +19,6 @@ public class DateTime {
        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
        String text = dateTime.format(formatter);
        LocalDateTime parsedDate = LocalDateTime.parse(text, formatter);
-       System.out.println(parsedDate);
        this.dateTime = dateTime;
     }
     public static  LocalDateTime getNow(){
@@ -27,7 +26,6 @@ public class DateTime {
        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
        String text = dateTimeNow.format(formatter);
        LocalDateTime parsedDate = LocalDateTime.parse(text, formatter);
-       System.out.println(parsedDate);
        return parsedDate;
     }
     public static  String getFechaNow(){

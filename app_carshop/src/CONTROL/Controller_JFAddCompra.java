@@ -37,11 +37,13 @@ public class Controller_JFAddCompra {
     JFAddCompra viewAddCompra;
     Connection cn;
     CCompra compra;
+    CAuto auto;
     Thread time;
     
     public Controller_JFAddCompra(CLogin login, Connection cn){
         this.viewAddCompra = new JFAddCompra();
         compra = new CCompra();
+        auto = new CAuto();
         this.cn = cn;
         CUsuario usuario = CUsuario.getObject(login.getClave_elector(), cn);
         actualizarTime();
@@ -56,10 +58,13 @@ public class Controller_JFAddCompra {
             @Override
             public void mouseClicked(MouseEvent e) {
                 //Validar compra y guardar compra en estado de proceso
+                compra.setAprobacion(false);
+                compra.setEncargado_cve(login.getClave_elector());
               if(compra.validarCompra(viewAddCompra, cn)){
+                  auto.saveObject(cn);
                   compra.saveObject(cn);
-                  Controller_JFComercioHome JFComercioHome = new Controller_JFComercioHome(login, cn);
                   JOptionPane.showMessageDialog(viewAddCompra,"Solicitud enviada al departamento de financiamiento","Informacion",JOptionPane.INFORMATION_MESSAGE);
+                  Controller_JFComercioHome JFComercioHome = new Controller_JFComercioHome(login, cn);
                   viewAddCompra.dispose();
               }
             }
@@ -68,6 +73,7 @@ public class Controller_JFAddCompra {
 
             @Override
             public void mouseClicked(MouseEvent e) {
+              if(viewAddCompra.btn_AddAuto.isEnabled()){ 
                 if(compra.getCliente_cve().equals("")){
 
                     JOptionPane.showMessageDialog(viewAddCompra,"Primero agregue a el cliente","Mensaje de informacion",JOptionPane.INFORMATION_MESSAGE);
@@ -76,15 +82,18 @@ public class Controller_JFAddCompra {
                     JFAddAuto.setCompra(compra);
                     viewAddCompra.dispose();
                 }
+              }
             }
         });
         this.viewAddCompra.btn_searchCliente.addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(viewAddCompra.btn_searchCliente.isEnabled()){
                 Controller_JFSearchCliente searchCliente = new Controller_JFSearchCliente(login, cn,"Compra");
                 searchCliente.setCompra(compra);
                 viewAddCompra.dispose();
+                }
             }
         });
         this.viewAddCompra.addWindowListener(new WindowAdapter() {
@@ -110,21 +119,23 @@ public class Controller_JFAddCompra {
      public CCompra getCompra(){
          return this.compra;
      }
+     public void setAuto(CAuto auto){
+         this.auto = auto;
+     }
      public void setData(){
          //update data cliente
           CCliente cliente = CCliente.getObject(cn, compra.getCliente_cve());
           if(cliente!=null){
               this.viewAddCompra.txt_clienteCveElector.setText(cliente.getClaveElector());
               this.viewAddCompra.txt_ClienteNombre.setText(cliente.getNombre()+" "+cliente.getApellido_pat()+" "+cliente.getApellido_mat());
-
           }
         //update date auto
-          
-          CAuto auto = CAuto.getObject(cn,compra.getAuto_numserie());
           if(auto!=null){
               this.viewAddCompra.txt_numSerie.setText(auto.getNumero_serie());
               this.viewAddCompra.txtArea_descripcion.setText(auto.getDetalle());
               this.viewAddCompra.txt_Precio.setText(auto.getPrecio_compra()+"");
+              compra.setAuto_numserie(auto.getNumero_serie());
+              compra.setPrecio(auto.getPrecio_compra());
           }
      }
       private ImageIcon getImageWithBlob(Blob blob,String nombre){

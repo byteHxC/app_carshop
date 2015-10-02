@@ -23,11 +23,9 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -59,16 +57,8 @@ public class Controller_JFAddAuto {
                 }catch(Exception er){
                     precio = 0;
                 }
-                if(precio!=0){
-                    float valueD = 0;
-                    switch(viewAddAuto.cbox_Certificado.getSelectedItem().toString()){
-                        case("9"):valueD=2; break;
-                        case("8"):valueD=4; break;
-                        case("7"):valueD=6; break;
-                    }
-                    float descuento = precio/100*valueD;
-                    viewAddAuto.txt_PrecioNeto.setText(precio-descuento+"");
-                }
+                calcularPrecioNeto(precio);
+               
             }
         });
         
@@ -94,10 +84,11 @@ public class Controller_JFAddAuto {
                 }
                 auto.setColor(viewAddAuto.txt_Color.getText());
                 auto.setDetalle(viewAddAuto.txtArea_detalle.getText());
-                auto.setCertificado_mecanico(viewAddAuto.cbox_Certificado.getSelectedIndex()+1);
-                if(viewAddAuto.cbox_Certificado.getSelectedIndex()==1){
-                    viewAddAuto.txt_PrecioNeto.setText(viewAddAuto.txt_Precio+"");
-                }
+                auto.setCertificado_mecanico(Integer.parseInt(viewAddAuto.cbox_Certificado.getSelectedItem().toString()));
+          
+                viewAddAuto.txt_PrecioNeto.setText(calcularPrecioNeto(Float.parseFloat(viewAddAuto.txt_Precio.getText()+""))+"");
+                
+                
                 try{
                 auto.setPrecio_compra(Float.parseFloat(viewAddAuto.txt_PrecioNeto.getText()));
                 }catch(NumberFormatException erPrecio){
@@ -111,13 +102,14 @@ public class Controller_JFAddAuto {
                 auto.setEstado("En proceso");
                 
                 //Validar datos auto
-                auto.saveObject(cn);
-                JOptionPane.showMessageDialog(viewAddAuto,"Auto agregado en estado de [PROCESO]...", "Mensaje de informacion", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(viewAddAuto,"Auto agregado a la compra", "Mensaje de informacion", JOptionPane.INFORMATION_MESSAGE);
+                
                 Controller_JFAddCompra JFAddCompra = new Controller_JFAddCompra(login, cn);
-                compra.setAuto_numserie(auto.getNumero_serie());
-                compra.setPrecio(auto.getPrecio_compra());
+                JFAddCompra.setAuto(auto);
                 JFAddCompra.setCompra(compra);
                 JFAddCompra.setData();
+                JFAddCompra.viewAddCompra.btn_AddAuto.setEnabled(false);
+                JFAddCompra.viewAddCompra.btn_searchCliente.setEnabled(false);
                 viewAddAuto.dispose();
             }
      });
@@ -146,6 +138,7 @@ public class Controller_JFAddAuto {
                 Controller_JFAddCompra jfAddCompra = new Controller_JFAddCompra(login, cn);
                 jfAddCompra.setCompra(compra);
                 jfAddCompra.setData();
+                jfAddCompra.viewAddCompra.btn_searchCliente.setEnabled(false);
                 viewAddAuto.dispose();
             }
      });
@@ -155,6 +148,7 @@ public class Controller_JFAddAuto {
                 Controller_JFAddCompra jfAddCompra = new Controller_JFAddCompra(login, cn);
                 jfAddCompra.setCompra(compra);
                 jfAddCompra.setData();
+                jfAddCompra.viewAddCompra.btn_searchCliente.setEnabled(false);
                 viewAddAuto.dispose();
             }
      });
@@ -181,5 +175,20 @@ public class Controller_JFAddAuto {
         } 
         return image;
      }
+    public float calcularPrecioNeto(float precio){
+         if(precio!=0){
+                    float valueD = 0;
+                    switch(viewAddAuto.cbox_Certificado.getSelectedItem().toString()){
+                        case("9"):valueD=2; break;
+                        case("8"):valueD=4; break;
+                        case("7"):valueD=6; break;
+                    }
+                    float descuento = precio/100*valueD;   
+                    viewAddAuto.txt_PrecioNeto.setText(precio-descuento+"");
+                     return precio-descuento;
+         }
+         return 0;
+        
+    }
     
 }
