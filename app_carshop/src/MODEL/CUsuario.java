@@ -121,7 +121,7 @@ public class CUsuario {
     }
     
     public  static CUsuario getObject(String clave_elector,Connection cn){
-        CUsuario user = null;
+        CUsuario user = new CUsuario();
         try{
             PreparedStatement pps = cn.prepareStatement("SELECT *from usuarios where cve_elector=?");
             pps.setString(1, clave_elector);

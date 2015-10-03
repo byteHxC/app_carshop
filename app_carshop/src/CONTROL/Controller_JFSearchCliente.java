@@ -77,7 +77,7 @@ public class Controller_JFSearchCliente {
         this.viewSearchCliente.btn_addNuevo.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Controller_JFAddCliente JFAddCliente = new Controller_JFAddCliente(login, cn);
+                Controller_JFAddCliente JFAddCliente = new Controller_JFAddCliente("Comercio",login, cn);
                 viewSearchCliente.dispose();
             }
         });

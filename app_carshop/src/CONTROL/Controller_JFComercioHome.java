@@ -40,7 +40,7 @@ public class Controller_JFComercioHome {
         //Settings view labels identifications
         this.viewComercio.label_usuario.setText("USUARIO: "+login.getUsuario());
         this.viewComercio.label_ImageEmpleado.setIcon(new ImageIcon(getImageWithBlob(login.getImageBlob(), login.getNombreImagen()).getImage().getScaledInstance(viewComercio.label_ImageEmpleado.getWidth(),viewComercio.label_ImageEmpleado.getHeight(),Image.SCALE_SMOOTH)));
-        
+      
         //Button of  addCompra
         this.viewComercio.btn_addCompra.addMouseListener(new MouseAdapter() {
 
@@ -64,7 +64,7 @@ public class Controller_JFComercioHome {
         this.viewComercio.btn_addCliente.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Controller_JFAddCliente JFAddCLiente = new Controller_JFAddCliente(login, cn);
+                Controller_JFAddCliente JFAddCLiente = new Controller_JFAddCliente("Comercio",login, cn);
                 viewComercio.dispose();
             }
         });

@@ -189,9 +189,9 @@ public class CCliente {
         return true;
     }
     public static CCliente getObject(Connection cn,String cve_elector){
-        CCliente cliente = null;
+        CCliente cliente = new CCliente();
         try{
-            PreparedStatement pps = cn.prepareStatement("select *from clientes where cve_elector = ?");
+            PreparedStatement pps = cn.prepareStatement("SELECT * FROM clientes WHERE cve_elector = ?");
             pps.setString(1, cve_elector);
             ResultSet rs = pps.executeQuery();
             if(rs.next()){

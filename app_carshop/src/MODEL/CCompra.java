@@ -173,5 +173,25 @@ public class CCompra {
         }
          return compras;
      }
+     
+     public static CCompra getCompra(int numero_factura, Connection cn){
+         CCompra compra = new CCompra();
+         try{
+             PreparedStatement pps = cn.prepareStatement("SELECT * FROM compras where numero_factura = ?");
+             pps.setInt(1, numero_factura);
+             ResultSet rs = pps.executeQuery();
+             if(rs.next()){
+                 compra.setNumero_factura(rs.getString("numero_factura"));
+                 compra.setFecha(rs.getString("fecha"));
+                 compra.setPrecio(rs.getFloat("precio"));
+                 compra.setAuto_numserie(rs.getString("auto_numserie"));
+                 compra.setEncargado_cve(rs.getString("encargado_cve"));
+                 compra.setCliente_cve(rs.getString("cliente_cve"));
+             }
+         } catch (SQLException ex) {
+            Logger.getLogger(CCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return compra;
+     }
     
 }

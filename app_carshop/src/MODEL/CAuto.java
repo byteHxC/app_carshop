@@ -277,7 +277,7 @@ public class CAuto {
         }
     }
     public static CAuto getObject(Connection cn,String numero_serie){
-         CAuto auto = null;
+         CAuto auto = new CAuto();
         try{
            
             PreparedStatement pps = cn.prepareStatement("SELECT *FROM catalogo_autos where numero_serie = ?");

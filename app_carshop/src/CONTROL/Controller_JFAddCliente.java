@@ -5,8 +5,11 @@
  */
 package CONTROL;
 
+import MODEL.CAuto;
 import MODEL.CCliente;
+import MODEL.CCompra;
 import MODEL.CLogin;
+import MODEL.CUsuario;
 import VIEW.JFAddCliente;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -32,8 +35,12 @@ import javax.swing.JOptionPane;
 public class Controller_JFAddCliente {
     JFAddCliente viewAddCliente;
     Connection cn;
+    CCompra compra;
+    CAuto auto;
+    CUsuario encargado;
+    CCliente cliente;
     
-    public Controller_JFAddCliente(CLogin login,Connection cn){
+    public Controller_JFAddCliente(String JFController,CLogin login,Connection cn){
         this.viewAddCliente = new JFAddCliente();
         this.cn = cn;
         //Settings view labels identifications
@@ -70,34 +77,90 @@ public class Controller_JFAddCliente {
         this.viewAddCliente.btn_cancelar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Controller_JFComercioHome JFComercioHome = new Controller_JFComercioHome(login, cn);
-                viewAddCliente.dispose();
+                switch(JFController){
+                    case("Comercio"):
+                          Controller_JFComercioHome JFComercioHome = new Controller_JFComercioHome(login, cn);
+                          viewAddCliente.dispose();
+                        break;
+                    case("FinanciamientoCompra"):
+                        Controller_JFAprobarCompra JFAprobarCompra = new Controller_JFAprobarCompra(login,cn);
+                        JFAprobarCompra.setData(compra, encargado, auto, cliente);
+                        JFAprobarCompra.viewData();
+                        viewAddCliente.dispose();
+                        break;
+                    case("FinanciamientoVenta"):
+                            //JFrame aprobarCompra
+                        break;
+                }
+              
             }
         });
         
         this.viewAddCliente.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                Controller_JFComercioHome JFComercioHome = new Controller_JFComercioHome(login, cn);
-                viewAddCliente.dispose();
+                  switch(JFController){
+                    case("Comercio"):
+                          Controller_JFComercioHome JFComercioHome = new Controller_JFComercioHome(login, cn);
+                          viewAddCliente.dispose();
+                        break;
+                    case("FinanciamientoCompra"):
+                        Controller_JFAprobarCompra JFAprobarCompra = new Controller_JFAprobarCompra(login,cn);
+                        JFAprobarCompra.setData(compra, encargado, auto, cliente);
+                        JFAprobarCompra.viewData();
+                        viewAddCliente.dispose();
+                        break;
+                    case("FinanciamientoVenta"):
+                            //JFrame aprobarCompra
+                        break;
+                }
             }
         });
     }
     
-private ImageIcon getImageWithBlob(Blob blob,String nombre){
-         ImageIcon image = null;
-         BufferedImage img = null;
-        try {
-            byte[] data = blob.getBytes(1,(int)blob.length());
-         
-            img = ImageIO.read(new ByteArrayInputStream(data));
-            //Crear la imagen
-             image = new ImageIcon(img);
+    private ImageIcon getImageWithBlob(Blob blob,String nombre){
+             ImageIcon image = null;
+             BufferedImage img = null;
+            try {
+                byte[] data = blob.getBytes(1,(int)blob.length());
+
+                img = ImageIO.read(new ByteArrayInputStream(data));
+                //Crear la imagen
+                 image = new ImageIcon(img);
+                return image;
+            } catch (IOException | SQLException ex) {
+                Logger.getLogger(Controller_JFAddCliente.class.getName()).log(Level.SEVERE, null, ex);
+            } 
             return image;
-        } catch (IOException | SQLException ex) {
-            Logger.getLogger(Controller_JFAddCliente.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        return image;
-     }
+         }
+    public void setData(CCompra compra,CUsuario encargado, CAuto auto,CCliente cliente) {
+            this.compra = compra;
+            this.auto = auto;
+            this.cliente = cliente;
+            this.encargado = encargado;
+    }
+    public void viewData(){
+        lockFields();
+        this.viewAddCliente.head.setText("Ver cliente");
+        this.viewAddCliente.txt_cveElector.setText(cliente.getClaveElector());
+        this.viewAddCliente.txt_nombre.setText(cliente.getNombre());
+        this.viewAddCliente.txt_apellidoPat.setText(cliente.getApellido_pat());
+        this.viewAddCliente.txt_apellidoMat.setText(cliente.getApellido_mat());
+        this.viewAddCliente.txt_RFC.setText(cliente.getRfc());
+        this.viewAddCliente.txt_ingresoMensual.setText(cliente.getIngresoMensual()+ " $");
+        this.viewAddCliente.txt_direccion.setText(cliente.getDireccion());
+        this.viewAddCliente.txt_telefono.setText(cliente.getTelefono());
+    }
+    public void lockFields(){
+        this.viewAddCliente.txt_cveElector.setEditable(false);
+        this.viewAddCliente.txt_nombre.setEditable(false);
+        this.viewAddCliente.txt_apellidoPat.setEditable(false);
+        this.viewAddCliente.txt_apellidoMat.setEditable(false);
+        this.viewAddCliente.txt_RFC.setEditable(false);
+        this.viewAddCliente.txt_ingresoMensual.setEditable(false);
+        this.viewAddCliente.txt_direccion.setEditable(false);
+        this.viewAddCliente.txt_telefono.setEditable(false);
+        this.viewAddCliente.btn_guardarCliente.setVisible(false);
+    }
     
 }
