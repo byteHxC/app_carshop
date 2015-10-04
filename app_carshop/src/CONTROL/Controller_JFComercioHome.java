@@ -64,7 +64,7 @@ public class Controller_JFComercioHome {
         this.viewComercio.btn_addCliente.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Controller_JFAddCliente JFAddCLiente = new Controller_JFAddCliente("Comercio",login, cn);
+                Controller_JFAddCliente JFAddCLiente = new Controller_JFAddCliente(login, cn);
                 viewComercio.dispose();
             }
         });

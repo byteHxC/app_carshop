@@ -41,11 +41,17 @@ public class Controller_JFFinanciamientoHome {
     public Controller_JFFinanciamientoHome(CLogin login, Connection cn){
         this.viewFinanHome = new JFFinanciamientoHome();
         this.cn = cn;
-        
+       
         //Settings view labels identifications
         this.viewFinanHome.label_usuario.setText("USUARIO: "+login.getUsuario());
         this.viewFinanHome.label_ImageEmpleado.setIcon(new ImageIcon(getImageWithBlob(login.getImageBlob(), login.getNombreImagen()).getImage().getScaledInstance(viewFinanHome.label_ImageEmpleado.getWidth(),viewFinanHome.label_ImageEmpleado.getHeight(),Image.SCALE_SMOOTH)));
-        loadTable(viewFinanHome.table_doctos, cn);
+        reloadTable();
+        this.viewFinanHome.btn_reload.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                loadTable(viewFinanHome.table_doctos,cn);
+            }
+        });
         //Button ir a docto
         this.viewFinanHome.btn_irDocto.addMouseListener(new MouseAdapter() {
             @Override
@@ -57,7 +63,6 @@ public class Controller_JFFinanciamientoHome {
                     String typeDocto = viewFinanHome.table_doctos.getValueAt(rowSelected,1).toString();
                     if(typeDocto.equals("Compra")){
                        CCompra compra = CCompra.getCompra(Integer.parseInt(viewFinanHome.table_doctos.getValueAt(rowSelected,0).toString()), cn);
-                       
                         Controller_JFAprobarCompra JFAprobarCompra = new Controller_JFAprobarCompra(login, cn);
                         JFAprobarCompra.loadData(compra);
                         JFAprobarCompra.viewData();
@@ -96,8 +101,6 @@ public class Controller_JFFinanciamientoHome {
                 viewFinanHome.dispose();
             }
         });
-       
-        
     }
     
     private void loadTable(JTable tabla,Connection cn){
@@ -117,7 +120,7 @@ public class Controller_JFFinanciamientoHome {
         model.addColumn("Fecha");
         for(CCompra compra: compras){
             Object[] oCompra = new Object[4];
-            oCompra[0] = compra.getNumero_factura();
+            oCompra[0] = compra.getNumero_factura()+"";
             oCompra[1] = "Compra";
             oCompra[2] = compra.getPrecio()+"$";
             oCompra[3] = compra.getFecha();
@@ -140,5 +143,22 @@ public class Controller_JFFinanciamientoHome {
         } 
         return image;
      }
+
+    private void reloadTable(){
+        Thread hilo = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true){
+                     loadTable(viewFinanHome.table_doctos, cn);
+                    try {
+                        Thread.sleep(30000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Controller_JFFinanciamientoHome.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+        hilo.start();
+    }
     
 }

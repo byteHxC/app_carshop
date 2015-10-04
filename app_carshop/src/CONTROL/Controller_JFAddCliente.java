@@ -39,8 +39,8 @@ public class Controller_JFAddCliente {
     CAuto auto;
     CUsuario encargado;
     CCliente cliente;
-    
-    public Controller_JFAddCliente(String JFController,CLogin login,Connection cn){
+    //Constructor for empleado comercio
+    public Controller_JFAddCliente(CLogin login,Connection cn){
         this.viewAddCliente = new JFAddCliente();
         this.cn = cn;
         //Settings view labels identifications
@@ -77,11 +77,60 @@ public class Controller_JFAddCliente {
         this.viewAddCliente.btn_cancelar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                  Controller_JFComercioHome JFComercioHome = new Controller_JFComercioHome(login, cn);
+                  viewAddCliente.dispose();  
+            }
+        });
+        
+        this.viewAddCliente.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                  Controller_JFComercioHome JFComercioHome = new Controller_JFComercioHome(login, cn);
+                  viewAddCliente.dispose();  
+            }
+        });
+    }
+    //Constructor for empleado Financiamiento
+     public Controller_JFAddCliente(String JFController,CLogin login,Connection cn){
+        this.viewAddCliente = new JFAddCliente();
+        this.cn = cn;
+        this.viewAddCliente.setTitle("Detalle cliente");
+        this.viewAddCliente.head.setText("Vista cliente");
+        //Settings view labels identifications
+        this.viewAddCliente.label_usuario.setText("USUARIO: "+login.getUsuario());
+        this.viewAddCliente.label_ImageEmpleado.setIcon(new ImageIcon(getImageWithBlob(login.getImageBlob(),login.getNombreImagen()).getImage().getScaledInstance(viewAddCliente.label_ImageEmpleado.getWidth(),viewAddCliente.label_ImageEmpleado.getHeight(),Image.SCALE_SMOOTH)));
+        lockFields();
+        //When press btn_guardar
+        this.viewAddCliente.btn_guardarCliente.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                CCliente cliente = new CCliente();
+                cliente.setClaveElector(viewAddCliente.txt_cveElector.getText());
+                cliente.setNombre(viewAddCliente.txt_nombre.getText());
+                cliente.setApellido_pat(viewAddCliente.txt_apellidoPat.getText());
+                cliente.setApellido_mat(viewAddCliente.txt_apellidoMat.getText());
+                cliente.setTelefono(viewAddCliente.txt_telefono.getText());
+                cliente.setRfc(viewAddCliente.txt_RFC.getText());
+                cliente.setDireccion(viewAddCliente.txt_direccion.getText());
+                 float ing;
+                try{
+                    ing = Float.parseFloat(viewAddCliente.txt_ingresoMensual.getText());
+                }catch(NumberFormatException err){
+                    ing = 0;
+                }
+                cliente.setIngresoMensual(ing);
+                if(cliente.validarDatos(viewAddCliente, cn)){
+                    cliente.saveObject(cn);
+                    JOptionPane.showMessageDialog(viewAddCliente,"El cliente fue agregado satisfactoriamente","Mensaje de informacion",JOptionPane.INFORMATION_MESSAGE);
+                    Controller_JFComercioHome JComercioHome = new Controller_JFComercioHome(login, cn);
+                    viewAddCliente.dispose();
+                }
+            }
+        });
+        this.viewAddCliente.btn_cancelar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
                 switch(JFController){
-                    case("Comercio"):
-                          Controller_JFComercioHome JFComercioHome = new Controller_JFComercioHome(login, cn);
-                          viewAddCliente.dispose();
-                        break;
                     case("FinanciamientoCompra"):
                         Controller_JFAprobarCompra JFAprobarCompra = new Controller_JFAprobarCompra(login,cn);
                         JFAprobarCompra.setData(compra, encargado, auto, cliente);
@@ -100,10 +149,6 @@ public class Controller_JFAddCliente {
             @Override
             public void windowClosing(WindowEvent e) {
                   switch(JFController){
-                    case("Comercio"):
-                          Controller_JFComercioHome JFComercioHome = new Controller_JFComercioHome(login, cn);
-                          viewAddCliente.dispose();
-                        break;
                     case("FinanciamientoCompra"):
                         Controller_JFAprobarCompra JFAprobarCompra = new Controller_JFAprobarCompra(login,cn);
                         JFAprobarCompra.setData(compra, encargado, auto, cliente);
@@ -140,8 +185,6 @@ public class Controller_JFAddCliente {
             this.encargado = encargado;
     }
     public void viewData(){
-        lockFields();
-        this.viewAddCliente.head.setText("Ver cliente");
         this.viewAddCliente.txt_cveElector.setText(cliente.getClaveElector());
         this.viewAddCliente.txt_nombre.setText(cliente.getNombre());
         this.viewAddCliente.txt_apellidoPat.setText(cliente.getApellido_pat());
@@ -160,7 +203,9 @@ public class Controller_JFAddCliente {
         this.viewAddCliente.txt_ingresoMensual.setEditable(false);
         this.viewAddCliente.txt_direccion.setEditable(false);
         this.viewAddCliente.txt_telefono.setEditable(false);
+        
         this.viewAddCliente.btn_guardarCliente.setVisible(false);
+        this.viewAddCliente.btn_cancelar.setText("Regresar");
     }
     
 }

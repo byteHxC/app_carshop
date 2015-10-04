@@ -6,12 +6,11 @@
 package VIEW;
 
 import java.awt.Color;
-import java.awt.Font;
+
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -33,7 +32,7 @@ public class JFFinanciamientoHome extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.setSize(801,588);
+        this.setSize(810,588);
         this.getContentPane().setBackground(Color.black);
         
         //Set imageIcon logo
@@ -80,6 +79,7 @@ public class JFFinanciamientoHome extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         table_doctos = new javax.swing.JTable();
         btn_irDocto = new javax.swing.JLabel();
+        btn_reload = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,6 +125,8 @@ public class JFFinanciamientoHome extends javax.swing.JFrame {
         btn_irDocto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_irDocto.setOpaque(true);
 
+        btn_reload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ASSETS/multimedia.png"))); // NOI18N
+
         javax.swing.GroupLayout panel_inicio4Layout = new javax.swing.GroupLayout(panel_inicio4);
         panel_inicio4.setLayout(panel_inicio4Layout);
         panel_inicio4Layout.setHorizontalGroup(
@@ -142,7 +144,10 @@ public class JFFinanciamientoHome extends javax.swing.JFrame {
             .addGroup(panel_inicio4Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(panel_inicio4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_irDocto, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panel_inicio4Layout.createSequentialGroup()
+                        .addComponent(btn_reload)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_irDocto, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 21, Short.MAX_VALUE))
         );
@@ -156,7 +161,9 @@ public class JFFinanciamientoHome extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_irDocto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panel_inicio4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_irDocto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_reload, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -262,6 +269,7 @@ public class JFFinanciamientoHome extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel btn_irDocto;
     public javax.swing.JLabel btn_logout;
+    public javax.swing.JLabel btn_reload;
     public javax.swing.JLabel btn_settings;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JScrollPane jScrollPane1;

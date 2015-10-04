@@ -26,6 +26,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,10 +46,51 @@ public class Controller_JFAprobarCompra {
         compra = new CCompra();
         this.viewAprobarCompra.label_usuario.setText("USUARIO: "+login.getUsuario());
         this.viewAprobarCompra.label_ImageEmpleado.setIcon(new ImageIcon(getImageWithBlob(login.getImageBlob(),login.getNombreImagen()).getImage().getScaledInstance(viewAprobarCompra.label_ImageEmpleado.getWidth(),viewAprobarCompra.label_ImageEmpleado.getHeight() ,Image.SCALE_SMOOTH )));
+        //Action when press button Aprobacion
+        this.viewAprobarCompra.btn_aprobar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(CCompra.Aprobar(compra.getNumero_factura(), cn)){
+                    JOptionPane.showMessageDialog(viewAprobarCompra,"La compra ha sido aprobada, el auto esta disponible para vender!","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                   Controller_JFFinanciamientoHome JFFinHome = new Controller_JFFinanciamientoHome(login, cn);
+                     viewAprobarCompra.dispose();
+                }else{
+                     System.err.println("Error al no aprobar compra");
+                }
+            }
+        });
+        
+        //Action when press button no Aprobacion
+        this.viewAprobarCompra.btn_NOAprobar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int resp = JOptionPane.showConfirmDialog(viewAprobarCompra,"¿Esta seguro que NO quiere aprobar esta compra?\n*Al hacer esto se borrara el registro del auto y compra.","Mensaje de advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+                if(resp == JOptionPane.YES_OPTION){
+                    if(!CCompra.noAprobar(compra.getAuto_numserie(), cn)){
+                        System.err.println("Error al no aprobar compra");
+                    }else{
+                    Controller_JFFinanciamientoHome JFFinHome = new Controller_JFFinanciamientoHome(login, cn);
+                    viewAprobarCompra.dispose();
+                    }
+                }
+            }
+        });
+        //See more details for car
+        this.viewAprobarCompra.btn_moreDetailsCar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Controller_JFAddAuto JFViewAuto = new Controller_JFAddAuto("FinanciamientoCompra", login, cn);
+                JFViewAuto.setData(compra, encargado, auto, cliente);
+                JFViewAuto.viewData();
+                viewAprobarCompra.dispose();
+            }
+        });
+        //See more details for Custom
         this.viewAprobarCompra.btn_moreDetailsCustom.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Controller_JFAddCliente JFviewCliente = new Controller_JFAddCliente("FinanciamientoCompra", login, cn);
+               
                 JFviewCliente.setData(compra, encargado, auto, cliente);
                 JFviewCliente.viewData();
                 viewAprobarCompra.dispose();
@@ -88,9 +130,9 @@ public class Controller_JFAprobarCompra {
     }
     public void loadData(CCompra compra){
         this.compra = compra;
-        auto = CAuto.getObject(cn, compra.getAuto_numserie());
-        encargado = CUsuario.getObject(compra.getEncargado_cve(), cn);
-        cliente = CCliente.getObject(cn,compra.getCliente_cve());
+        this.auto = CAuto.getObject(cn, compra.getAuto_numserie());
+        this.encargado = CUsuario.getObject(compra.getEncargado_cve(), cn);
+        this.cliente = CCliente.getObject(cn,compra.getCliente_cve());
     }
    
     

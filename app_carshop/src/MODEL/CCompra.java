@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  * @author Byter
  */
 public class CCompra {
-    private String numero_factura;
+    private int numero_factura;
     private String fecha;
     private float precio;
     private boolean aprobacion;
@@ -34,11 +34,11 @@ public class CCompra {
         auto_numserie = "";
     }
 
-    public String getNumero_factura() {
+    public int getNumero_factura() {
         return numero_factura;
     }
 
-    public void setNumero_factura(String numero_factura) {
+    public void setNumero_factura(int numero_factura) {
         this.numero_factura = numero_factura;
     }
 
@@ -159,7 +159,7 @@ public class CCompra {
              ResultSet rs = pps.executeQuery();
              while(rs.next()){
                  CCompra compra = new CCompra();
-                 compra.setNumero_factura(rs.getString("numero_factura"));
+                 compra.setNumero_factura(rs.getInt("numero_factura"));
                  compra.setFecha(rs.getString("fecha"));
                  compra.setPrecio(rs.getFloat("precio"));
                  compra.setAuto_numserie(rs.getString("auto_numserie"));
@@ -181,7 +181,7 @@ public class CCompra {
              pps.setInt(1, numero_factura);
              ResultSet rs = pps.executeQuery();
              if(rs.next()){
-                 compra.setNumero_factura(rs.getString("numero_factura"));
+                 compra.setNumero_factura(rs.getInt("numero_factura"));
                  compra.setFecha(rs.getString("fecha"));
                  compra.setPrecio(rs.getFloat("precio"));
                  compra.setAuto_numserie(rs.getString("auto_numserie"));
@@ -192,6 +192,29 @@ public class CCompra {
             Logger.getLogger(CCompra.class.getName()).log(Level.SEVERE, null, ex);
         }
          return compra;
+     }
+     
+     public static boolean Aprobar(int numero_factura,Connection cn){
+         try{
+             PreparedStatement pps = cn.prepareStatement("update compras set aprobacion = true where numero_factura = ?");
+             pps.setInt(1, numero_factura);
+             pps.executeUpdate();
+             return true;
+         } catch (SQLException ex) {
+            Logger.getLogger(CCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return false;
+     }
+     public static boolean noAprobar(String numero_serie,Connection cn){
+          try{
+             PreparedStatement pps = cn.prepareStatement("delete from catalogo_autos where numero_serie = ?");
+             pps.setString(1, numero_serie);
+             pps.executeUpdate();
+             return true;
+         } catch (SQLException ex) {
+            Logger.getLogger(CCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return false;
      }
     
 }

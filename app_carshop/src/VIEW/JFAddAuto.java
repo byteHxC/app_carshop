@@ -400,9 +400,9 @@ public class JFAddAuto extends javax.swing.JFrame {
     public javax.swing.JLabel btn_cancelar;
     public javax.swing.JComboBox cbox_Certificado;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    public javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel15;
+    public javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
