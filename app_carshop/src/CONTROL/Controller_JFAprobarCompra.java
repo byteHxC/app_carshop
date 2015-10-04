@@ -55,7 +55,9 @@ public class Controller_JFAprobarCompra {
                    Controller_JFFinanciamientoHome JFFinHome = new Controller_JFFinanciamientoHome(login, cn);
                      viewAprobarCompra.dispose();
                 }else{
-                     System.err.println("Error al no aprobar compra");
+                    JOptionPane.showMessageDialog(viewAprobarCompra,"Error en aprobacion de compra,posiblemente ya la aprobaron","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                    Controller_JFFinanciamientoHome JFFinHome = new Controller_JFFinanciamientoHome(login, cn);
+                    viewAprobarCompra.dispose();
                 }
             }
         });
@@ -67,7 +69,9 @@ public class Controller_JFAprobarCompra {
                 int resp = JOptionPane.showConfirmDialog(viewAprobarCompra,"¿Esta seguro que NO quiere aprobar esta compra?\n*Al hacer esto se borrara el registro del auto y compra.","Mensaje de advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
                 if(resp == JOptionPane.YES_OPTION){
                     if(!CCompra.noAprobar(compra.getAuto_numserie(), cn)){
-                        System.err.println("Error al no aprobar compra");
+                        JOptionPane.showMessageDialog(viewAprobarCompra,"Error en aprobacion de compra,posiblemente ya la aprobaron","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                         Controller_JFFinanciamientoHome JFFinHome = new Controller_JFFinanciamientoHome(login, cn);
+                         viewAprobarCompra.dispose();
                     }else{
                     Controller_JFFinanciamientoHome JFFinHome = new Controller_JFFinanciamientoHome(login, cn);
                     viewAprobarCompra.dispose();
