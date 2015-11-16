@@ -6,7 +6,8 @@
 package MODEL;
 
 import VIEW.JFGerenteHome;
-import VIEW.JFSettingsDB;
+import VIEW.JFConfiguracionIncial;
+import VIEW.JFInfoEmpelado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -180,7 +181,7 @@ public class CUsuario {
         return "error en tipo";
     }
     
-    public boolean validarDatos(JFSettingsDB frame,Connection cn){
+    public boolean validarDatos(JFInfoEmpelado frame,Connection cn){
         //try{
         String txtError = "Verificar datos de  usuario incorrectos\n";
         Boolean errores = false;

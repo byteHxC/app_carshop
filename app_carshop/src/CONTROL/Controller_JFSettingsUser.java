@@ -39,11 +39,11 @@ public class Controller_JFSettingsUser {
     File fileSelected;
     
     //Constructor usuario root
-    public Controller_JFSettingsUser(UserROOT userRoot,Connection cn){
+    public Controller_JFSettingsUser(UserROOT root,Connection cn){
         fileSelected = null;
         viewSettingsUser = new JFSettingsUser();
         this.cn = cn;
-        viewSettingsUser.label_usuario.setText("USUARIO: "+userRoot.getUser());
+        viewSettingsUser.label_usuario.setText("USUARIO: "+root.getUser());
         viewSettingsUser.jLabel6.setVisible(false);
         viewSettingsUser.txtUsuario.setVisible(false);
         ImageIcon imageLogo = new ImageIcon(getClass().getResource("/ASSETS/user168-1.png"));
@@ -59,8 +59,8 @@ public class Controller_JFSettingsUser {
                if(pass.equals(passConfirm) && pass.length()>=6){
                     int resp = JOptionPane.showConfirmDialog(viewSettingsUser,"¿Para realizar este proceso necesita cerrar sesion, esta de acuerdo? ","Mensaje",JOptionPane.YES_OPTION);
                     if(resp == JOptionPane.YES_OPTION){
-                           userRoot.setPassword(pass);
-                           userRoot.saveObject();
+                           root.setPassword(pass);
+                           root.saveObject();
                            viewSettingsUser.dispose();   
                            App_carshop.init();
                     }
@@ -83,7 +83,7 @@ public class Controller_JFSettingsUser {
             @Override
             public void mouseClicked(MouseEvent e) {
                 
-                Controller_JFSettingsDB controllerSettingsDB = new Controller_JFSettingsDB(cn);
+                Controller_JFConfiguracionInicial controllerSettingsDB = new Controller_JFConfiguracionInicial(cn,root);
                 viewSettingsUser.dispose();
             
             }
@@ -93,7 +93,7 @@ public class Controller_JFSettingsUser {
         this.viewSettingsUser.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                Controller_JFSettingsDB controllerSettingsDB = new Controller_JFSettingsDB(cn);
+                Controller_JFConfiguracionInicial controllerSettingsDB = new Controller_JFConfiguracionInicial(cn,root);
                 viewSettingsUser.dispose();
             }
         });

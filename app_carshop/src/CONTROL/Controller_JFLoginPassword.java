@@ -33,6 +33,7 @@ public class Controller_JFLoginPassword {
     CLogin login;
     //Ingreso usuario root
      public Controller_JFLoginPassword(Connection cn){
+       
         this.loginPassword = new JFLoginPassword();
         this.loginPassword.label_Bienvenido.setText("Bienvenido root");
         this.loginPassword.label_tipoUser.setText("Tipo usuario: ROOT");
@@ -44,7 +45,9 @@ public class Controller_JFLoginPassword {
             @Override
             public void mouseClicked(MouseEvent e) {
                if(root.getPassword().equals(loginPassword.txtP_Password.getText())){
-                   Controller_JFSettingsDB controllerJFSettingsDB = new Controller_JFSettingsDB(cn);
+                  
+                   Controller_JFConfiguracionInicial controllerJFSettingsDB = new Controller_JFConfiguracionInicial(cn,root);
+                  
                    loginPassword.dispose();
                }else{
                      Thread error;

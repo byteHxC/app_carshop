@@ -32,6 +32,7 @@ public class Controller_JFLoginUser {
                 String txtUser = Controller_JFLoginUser.this.loginUser.txt_user.getText();
                 if(!txtUser.isEmpty()){
                     if(txtUser.equals("root@carshop")){
+                       
                         Controller_JFLoginPassword ControllerPassword = new Controller_JFLoginPassword(cn);
                         loginUser.dispose();
                     }else{

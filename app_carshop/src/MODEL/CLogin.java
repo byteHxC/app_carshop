@@ -5,7 +5,8 @@
  */
 package MODEL;
 import VIEW.JFGerenteHome;
-import VIEW.JFSettingsDB;
+import VIEW.JFConfiguracionIncial;
+import VIEW.JFInfoEmpelado;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -158,7 +159,7 @@ public class CLogin {
         return null;
     }
     
-    public boolean validarDatos(JFSettingsDB frame, String confirmationPass,Connection cn){
+    public boolean validarDatos(JFInfoEmpelado frame, String confirmationPass,Connection cn){
         String txtError = "Verificar datos login\n";
         Boolean errores = false;
         if(getPassword().length() < 6){

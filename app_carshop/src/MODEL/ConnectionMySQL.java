@@ -5,7 +5,7 @@
  */
 package MODEL;
 
-import VIEW.JFSettingsDB;
+import VIEW.JFConfiguracionIncial;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -35,7 +35,7 @@ public class ConnectionMySQL {
         return cn;
     }
     
-    public static boolean testingConnection(JFSettingsDB jframe,String ip,String port,String user,String password){
+    public static boolean testingConnection(JFConfiguracionIncial jframe,String ip,String port,String user,String password){
          Connection cn = null;
         try{
         Class.forName("com.mysql.jdbc.Driver");
