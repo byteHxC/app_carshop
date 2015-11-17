@@ -113,13 +113,13 @@ public class Controller_agregarGerente {
                                    //Crear su login  y guardar
                                    login.setClave_elector(usuario.getClave_elector());
                                    login.saveObject(cn);
-                                   infoEmpleado.cleanFields();
-                                    fileSelected = null;
                                    JOptionPane.showMessageDialog(infoEmpleado,"El gerente fue agregado satisfactoriamente","Mensaje de informacion",JOptionPane.INFORMATION_MESSAGE);
-
+                                   Controller_JFConfiguracionInicial controllerJFSettingsDB = new Controller_JFConfiguracionInicial(cn,root);
+                                   infoEmpleado.dispose();
                                }else{
                                    JOptionPane.showMessageDialog(infoEmpleado,"No hubo modificaciones en el sistema!","Mensaje de informacion",JOptionPane.INFORMATION_MESSAGE);
-
+                                   infoEmpleado.cleanFields();
+                                   fileSelected = null;
                                }
 
                         }else{
@@ -129,10 +129,9 @@ public class Controller_agregarGerente {
                            //Crear su login  y guardar
                            login.setClave_elector(usuario.getClave_elector());
                            login.saveObject(cn);
-                           infoEmpleado.cleanFields();
-                           fileSelected = null;
                            JOptionPane.showMessageDialog(infoEmpleado,"El gerente fue agregado satisfactoriamente","Mensaje de informacion",JOptionPane.INFORMATION_MESSAGE);
-
+                           Controller_JFConfiguracionInicial controllerJFSettingsDB = new Controller_JFConfiguracionInicial(cn,root);
+                           infoEmpleado.dispose();
 
                      }
                 }
@@ -150,6 +149,7 @@ public class Controller_agregarGerente {
                 }
             }
         });
+        //Cancelar y regresar al home root
         this.infoEmpleado.btn_cancelar.addMouseListener(new MouseAdapter() {
               @Override
               public void mouseClicked(MouseEvent e) {
