@@ -6,7 +6,7 @@
 package MODEL;
 
 import VIEW.JFGerenteHome;
-import VIEW.JFConfiguracionIncial;
+import VIEW.JFRootHome;
 import VIEW.JFInfoEmpelado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -278,17 +278,56 @@ public class CUsuario {
             Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     public static void bajaEstado(String cve_elector,Connection cn){
+     public static boolean bajaEstado(String cve_elector,Connection cn){
         try{
-            PreparedStatement pps = cn.prepareStatement("update usuarios set estado=? where cve_elector=?");
-            pps.setBoolean(1,false);
-            pps.setString(2,cve_elector);
-            pps.executeUpdate();
-            System.out.println("Baja usuario");
+            PreparedStatement pps = cn.prepareStatement("select *from usuarios where cve_elector=?");
+            pps.setString(1, cve_elector);
+            ResultSet rs = pps.executeQuery();
+            if(rs.next()){
+                boolean resp = rs.getBoolean("estado");
+                if(resp == true){
+                    PreparedStatement pps2 = cn.prepareStatement("update usuarios set estado=? where cve_elector=?");
+                    pps2.setBoolean(1,false);
+                    pps2.setString(2,cve_elector);
+                    pps2.executeUpdate();
+                    System.out.println("Baja usuario");
+                    return true;
+                }else{
+                    return false;
+                }
+            }
         } catch (SQLException ex) {
             Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
     }
+     
+      public static boolean altaEstado(String cve_elector,Connection cn){
+        try{
+            PreparedStatement pps = cn.prepareStatement("select * from usuarios where cve_elector=?");
+            pps.setString(1, cve_elector);
+
+            ResultSet rs = pps.executeQuery();
+            if(rs.next()){
+                boolean resp = rs.getBoolean("estado");
+                if(resp == false){
+                    PreparedStatement pps2 = cn.prepareStatement("update usuarios set estado=? where cve_elector=?");
+                    pps2.setBoolean(1,true);
+                    pps2.setString(2,cve_elector);
+                    pps2.executeUpdate();
+                    System.out.println("alta usuario");
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+     
+ 
     //Validar que no exista al pk cve_elector
 
     public static boolean exist_cve_elector(Connection cn,String cve_elector){

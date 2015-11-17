@@ -5,7 +5,7 @@
  */
 package MODEL;
 import VIEW.JFGerenteHome;
-import VIEW.JFConfiguracionIncial;
+import VIEW.JFRootHome;
 import VIEW.JFInfoEmpelado;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

@@ -7,7 +7,7 @@ package CONTROL;
 
 import MODEL.CLogin;
 import MODEL.CUsuario;
-import VIEW.JFUpdateEmpleado;
+import VIEW.JFModificarEmpleado;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -19,11 +19,11 @@ import javax.swing.JOptionPane;
  *
  * @author ByteDrive
  */
-public class Controller_JFUpdateEmpleado {
+public class Controller_JFModificarEmpleado {
     Connection cn;
-    JFUpdateEmpleado viewUpdateEmpleado;
-    public Controller_JFUpdateEmpleado(CLogin login,Connection cn,String claveElector,String nombre){
-        viewUpdateEmpleado = new JFUpdateEmpleado();
+    JFModificarEmpleado viewUpdateEmpleado;
+    public Controller_JFModificarEmpleado(CLogin login,Connection cn,String claveElector,String nombre){
+        viewUpdateEmpleado = new JFModificarEmpleado();
         viewUpdateEmpleado.labelUsuario.setText("Editar usuario: "+nombre);
         this.cn = cn;
         
@@ -41,7 +41,7 @@ public class Controller_JFUpdateEmpleado {
                 }
                 if(CUsuario.updateObject(claveElector,direccion, telefono, salario, cn)){
                     JOptionPane.showMessageDialog(viewUpdateEmpleado,"Empleado actualizado","Mensaje de informacion",JOptionPane.INFORMATION_MESSAGE);
-                    Controller_JFShowEmpleados viewshowEmpleados = new  Controller_JFShowEmpleados(login, cn);
+                    Controller_JFListarEmpleados viewshowEmpleados = new  Controller_JFListarEmpleados(login, cn);
                      viewUpdateEmpleado.dispose();
                 }else{
                     JOptionPane.showMessageDialog(viewUpdateEmpleado,"Error verificar los datos","Mensaje de error",JOptionPane.ERROR_MESSAGE);
@@ -53,7 +53,7 @@ public class Controller_JFUpdateEmpleado {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                Controller_JFShowEmpleados viewshowEmpleados = new  Controller_JFShowEmpleados(login, cn);
+                Controller_JFListarEmpleados viewshowEmpleados = new  Controller_JFListarEmpleados(login, cn);
                 viewUpdateEmpleado.dispose();
             }
         });
@@ -61,7 +61,7 @@ public class Controller_JFUpdateEmpleado {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                Controller_JFShowEmpleados viewshowEmpleados = new  Controller_JFShowEmpleados(login, cn);
+                Controller_JFListarEmpleados viewshowEmpleados = new  Controller_JFListarEmpleados(login, cn);
                 viewUpdateEmpleado.dispose();
             }
         });

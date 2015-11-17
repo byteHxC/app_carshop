@@ -104,12 +104,13 @@ public class JFGerenteHome extends javax.swing.JFrame {
         dialog_opcEmpleado.setResizable(false);
         dialog_opcEmpleado.setLocationRelativeTo(btn_empleados);
         dialog_opcEmpleado.setSize(404, 245);
+        dialog_opcEmpleado.dispose();
         
         panel_addEmpleado.setBackground(colorBlack);
         panel_listEmpleados.setBackground(colorBlack);
         
         Image addEmpleadosIcon = new ImageIcon(getClass().getResource("/ASSETS/add110.png")).getImage().getScaledInstance(80,80,Image.SCALE_SMOOTH);
-        Image verEmpleadosIcon = new ImageIcon(getClass().getResource("/ASSETS/add110.png")).getImage().getScaledInstance(80,80,Image.SCALE_SMOOTH);
+        Image verEmpleadosIcon = new ImageIcon(getClass().getResource("/ASSETS/list.png")).getImage().getScaledInstance(80,80,Image.SCALE_SMOOTH);
         
         btn_addEmpleado.setIcon(new ImageIcon(addEmpleadosIcon));
         btn_listEmpleados.setIcon(new ImageIcon(verEmpleadosIcon));
@@ -123,7 +124,6 @@ public class JFGerenteHome extends javax.swing.JFrame {
             backImage2.setIcon(new ImageIcon(image.getImage().getScaledInstance( panel_backDialog.getWidth()+21, panel_backDialog.getHeight(),Image.SCALE_SMOOTH)));
             backImage2.setSize( panel_backDialog.getWidth()+21, panel_backDialog.getHeight());
             backImage2.setLocation(0,0);
-        dialog_opcEmpleado.setVisible(true);
         //Cambiar icono
         Image icon = Toolkit.getDefaultToolkit().getImage("/ASSETS/LogoCARSHOP.png");
         this.setIconImage(icon);
@@ -219,10 +219,10 @@ public class JFGerenteHome extends javax.swing.JFrame {
         btn_listEmpleados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Ver empleados");
+        jLabel2.setText("Modificar empleados");
 
         javax.swing.GroupLayout panel_listEmpleadosLayout = new javax.swing.GroupLayout(panel_listEmpleados);
         panel_listEmpleados.setLayout(panel_listEmpleadosLayout);
@@ -234,7 +234,7 @@ public class JFGerenteHome extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
             .addGroup(panel_listEmpleadosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panel_listEmpleadosLayout.setVerticalGroup(
@@ -580,7 +580,7 @@ public class JFGerenteHome extends javax.swing.JFrame {
     public javax.swing.JLabel btn_logout;
     public javax.swing.JLabel btn_settings;
     public javax.swing.JLabel btn_ventas;
-    private javax.swing.JDialog dialog_opcEmpleado;
+    public javax.swing.JDialog dialog_opcEmpleado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;

@@ -117,7 +117,7 @@ public class JFInfoEmpelado extends javax.swing.JFrame {
 
         jLabel8.setText("Confirmar contraseña:");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos gerente"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos empleado"));
         jPanel1.setOpaque(false);
 
         jLabel9.setText("Nombre:");

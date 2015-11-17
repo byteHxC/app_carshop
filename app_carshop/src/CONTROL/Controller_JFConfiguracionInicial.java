@@ -8,7 +8,7 @@ package CONTROL;
 import MODEL.CLogin;
 import MODEL.ConnectionMySQL;
 import MODEL.UserROOT;
-import VIEW.JFConfiguracionIncial;
+import VIEW.JFRootHome;
 import app_carshop.App_carshop;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -29,14 +29,14 @@ import javax.swing.JOptionPane;
  * @author ByteDrive
  */
 public class Controller_JFConfiguracionInicial {
-    JFConfiguracionIncial viewSettingsDB;
+    JFRootHome viewSettingsDB;
   
     CLogin login;
     Connection cn;
     UserROOT userRoot;
     
     public Controller_JFConfiguracionInicial(Connection cn,UserROOT root){
-        this.viewSettingsDB = new JFConfiguracionIncial();
+        this.viewSettingsDB = new JFRootHome();
         this.viewSettingsDB.label_usuario.setText( "USUARIO: root@carshop");
         this.cn = cn;
      

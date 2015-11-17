@@ -7,7 +7,7 @@ package CONTROL;
 
 import MODEL.CLogin;
 import MODEL.CUsuario;
-import VIEW.JFShowEmpleados;
+import VIEW.JFListarEmpleados;
 import app_carshop.App_carshop;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -35,18 +35,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ByteDrive
  */
-public class Controller_JFShowEmpleados {
-    JFShowEmpleados viewEmpleados;
-    Connection cn;
-    
- 
-
+public class Controller_JFListarEmpleados {
+    JFListarEmpleados viewEmpleados;
     //Cuando entra el gerente
-    public Controller_JFShowEmpleados(CLogin login,Connection cn){
-        viewEmpleados = new  JFShowEmpleados();
-        viewEmpleados.label_usuario.setText("USUARIO: "+login.getUsuario());
-        this.viewEmpleados.label_ImageEmpleado.setIcon(new ImageIcon(getImageWithBlob(login.getImageBlob(),login.getNombreImagen()).getImage().getScaledInstance(viewEmpleados.label_ImageEmpleado.getWidth(),viewEmpleados.label_ImageEmpleado.getHeight(),Image.SCALE_SMOOTH)));
-       
+    public Controller_JFListarEmpleados(CLogin login,Connection cn){
+        viewEmpleados = new  JFListarEmpleados();
         loadTable(viewEmpleados.table_showEmpleados,CUsuario.queryAll(cn));
         //Botojn de editar empleado
         this.viewEmpleados.btn_EditarEmpleado.addMouseListener(new MouseAdapter() {
@@ -56,7 +49,7 @@ public class Controller_JFShowEmpleados {
                     JOptionPane.showMessageDialog(viewEmpleados,"Seleccione un registro","Error",JOptionPane.WARNING_MESSAGE);
 
                  }else{
-                   Controller_JFUpdateEmpleado CTupdateEmpleado = new Controller_JFUpdateEmpleado(login, cn,viewEmpleados.table_showEmpleados.getValueAt(viewEmpleados.table_showEmpleados.getSelectedRow(),0).toString(), viewEmpleados.table_showEmpleados.getValueAt(viewEmpleados.table_showEmpleados.getSelectedRow(),1).toString());
+                   Controller_JFModificarEmpleado CTupdateEmpleado = new Controller_JFModificarEmpleado(login, cn,viewEmpleados.table_showEmpleados.getValueAt(viewEmpleados.table_showEmpleados.getSelectedRow(),0).toString(), viewEmpleados.table_showEmpleados.getValueAt(viewEmpleados.table_showEmpleados.getSelectedRow(),1).toString());
                      viewEmpleados.dispose();
                  }
                  
@@ -73,8 +66,34 @@ public class Controller_JFShowEmpleados {
                    //No hay seleccion
                     JOptionPane.showMessageDialog(viewEmpleados,"Seleccione un registro","Error",JOptionPane.WARNING_MESSAGE);
                 }else{
-                    CUsuario.bajaEstado(viewEmpleados.table_showEmpleados.getValueAt(viewEmpleados.table_showEmpleados.getSelectedRow(),0).toString(), cn);
-                    loadTable(viewEmpleados.table_showEmpleados,CUsuario.queryAll(cn));
+                   boolean bajaExitosa = CUsuario.bajaEstado(viewEmpleados.table_showEmpleados.getValueAt(viewEmpleados.table_showEmpleados.getSelectedRow(),0).toString(), cn);
+                   if(bajaExitosa){
+                       JOptionPane.showMessageDialog(viewEmpleados,"Empleado dado de baja :D");
+                       loadTable(viewEmpleados.table_showEmpleados,CUsuario.queryAll(cn));
+                   }else{
+                       JOptionPane.showMessageDialog(viewEmpleados,"El empleado ya esta dado de baja :D");
+
+                   }
+                }
+            }
+        });
+        
+        //Dar de alta un empleado
+        this.viewEmpleados.btn_altaEmpleado.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(viewEmpleados.table_showEmpleados.getSelectedRowCount()==0){
+                   //No hay seleccion
+                    JOptionPane.showMessageDialog(viewEmpleados,"Seleccione un registro","Error",JOptionPane.WARNING_MESSAGE);
+                }else{
+                   boolean altaExitosa = CUsuario.altaEstado(viewEmpleados.table_showEmpleados.getValueAt(viewEmpleados.table_showEmpleados.getSelectedRow(),0).toString(), cn);
+                   if(altaExitosa){
+                       JOptionPane.showMessageDialog(viewEmpleados,"Empleado dado de alta :D");
+                       loadTable(viewEmpleados.table_showEmpleados,CUsuario.queryAll(cn));
+                   }else{
+                       JOptionPane.showMessageDialog(viewEmpleados,"El empleado ya esta dado de alta :D");
+
+                   }
                 }
             }
         });
@@ -122,27 +141,27 @@ public class Controller_JFShowEmpleados {
                   }
             }
         });
-        
-        //Al cerrar el jframe
-        this.viewEmpleados.addWindowListener(new WindowAdapter() {
+        //Dar en boton cancelar
+        this.viewEmpleados.btn_cancelar.addMouseListener(new MouseAdapter() {
             @Override
-            public void windowClosing(WindowEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 Controller_JFGerenteHome controller = new Controller_JFGerenteHome(login, cn);
                 viewEmpleados.dispose();
             }
-            });
-        //Boton de cerrar sesion
-        this.viewEmpleados.btn_logout.addMouseListener(new MouseAdapter() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int resp = JOptionPane.showConfirmDialog(viewEmpleados,"¿Confirmar cierre de sesion?","Warning",JOptionPane.YES_NO_OPTION);
+        });
+        //Al cerrar el jframe
+        this.viewEmpleados.addWindowListener(new WindowAdapter() {
+           @Override
+            public void windowClosing(WindowEvent e) {
+                int resp = JOptionPane.showConfirmDialog(viewEmpleados,"¿Si sale de aqui, se cerrara su sesion?","Salir",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
                     App_carshop.init();
                     viewEmpleados.dispose();
                 }
+                
             }
-        });
+            });
+       
         
     }
     
@@ -197,7 +216,7 @@ public class Controller_JFShowEmpleados {
              image = new ImageIcon(img);
             return image;
         } catch (IOException | SQLException ex) {
-            Logger.getLogger(Controller_JFShowEmpleados.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Controller_JFListarEmpleados.class.getName()).log(Level.SEVERE, null, ex);
         } 
         return image;
      }

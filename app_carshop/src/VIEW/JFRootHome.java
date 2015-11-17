@@ -17,11 +17,11 @@ import javax.swing.SwingConstants;
  *
  * @author ByteDrive
  */
-public class JFConfiguracionIncial extends javax.swing.JFrame {
+public class JFRootHome extends javax.swing.JFrame {
     /**
      * Creates new form JFSettingsDB
      */
-    public JFConfiguracionIncial() {
+    public JFRootHome() {
         initComponents();
         settingsFrame();
     }
@@ -56,8 +56,8 @@ public class JFConfiguracionIncial extends javax.swing.JFrame {
             Image jefeIcon = new ImageIcon(getClass().getResource("/ASSETS/jefe.png")).getImage().getScaledInstance(120,100,Image.SCALE_SMOOTH);
 
             
-             btn_addGerente.setIcon(new ImageIcon(settBDIcon));
-             btn_configBD.setIcon(new ImageIcon(jefeIcon));
+             btn_addGerente.setIcon(new ImageIcon(jefeIcon));
+             btn_configBD.setIcon(new ImageIcon(settBDIcon));
 
             JLabel lsettBD = new JLabel("Configuracion BD",SwingConstants.CENTER);
             lsettBD.setForeground(Color.white);
@@ -401,21 +401,23 @@ public class JFConfiguracionIncial extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFConfiguracionIncial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFRootHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFConfiguracionIncial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFRootHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFConfiguracionIncial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFRootHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFConfiguracionIncial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFRootHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFConfiguracionIncial().setVisible(true);
+                new JFRootHome().setVisible(true);
             }
         });
     }
