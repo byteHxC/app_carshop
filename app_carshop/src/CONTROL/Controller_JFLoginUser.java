@@ -5,8 +5,8 @@
  */
 package CONTROL;
 
-import MODEL.CLogin;
-import VIEW.JFLoginUser;
+import MODELO.CLogin;
+import VISTA.JFLoginUser;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

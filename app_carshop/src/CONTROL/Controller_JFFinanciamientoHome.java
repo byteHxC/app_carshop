@@ -5,9 +5,9 @@
  */
 package CONTROL;
 
-import MODEL.CCompra;
-import MODEL.CLogin;
-import VIEW.JFFinanciamientoHome;
+import MODELO.CCompra;
+import MODELO.CLogin;
+import VISTA.JFFinanciamientoHome;
 import app_carshop.App_carshop;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;

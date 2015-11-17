@@ -5,10 +5,10 @@
  */
 package CONTROL;
 
-import MODEL.CLogin;
-import MODEL.ConnectionMySQL;
-import MODEL.UserROOT;
-import VIEW.JFRootHome;
+import MODELO.CLogin;
+import MODELO.ConnectionMySQL;
+import MODELO.UserROOT;
+import VISTA.JFRootHome;
 import app_carshop.App_carshop;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

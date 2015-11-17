@@ -5,12 +5,12 @@
  */
 package CONTROL;
 
-import MODEL.CAuto;
-import MODEL.CCliente;
-import MODEL.CCompra;
-import MODEL.CLogin;
-import MODEL.CUsuario;
-import VIEW.JFAprobarCompra;
+import MODELO.CAuto;
+import MODELO.CCliente;
+import MODELO.CCompra;
+import MODELO.CLogin;
+import MODELO.CUsuario;
+import VISTA.JFAprobarCompra;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -83,8 +83,8 @@ public class Controller_JFAprobarCompra {
         this.viewAprobarCompra.btn_moreDetailsCar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Controller_JFAddAuto JFViewAuto = new Controller_JFAddAuto("FinanciamientoCompra", login, cn);
-                JFViewAuto.setData(compra, encargado, auto, cliente);
+                Controller_JFAgregarAuto JFViewAuto = new Controller_JFAgregarAuto("FinanciamientoCompra", login, cn);
+                //JFViewAuto.setData(compra, encargado, auto, cliente);
                 JFViewAuto.viewData();
                 viewAprobarCompra.dispose();
             }
@@ -93,7 +93,7 @@ public class Controller_JFAprobarCompra {
         this.viewAprobarCompra.btn_moreDetailsCustom.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Controller_JFAddCliente JFviewCliente = new Controller_JFAddCliente("FinanciamientoCompra", login, cn);
+                Controller_JFAgregarCliente JFviewCliente = new Controller_JFAgregarCliente("FinanciamientoCompra", login, cn);
                
                 JFviewCliente.setData(compra, encargado, auto, cliente);
                 JFviewCliente.viewData();

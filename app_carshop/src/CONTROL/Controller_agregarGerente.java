@@ -5,10 +5,10 @@
  */
 package CONTROL;
 
-import MODEL.CLogin;
-import MODEL.CUsuario;
-import MODEL.UserROOT;
-import VIEW.JFInfoEmpelado;
+import MODELO.CLogin;
+import MODELO.CUsuario;
+import MODELO.UserROOT;
+import VISTA.JFInfoEmpelado;
 import app_carshop.App_carshop;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;

@@ -5,10 +5,10 @@
  */
 package CONTROL;
 
-import MODEL.CCliente;
-import MODEL.CLogin;
-import MODEL.CUsuario;
-import VIEW.JFAddVenta;
+import MODELO.CCliente;
+import MODELO.CLogin;
+import MODELO.CUsuario;
+import VISTA.JFAddVenta;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

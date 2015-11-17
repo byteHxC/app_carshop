@@ -5,8 +5,9 @@
  */
 package CONTROL;
 
-import MODEL.CLogin;
-import VIEW.JFComercioHome;
+import MODELO.CLogin;
+import VISTA.JFComercioHome;
+import VISTA.JFListarClientes;
 import app_carshop.App_carshop;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -46,7 +47,7 @@ public class Controller_JFComercioHome {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                Controller_JFAddCompra JFAddCompra = new Controller_JFAddCompra(login, cn);
+                Controller_JFAgregarCompra JFAddCompra = new Controller_JFAgregarCompra(login, cn);
                 viewComercio.dispose();
             }
         });
@@ -60,15 +61,37 @@ public class Controller_JFComercioHome {
             
             }
         });
-        //Button of addCliente
+        //Button of options cliente
+        this.viewComercio.btn_cliente.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               viewComercio.dialog_opcionesCliente.setVisible(true);
+               
+            }
+        });
+        //Button cancel options cliente
+        this.viewComercio.btn_cancelar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                viewComercio.dialog_opcionesCliente.dispose();
+            }
+        });
+        //Button in option add cliente
         this.viewComercio.btn_addCliente.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Controller_JFAddCliente JFAddCLiente = new Controller_JFAddCliente(login, cn);
+                viewComercio.dialog_opcionesCliente.dispose();
+                Controller_JFAgregarCliente agregarCliente = new Controller_JFAgregarCliente(login, cn);
                 viewComercio.dispose();
             }
         });
-        
+        //Button un option mod_cliente
+        this.viewComercio.btn_modCliente.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //Pendiente modificar cliente
+            }
+        });
          //Button the settings in this account
         this.viewComercio.btn_settings.addMouseListener(new MouseAdapter(){
             @Override

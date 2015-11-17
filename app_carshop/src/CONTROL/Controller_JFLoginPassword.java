@@ -5,11 +5,11 @@
  */
 package CONTROL;
 
-import MODEL.CUsuario;
-import MODEL.CLogin;
-import MODEL.UserROOT;
+import MODELO.CUsuario;
+import MODELO.CLogin;
+import MODELO.UserROOT;
 import app_carshop.App_carshop;
-import VIEW.JFLoginPassword;
+import VISTA.JFLoginPassword;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.*;

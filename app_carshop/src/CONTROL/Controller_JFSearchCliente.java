@@ -5,11 +5,11 @@
  */
 package CONTROL;
 
-import MODEL.CCliente;
-import MODEL.CCompra;
-import MODEL.CLogin;
-import MODEL.CUsuario;
-import VIEW.JFSearchCliente;
+import MODELO.CCliente;
+import MODELO.CCompra;
+import MODELO.CLogin;
+import MODELO.CUsuario;
+import VISTA.JFListarClientes;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,22 +38,12 @@ import javax.swing.table.DefaultTableModel;
  * @author Byter
  */
 public class Controller_JFSearchCliente {
-    JFSearchCliente viewSearchCliente;
+    JFListarClientes viewSearchCliente;
     Connection cn;
-    String typeUser;
     CCompra compra;
     
     public Controller_JFSearchCliente(CLogin login,Connection cn,String transc){
-        this.typeUser = CUsuario.tipoUser(login.getClave_elector(), cn); 
-        
-        if(typeUser.equals("Gerente")){
-            this.viewSearchCliente = new JFSearchCliente("Show");
-        }else{
-            this.viewSearchCliente = new JFSearchCliente("Search");
-        }
-        this.viewSearchCliente.label_usuario.setText("USUARIO: "+login.getUsuario());
-        this.viewSearchCliente.label_ImageEmpleado.setIcon(new ImageIcon(getImageWithBlob(login.getImageBlob(), login.getNombreImagen()).getImage().getScaledInstance(viewSearchCliente.label_ImageEmpleado.getWidth(),viewSearchCliente.label_ImageEmpleado.getHeight(), Image.SCALE_SMOOTH)));
-
+        viewSearchCliente = new JFListarClientes();
         loadTable(viewSearchCliente.table_showClientes,CCliente.queryAll(cn));
         //Action when press button seleccionar
         this.viewSearchCliente.btn_seleccionar.addMouseListener(new MouseAdapter() {
@@ -63,11 +53,11 @@ public class Controller_JFSearchCliente {
                 if(rowSelected == -1){
                    JOptionPane.showMessageDialog(viewSearchCliente, "Seleccione un registro","Mensaje",JOptionPane.WARNING_MESSAGE);
                 }else{
-                    Controller_JFAddCompra JFAddCompra = new Controller_JFAddCompra(login, cn);
+                    Controller_JFAgregarCompra JFAddCompra = new Controller_JFAgregarCompra(login, cn);
                     compra.setCliente_cve(viewSearchCliente.table_showClientes.getValueAt(rowSelected, 0).toString());
       
-                    JFAddCompra.setCompra(compra);
-                    JFAddCompra.setData();
+                   // JFAddCompra.setCompra(compra);
+                    //JFAddCompra.setData();
                     JFAddCompra.viewAddCompra.btn_searchCliente.setEnabled(false);
                     viewSearchCliente.dispose();
                 }
@@ -77,42 +67,42 @@ public class Controller_JFSearchCliente {
         this.viewSearchCliente.btn_addNuevo.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Controller_JFAddCliente JFAddCliente = new Controller_JFAddCliente(login, cn);
+                Controller_JFAgregarCliente JFAddCliente = new Controller_JFAgregarCliente(login, cn);
                 viewSearchCliente.dispose();
             }
         });
         //Funciones de cerrar this JFRAME
-        this.viewSearchCliente.addWindowListener(new WindowAdapter() {
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-                switch(typeUser){
-                    case ("Gerente"):
-                        Controller_JFGerenteHome JFGerenteHome = new Controller_JFGerenteHome(login, cn);
-                        viewSearchCliente.dispose();
-                        break;
-                    case ("Comercio"):
-                        if(transc.equals("Compra")){
-                            Controller_JFAddCompra JFAddCompra= new Controller_JFAddCompra(login, cn);
-                            JFAddCompra.setCompra(compra);
-                            JFAddCompra.setData();
-                            viewSearchCliente.dispose();
-                            
-                            
-             
-                        }else if(transc.equals("Venta")){
-                            Controller_JFAddVenta JFAddVenta= new Controller_JFAddVenta(login, cn);
-                            viewSearchCliente.dispose();
-                        }
-                        break;
-                    case ("Financiamiento"):
-                        //Controller financiamiento
-                        viewSearchCliente.dispose();
-                        break;                        
-                
-                }
-            }
-        });
+//        this.viewSearchCliente.addWindowListener(new WindowAdapter() {
+//
+//            @Override
+//            public void windowClosing(WindowEvent e) {
+//                switch(typeUser){
+//                    case ("Gerente"):
+//                        Controller_JFGerenteHome JFGerenteHome = new Controller_JFGerenteHome(login, cn);
+//                        viewSearchCliente.dispose();
+//                        break;
+//                    case ("Comercio"):
+//                        if(transc.equals("Compra")){
+//                            Controller_JFAgregarCompra JFAddCompra= new Controller_JFAgregarCompra(login, cn);
+//                            JFAddCompra.setCompra(compra);
+//                            JFAddCompra.setData();
+//                            viewSearchCliente.dispose();
+//                            
+//                            
+//             
+//                        }else if(transc.equals("Venta")){
+//                            Controller_JFAddVenta JFAddVenta= new Controller_JFAddVenta(login, cn);
+//                            viewSearchCliente.dispose();
+//                        }
+//                        break;
+//                    case ("Financiamiento"):
+//                        //Controller financiamiento
+//                        viewSearchCliente.dispose();
+//                        break;                        
+//                
+//                }
+//            }
+//        });
         //All dar clic en buscar
         this.viewSearchCliente.btn_buscar.addMouseListener(new MouseAdapter() {
             @Override
@@ -149,34 +139,34 @@ public class Controller_JFSearchCliente {
                 }
             }
         });
-        this.viewSearchCliente.btn_cancelar.addMouseListener(new MouseAdapter() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                  switch(typeUser){
-                    case ("Gerente"):
-                        Controller_JFGerenteHome JFGerenteHome = new Controller_JFGerenteHome(login, cn);
-                        viewSearchCliente.dispose();
-                        break;
-                    case ("Comercio"):
-                        if(transc.equals("Compra")){
-                            Controller_JFAddCompra JFAddCompra= new Controller_JFAddCompra(login, cn);
-                            JFAddCompra.setCompra(compra);
-                            JFAddCompra.setData();
-                            viewSearchCliente.dispose();
-                        }else if(transc.equals("Venta")){
-                            Controller_JFAddVenta JFAddVenta= new Controller_JFAddVenta(login, cn);
-                            viewSearchCliente.dispose();
-                        }
-                        break;
-                    case ("Financiamiento"):
-                        //Controller financiamiento
-                        viewSearchCliente.dispose();
-                        break;                        
-                
-                }
-            }
-        });
+//        this.viewSearchCliente.btn_cancelar.addMouseListener(new MouseAdapter() {
+//
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                  switch(typeUser){
+//                    case ("Gerente"):
+//                        Controller_JFGerenteHome JFGerenteHome = new Controller_JFGerenteHome(login, cn);
+//                        viewSearchCliente.dispose();
+//                        break;
+//                    case ("Comercio"):
+//                        if(transc.equals("Compra")){
+//                            Controller_JFAgregarCompra JFAddCompra= new Controller_JFAgregarCompra(login, cn);
+//                            JFAddCompra.setCompra(compra);
+//                            JFAddCompra.setData();
+//                            viewSearchCliente.dispose();
+//                        }else if(transc.equals("Venta")){
+//                            Controller_JFAddVenta JFAddVenta= new Controller_JFAddVenta(login, cn);
+//                            viewSearchCliente.dispose();
+//                        }
+//                        break;
+//                    case ("Financiamiento"):
+//                        //Controller financiamiento
+//                        viewSearchCliente.dispose();
+//                        break;                        
+//                
+//                }
+//            }
+//        });
     }
      public void setCompra(CCompra compra){
          this.compra = compra;
@@ -184,21 +174,7 @@ public class Controller_JFSearchCliente {
      public CCompra getCompra(){
          return this.compra;
      }
-    private ImageIcon getImageWithBlob(Blob blob,String nombre){
-         ImageIcon image = null;
-         BufferedImage img = null;
-        try {
-            byte[] data = blob.getBytes(1,(int)blob.length());
-         
-            img = ImageIO.read(new ByteArrayInputStream(data));
-            //Crear la imagen
-             image = new ImageIcon(img);
-            return image;
-        } catch (IOException | SQLException ex) {
-            Logger.getLogger(Controller_JFSearchCliente.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        return image;
-     }
+   
     
   public void loadTable(JTable tabla,ArrayList<CCliente> clientes){
         

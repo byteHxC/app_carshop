@@ -1,8 +1,8 @@
 package app_carshop;
 import CONTROL.Controller_JFLoginUser;
-import MODEL.ConnectionMySQL;
-import MODEL.UserROOT;
-import VIEW.JFLoginUser;
+import MODELO.ConnectionMySQL;
+import MODELO.UserROOT;
+import VISTA.JFLoginUser;
 import java.sql.Connection;
 
 /*

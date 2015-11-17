@@ -5,9 +5,9 @@
  */
 package CONTROL;
 
-import MODEL.CLogin;
-import MODEL.CUsuario;
-import VIEW.JFListarEmpleados;
+import MODELO.CLogin;
+import MODELO.CUsuario;
+import VISTA.JFListarEmpleados;
 import app_carshop.App_carshop;
 import java.awt.Image;
 import java.awt.event.ActionEvent;

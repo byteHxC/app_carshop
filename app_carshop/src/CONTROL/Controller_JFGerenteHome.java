@@ -5,8 +5,8 @@
  */
 package CONTROL;
 
-import MODEL.CLogin;
-import VIEW.JFGerenteHome;
+import MODELO.CLogin;
+import VISTA.JFGerenteHome;
 import app_carshop.App_carshop;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;

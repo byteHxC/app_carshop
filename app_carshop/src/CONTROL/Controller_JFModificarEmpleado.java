@@ -5,9 +5,10 @@
  */
 package CONTROL;
 
-import MODEL.CLogin;
-import MODEL.CUsuario;
-import VIEW.JFModificarEmpleado;
+import MODELO.CLogin;
+import MODELO.CUsuario;
+import VISTA.JFModificarEmpleado;
+import app_carshop.App_carshop;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -53,8 +54,11 @@ public class Controller_JFModificarEmpleado {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                Controller_JFListarEmpleados viewshowEmpleados = new  Controller_JFListarEmpleados(login, cn);
-                viewUpdateEmpleado.dispose();
+                int resp = JOptionPane.showConfirmDialog(viewUpdateEmpleado,"¿Desea salir de la app?","Warning",JOptionPane.YES_NO_OPTION);
+                if(resp == JOptionPane.YES_OPTION){
+                    App_carshop.init();
+                    viewUpdateEmpleado.dispose();
+                }
             }
         });
         this.viewUpdateEmpleado.btn_cancelar.addMouseListener(new MouseAdapter() {

@@ -5,9 +5,9 @@
  */
 package CONTROL;
 
-import MODEL.CLogin;
-import MODEL.UserROOT;
-import VIEW.JFSettingsUser;
+import MODELO.CLogin;
+import MODELO.UserROOT;
+import VISTA.JFSettingsUser;
 import app_carshop.App_carshop;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
