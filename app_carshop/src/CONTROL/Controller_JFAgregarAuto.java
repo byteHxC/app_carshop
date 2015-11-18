@@ -7,10 +7,8 @@ package CONTROL;
 
 import MODELO.CAuto;
 import MODELO.CCliente;
-import MODELO.CCompra;
 import MODELO.CLogin;
-import MODELO.CUsuario;
-import VISTA.JFAgregarAuto;
+import VISTA.JFInfoAuto;
 import app_carshop.App_carshop;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -39,7 +37,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Byter
  */
 public class Controller_JFAgregarAuto {
-    JFAgregarAuto viewAddAuto;
+    JFInfoAuto viewAddAuto;
     Connection cn;
     File fileSelected;
     
@@ -47,7 +45,7 @@ public class Controller_JFAgregarAuto {
     CAuto auto;
     //Constructor for employe Comercio
     public Controller_JFAgregarAuto(CLogin login,Connection cn){
-        this.viewAddAuto = new JFAgregarAuto();
+        this.viewAddAuto = new JFInfoAuto();
         cliente = null;
         auto = null;
         //Action that calculate the price neto the el auto 
@@ -163,9 +161,9 @@ public class Controller_JFAgregarAuto {
     //Constructor for employe Financiamiento Compra/venta, crear nuevo controlador sera pura vista ;)
     public Controller_JFAgregarAuto(String JFController,CLogin login,Connection cn){
       
-        this.viewAddAuto = new JFAgregarAuto();
+        this.viewAddAuto = new JFInfoAuto();
         this.viewAddAuto.setTitle("Detalle auto");
-        this.viewAddAuto.jLabel15.setText("Vista auto");
+        this.viewAddAuto.label_title.setText("Vista auto");
         //Enable false for components that not use
         this.viewAddAuto.cbox_Certificado.setEnabled(false);
         this.viewAddAuto.btn_AgregarAuto.setVisible(false);
@@ -224,7 +222,7 @@ public class Controller_JFAgregarAuto {
           this.viewAddAuto.cbox_Certificado.setSelectedItem(auto.getCilindros());
           this.viewAddAuto.txtArea_detalle.setText(auto.getDetalle());
           this.viewAddAuto.txt_Precio.setVisible(false);
-          this.viewAddAuto.jLabel10.setVisible(false);
+          this.viewAddAuto.label_preciocompra.setVisible(false);
           this.viewAddAuto.txt_PrecioNeto.setText(auto.getPrecio_compra()+"  $");
       }
     private ImageIcon getImageWithBlob(Blob blob,String nombre){
@@ -269,7 +267,7 @@ public class Controller_JFAgregarAuto {
           this.viewAddAuto.cbox_Certificado.setEditable(false);
           this.viewAddAuto.txtArea_detalle.setEditable(false);
           this.viewAddAuto.txt_Precio.setVisible(false);
-          this.viewAddAuto.jLabel10.setVisible(false);
+          this.viewAddAuto.label_preciocompra.setVisible(false);
           this.viewAddAuto.txt_PrecioNeto.setEditable(false);
     }
     

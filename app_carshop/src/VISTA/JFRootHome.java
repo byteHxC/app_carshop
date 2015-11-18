@@ -59,19 +59,19 @@ public class JFRootHome extends javax.swing.JFrame {
              btn_addGerente.setIcon(new ImageIcon(jefeIcon));
              btn_configBD.setIcon(new ImageIcon(settBDIcon));
 
-            JLabel lsettBD = new JLabel("Configuracion BD",SwingConstants.CENTER);
-            lsettBD.setForeground(Color.white);
-            lsettBD.setFont(new Font("Gulim",Font.PLAIN, 16));
-            panel_ConfiguracionBD.add(lsettBD);
-            lsettBD.setSize(panel_ConfiguracionBD.getWidth(), 50);
-            lsettBD.setLocation(0,120);
-
-            JLabel lgerente = new JLabel("Agregar gerente",SwingConstants.CENTER);
-            lgerente.setForeground(Color.white);
-            lgerente.setFont(new Font("Gulim",Font.PLAIN, 16));
-            panel_addGerente.add(lgerente);
-            lgerente.setSize(panel_addGerente.getWidth(), 50);
-            lgerente.setLocation(0,120);
+//            JLabel lsettBD = new JLabel("Configuracion BD",SwingConstants.CENTER);
+//            lsettBD.setForeground(Color.white);
+//            lsettBD.setFont(new Font("Gulim",Font.PLAIN, 16));
+//            panel_ConfiguracionBD.add(lsettBD);
+//            lsettBD.setSize(panel_ConfiguracionBD.getWidth(), 50);
+//            lsettBD.setLocation(0,120);
+//
+//            JLabel lgerente = new JLabel("Agregar gerente",SwingConstants.CENTER);
+//            lgerente.setForeground(Color.white);
+//            lgerente.setFont(new Font("Gulim",Font.PLAIN, 16));
+//            panel_addGerente.add(lgerente);
+//            lgerente.setSize(panel_addGerente.getWidth(), 50);
+//            lgerente.setLocation(0,120);
 
              
             //Cambiar icono
@@ -127,8 +127,10 @@ public class JFRootHome extends javax.swing.JFrame {
         jPanelbackground = new javax.swing.JPanel();
         panel_addGerente = new javax.swing.JPanel();
         btn_addGerente = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         panel_ConfiguracionBD = new javax.swing.JPanel();
         btn_configBD = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         dialog_settingBD.setModal(true);
 
@@ -263,6 +265,11 @@ public class JFRootHome extends javax.swing.JFrame {
         btn_addGerente.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btn_addGerente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Agregar gerente");
+
         javax.swing.GroupLayout panel_addGerenteLayout = new javax.swing.GroupLayout(panel_addGerente);
         panel_addGerente.setLayout(panel_addGerenteLayout);
         panel_addGerenteLayout.setHorizontalGroup(
@@ -271,13 +278,19 @@ public class JFRootHome extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(btn_addGerente, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
+            .addGroup(panel_addGerenteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panel_addGerenteLayout.setVerticalGroup(
             panel_addGerenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_addGerenteLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_addGerente, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addGap(10, 10, 10)
+                .addComponent(jLabel2)
+                .addContainerGap())
         );
 
         btn_configBD.setFont(new java.awt.Font("Gulim", 1, 18)); // NOI18N
@@ -285,6 +298,11 @@ public class JFRootHome extends javax.swing.JFrame {
         btn_configBD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btn_configBD.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btn_configBD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Configurar BD.");
 
         javax.swing.GroupLayout panel_ConfiguracionBDLayout = new javax.swing.GroupLayout(panel_ConfiguracionBD);
         panel_ConfiguracionBD.setLayout(panel_ConfiguracionBDLayout);
@@ -294,13 +312,19 @@ public class JFRootHome extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(btn_configBD, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(panel_ConfiguracionBDLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panel_ConfiguracionBDLayout.setVerticalGroup(
             panel_ConfiguracionBDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_ConfiguracionBDLayout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(btn_configBD, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addGap(4, 4, 4))
         );
 
         javax.swing.GroupLayout jPanelbackgroundLayout = new javax.swing.GroupLayout(jPanelbackground);
@@ -429,9 +453,11 @@ public class JFRootHome extends javax.swing.JFrame {
     public javax.swing.JLabel btn_logout;
     public javax.swing.JLabel btn_settings;
     public javax.swing.JDialog dialog_settingBD;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanelbackground;

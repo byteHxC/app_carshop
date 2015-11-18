@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -31,12 +32,24 @@ public class JFLoginUser extends javax.swing.JFrame {
             this.setLocationRelativeTo(null);
             this.setVisible(true);
             this.setSize(338, 480);
-            this.getContentPane().setBackground(new Color(255,102,102));
+            //this.getContentPane().setBackground(Color.darkGray);
+          
             //Set imageIcon logo CARSHOP
-            
+           
+            Color colorpa2 = new Color(0,0,0,130);  
+            panel_backLogo1.setBackground(colorpa2);
+            panel_backLogo.setBackground(colorpa2);
             ImageIcon imageLogo = new ImageIcon(getClass().getResource("/ASSETS/LogoCARSHOP.png"));
             label_image.setIcon(new ImageIcon(imageLogo.getImage().getScaledInstance(label_image.getWidth(),label_image.getHeight(),Image.SCALE_SMOOTH)));
             //Settings button
+            //Set image in background panel
+            JLabel backImage = new JLabel("");
+            ImageIcon image = new ImageIcon(getClass().getResource("/ASSETS/auto.jpg"));
+            //panel_image.add(backImage);
+            this.getContentPane().add(backImage);
+            backImage.setIcon(new ImageIcon(image.getImage().getScaledInstance(800,500,Image.SCALE_SMOOTH)));
+            backImage.setSize(this.getWidth()+30,this.getHeight()+20);
+            backImage.setLocation(0,0);
             
             
             //Cambiar icono
@@ -52,40 +65,20 @@ public class JFLoginUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel_backLogo = new javax.swing.JPanel();
-        label_image = new javax.swing.JLabel();
-        label_Bienvenido = new javax.swing.JLabel();
+        panel_backLogo1 = new javax.swing.JPanel();
+        label_image1 = new javax.swing.JLabel();
         label_Usuario = new javax.swing.JLabel();
         txt_user = new javax.swing.JTextField();
         btn_validarUser = new javax.swing.JLabel();
+        label_Bienvenido = new javax.swing.JLabel();
+        panel_backLogo = new javax.swing.JPanel();
+        label_image = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Validar usuario");
         setIconImage(new ImageIcon(getClass().getResource("/ASSETS/LogoCARSHOP.png")).getImage());
 
-        panel_backLogo.setBackground(new java.awt.Color(255, 204, 204));
-
-        javax.swing.GroupLayout panel_backLogoLayout = new javax.swing.GroupLayout(panel_backLogo);
-        panel_backLogo.setLayout(panel_backLogoLayout);
-        panel_backLogoLayout.setHorizontalGroup(
-            panel_backLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_backLogoLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(label_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(38, 38, 38))
-        );
-        panel_backLogoLayout.setVerticalGroup(
-            panel_backLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_backLogoLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(label_image, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-
-        label_Bienvenido.setFont(new java.awt.Font("Walkway UltraExpand", 0, 24)); // NOI18N
-        label_Bienvenido.setForeground(new java.awt.Color(255, 255, 255));
-        label_Bienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_Bienvenido.setText("Bienvenido");
+        panel_backLogo1.setBackground(new java.awt.Color(255, 204, 204));
 
         label_Usuario.setFont(new java.awt.Font("Gulim", 0, 18)); // NOI18N
         label_Usuario.setForeground(new java.awt.Color(255, 255, 255));
@@ -104,43 +97,83 @@ public class JFLoginUser extends javax.swing.JFrame {
         btn_validarUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_validarUser.setOpaque(true);
 
+        label_Bienvenido.setFont(new java.awt.Font("Walkway UltraExpand", 0, 24)); // NOI18N
+        label_Bienvenido.setForeground(new java.awt.Color(255, 255, 255));
+        label_Bienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_Bienvenido.setText("Bienvenido");
+
+        panel_backLogo.setBackground(new java.awt.Color(255, 204, 204));
+
+        javax.swing.GroupLayout panel_backLogoLayout = new javax.swing.GroupLayout(panel_backLogo);
+        panel_backLogo.setLayout(panel_backLogoLayout);
+        panel_backLogoLayout.setHorizontalGroup(
+            panel_backLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_backLogoLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(label_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(38, 38, 38))
+        );
+        panel_backLogoLayout.setVerticalGroup(
+            panel_backLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_backLogoLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(label_image, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout panel_backLogo1Layout = new javax.swing.GroupLayout(panel_backLogo1);
+        panel_backLogo1.setLayout(panel_backLogo1Layout);
+        panel_backLogo1Layout.setHorizontalGroup(
+            panel_backLogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_backLogo1Layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(txt_user, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(label_image1, javax.swing.GroupLayout.DEFAULT_SIZE, 4, Short.MAX_VALUE)
+                .addGap(38, 38, 38))
+            .addComponent(label_Usuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panel_backLogo1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_Bienvenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(panel_backLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panel_backLogo1Layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(btn_validarUser, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panel_backLogo1Layout.setVerticalGroup(
+            panel_backLogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_backLogo1Layout.createSequentialGroup()
+                .addComponent(panel_backLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label_Bienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(label_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panel_backLogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel_backLogo1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(label_image1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panel_backLogo1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(txt_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(btn_validarUser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(202, Short.MAX_VALUE))))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_backLogo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(label_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(txt_user, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(label_Bienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addComponent(btn_validarUser, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(panel_backLogo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(panel_backLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(label_Bienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(label_Usuario)
-                .addGap(18, 18, 18)
-                .addComponent(txt_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_validarUser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(panel_backLogo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 243, Short.MAX_VALUE))
         );
 
         pack();
@@ -189,7 +222,9 @@ public class JFLoginUser extends javax.swing.JFrame {
     private javax.swing.JLabel label_Bienvenido;
     public javax.swing.JLabel label_Usuario;
     private javax.swing.JLabel label_image;
+    private javax.swing.JLabel label_image1;
     private javax.swing.JPanel panel_backLogo;
+    private javax.swing.JPanel panel_backLogo1;
     public javax.swing.JTextField txt_user;
     // End of variables declaration//GEN-END:variables
 }

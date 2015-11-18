@@ -57,36 +57,39 @@ public class JFComercioHome extends javax.swing.JFrame {
         panel_addCliente.setBackground(colorBlack);
         panel_addCompra.setBackground(colorBlack);
         panel_addVenta.setBackground(colorBlack);
+        panel_verAutos.setBackground(colorBlack);
         
         //Set icons in labels btn
         Image clienteIcon = new ImageIcon(getClass().getResource("/ASSETS/add110.png")).getImage().getScaledInstance(80,80,Image.SCALE_SMOOTH);
         Image ventaIcon = new ImageIcon(getClass().getResource("/ASSETS/commercial18(1).png")).getImage().getScaledInstance(120,100,Image.SCALE_SMOOTH);
         Image compraIcon = new ImageIcon(getClass().getResource("/ASSETS/receipt10.png")).getImage().getScaledInstance(80,80,Image.SCALE_SMOOTH);
+        Image vAutos = new ImageIcon(getClass().getResource("/ASSETS/vAuto.png")).getImage().getScaledInstance(80,80,Image.SCALE_SMOOTH);
         
         btn_cliente.setIcon(new ImageIcon(clienteIcon));
         btn_addVenta.setIcon(new ImageIcon(ventaIcon));
         btn_addCompra.setIcon(new ImageIcon(compraIcon));
+        btn_verAutos.setIcon(new ImageIcon(vAutos));
         
-        JLabel lcliente = new JLabel("Clientes",SwingConstants.CENTER);
-        lcliente.setForeground(Color.white);
-        lcliente.setFont(new Font("Gulim",Font.PLAIN, 16));
-        panel_addCliente.add(lcliente);
-        lcliente.setSize(panel_addCliente.getWidth(), 50);
-        lcliente.setLocation(0,120);
-        
-        JLabel lventa = new JLabel("Agregar venta",SwingConstants.CENTER);
-        lventa.setForeground(Color.white);
-        lventa.setFont(new Font("Gulim",Font.PLAIN, 16));
-        panel_addVenta.add(lventa);
-        lventa.setSize(panel_addVenta.getWidth(), 50);
-        lventa.setLocation(0,120);
-        
-        JLabel lcompra = new JLabel("Agregar compra",SwingConstants.CENTER);
-        lcompra.setForeground(Color.white);
-        lcompra.setFont(new Font("Gulim",Font.PLAIN, 16));
-        panel_addCompra.add(lcompra);
-        lcompra.setSize(panel_addCompra.getWidth(), 50);
-        lcompra.setLocation(0,120);
+//        JLabel lcliente = new JLabel("Clientes",SwingConstants.CENTER);
+//        lcliente.setForeground(Color.white);
+//        lcliente.setFont(new Font("Gulim",Font.PLAIN, 16));
+//        panel_addCliente.add(lcliente);
+//        lcliente.setSize(panel_addCliente.getWidth(), 50);
+//        lcliente.setLocation(0,120);
+//        
+//        JLabel lventa = new JLabel("Agregar venta",SwingConstants.CENTER);
+//        lventa.setForeground(Color.white);
+//        lventa.setFont(new Font("Gulim",Font.PLAIN, 16));
+//        panel_addVenta.add(lventa);
+//        lventa.setSize(panel_addVenta.getWidth(), 50);
+//        lventa.setLocation(0,120);
+//        
+//        JLabel lcompra = new JLabel("Agregar compra",SwingConstants.CENTER);
+//        lcompra.setForeground(Color.white);
+//        lcompra.setFont(new Font("Gulim",Font.PLAIN, 16));
+//        panel_addCompra.add(lcompra);
+//        lcompra.setSize(panel_addCompra.getWidth(), 50);
+//        lcompra.setLocation(0,120);
         
         
         
@@ -152,10 +155,16 @@ public class JFComercioHome extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         panel_addCliente = new javax.swing.JPanel();
         btn_cliente = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         panel_addCompra = new javax.swing.JPanel();
         btn_addCompra = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         panel_addVenta = new javax.swing.JPanel();
         btn_addVenta = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        panel_verAutos = new javax.swing.JPanel();
+        btn_verAutos = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -324,6 +333,11 @@ public class JFComercioHome extends javax.swing.JFrame {
         btn_cliente.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btn_cliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Agregar cliente");
+
         javax.swing.GroupLayout panel_addClienteLayout = new javax.swing.GroupLayout(panel_addCliente);
         panel_addCliente.setLayout(panel_addClienteLayout);
         panel_addClienteLayout.setHorizontalGroup(
@@ -332,13 +346,19 @@ public class JFComercioHome extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(btn_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
+            .addGroup(panel_addClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panel_addClienteLayout.setVerticalGroup(
             panel_addClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_addClienteLayout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(btn_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addGap(10, 10, 10)
+                .addComponent(jLabel2)
+                .addContainerGap())
         );
 
         btn_addCompra.setFont(new java.awt.Font("Gulim", 1, 18)); // NOI18N
@@ -346,6 +366,11 @@ public class JFComercioHome extends javax.swing.JFrame {
         btn_addCompra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btn_addCompra.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btn_addCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Agregar compra");
 
         javax.swing.GroupLayout panel_addCompraLayout = new javax.swing.GroupLayout(panel_addCompra);
         panel_addCompra.setLayout(panel_addCompraLayout);
@@ -355,13 +380,19 @@ public class JFComercioHome extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(btn_addCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
+            .addGroup(panel_addCompraLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panel_addCompraLayout.setVerticalGroup(
             panel_addCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_addCompraLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_addCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addGap(10, 10, 10)
+                .addComponent(jLabel7)
+                .addContainerGap())
         );
 
         btn_addVenta.setFont(new java.awt.Font("Gulim", 1, 18)); // NOI18N
@@ -369,6 +400,11 @@ public class JFComercioHome extends javax.swing.JFrame {
         btn_addVenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btn_addVenta.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btn_addVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Agregar venta");
 
         javax.swing.GroupLayout panel_addVentaLayout = new javax.swing.GroupLayout(panel_addVenta);
         panel_addVenta.setLayout(panel_addVentaLayout);
@@ -378,13 +414,53 @@ public class JFComercioHome extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(btn_addVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(panel_addVentaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panel_addVentaLayout.setVerticalGroup(
             panel_addVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_addVentaLayout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(btn_addVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(10, 10, 10))
+        );
+
+        btn_verAutos.setFont(new java.awt.Font("Gulim", 1, 18)); // NOI18N
+        btn_verAutos.setForeground(new java.awt.Color(255, 255, 255));
+        btn_verAutos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_verAutos.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btn_verAutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Catalogo autos");
+
+        javax.swing.GroupLayout panel_verAutosLayout = new javax.swing.GroupLayout(panel_verAutos);
+        panel_verAutos.setLayout(panel_verAutosLayout);
+        panel_verAutosLayout.setHorizontalGroup(
+            panel_verAutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_verAutosLayout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addComponent(btn_verAutos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+            .addGroup(panel_verAutosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        panel_verAutosLayout.setVerticalGroup(
+            panel_verAutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_verAutosLayout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addComponent(btn_verAutos, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout panel_inicioLayout = new javax.swing.GroupLayout(panel_inicio);
@@ -404,13 +480,16 @@ public class JFComercioHome extends javax.swing.JFrame {
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(169, 169, 169))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createSequentialGroup()
-                                .addComponent(panel_addVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(panel_addCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(219, 219, 219))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createSequentialGroup()
-                                .addComponent(panel_addCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(303, 303, 303))))))
+                                .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(panel_inicioLayout.createSequentialGroup()
+                                        .addComponent(panel_verAutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(panel_addCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panel_inicioLayout.createSequentialGroup()
+                                        .addComponent(panel_addVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(panel_addCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(219, 219, 219))))))
         );
         panel_inicioLayout.setVerticalGroup(
             panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,7 +499,9 @@ public class JFComercioHome extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(panel_addCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panel_addCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panel_verAutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panel_addCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -440,9 +521,9 @@ public class JFComercioHome extends javax.swing.JFrame {
         panel_imageLayout.setVerticalGroup(
             panel_imageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_imageLayout.createSequentialGroup()
-                .addGap(0, 26, Short.MAX_VALUE)
+                .addGap(0, 22, Short.MAX_VALUE)
                 .addComponent(panel_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 26, Short.MAX_VALUE))
+                .addGap(0, 22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -537,11 +618,16 @@ public class JFComercioHome extends javax.swing.JFrame {
     public javax.swing.JLabel btn_logout;
     public javax.swing.JLabel btn_modCliente;
     public javax.swing.JLabel btn_settings;
+    public javax.swing.JLabel btn_verAutos;
     public javax.swing.JDialog dialog_opcionesCliente;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -556,5 +642,6 @@ public class JFComercioHome extends javax.swing.JFrame {
     private javax.swing.JPanel panel_image;
     private javax.swing.JPanel panel_inicio;
     private javax.swing.JPanel panel_modCliente;
+    private javax.swing.JPanel panel_verAutos;
     // End of variables declaration//GEN-END:variables
 }

@@ -35,7 +35,7 @@ public class Controller_JFLoginPassword {
      public Controller_JFLoginPassword(Connection cn){
        
         this.loginPassword = new JFLoginPassword();
-        this.loginPassword.label_Bienvenido.setText("Bienvenido root");
+        this.loginPassword.label_Bienvenido.setText("Usuario: root");
         this.loginPassword.label_tipoUser.setText("Tipo usuario: ROOT");
         this.cn=cn;
        
@@ -95,7 +95,7 @@ public class Controller_JFLoginPassword {
          CUsuario usuario = CUsuario.getObject(login.getClave_elector(), cn);
         this.login=login;
         this.loginPassword = new JFLoginPassword();
-        this.loginPassword.label_Bienvenido.setText("Bienvenido "+login.getUsuario());
+        this.loginPassword.label_Bienvenido.setText("Usuario: "+login.getUsuario());
         this.loginPassword.label_tipoUser.setText("Tipo usuario: \n"+usuario.getTipo());
       
         this.cn=cn;

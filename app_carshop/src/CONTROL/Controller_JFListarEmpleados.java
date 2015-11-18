@@ -7,7 +7,7 @@ package CONTROL;
 
 import MODELO.CLogin;
 import MODELO.CUsuario;
-import VISTA.JFListarEmpleados;
+import VISTA.JFListaEmpleados;
 import app_carshop.App_carshop;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -36,10 +36,10 @@ import javax.swing.table.DefaultTableModel;
  * @author ByteDrive
  */
 public class Controller_JFListarEmpleados {
-    JFListarEmpleados viewEmpleados;
+    JFListaEmpleados viewEmpleados;
     //Cuando entra el gerente
     public Controller_JFListarEmpleados(CLogin login,Connection cn){
-        viewEmpleados = new  JFListarEmpleados();
+        viewEmpleados = new  JFListaEmpleados();
         loadTable(viewEmpleados.table_showEmpleados,CUsuario.queryAll(cn));
         //Botojn de editar empleado
         this.viewEmpleados.btn_EditarEmpleado.addMouseListener(new MouseAdapter() {

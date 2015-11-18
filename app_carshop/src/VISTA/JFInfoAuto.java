@@ -15,12 +15,12 @@ import javax.swing.JLabel;
  *
  * @author Byter
  */
-public class JFAgregarAuto extends javax.swing.JFrame {
+public class JFInfoAuto extends javax.swing.JFrame {
 
     /**
      * Creates new form JFAddAuto
      */
-    public JFAgregarAuto() {
+    public JFInfoAuto() {
         initComponents(); settingsFrame();
     }
     private void settingsFrame(){
@@ -28,7 +28,7 @@ public class JFAgregarAuto extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.setSize(820, 565);
+        this.setSize(820, 580);
         this.getContentPane().setBackground(Color.black);
         
         //Set image in background panel
@@ -46,6 +46,22 @@ public class JFAgregarAuto extends javax.swing.JFrame {
         Image icon = Toolkit.getDefaultToolkit().getImage("/ASSETS/LogoCARSHOP.png");
         this.setIconImage(icon);
     }
+    public void lockFields(Boolean av){
+        txt_numeroSerie.setEditable(av);
+        txt_marca.setEditable(av);
+        txt_Tipo.setEditable(av);
+        txt_modelo.setEditable(av);
+        txt_numPasajeros.setEditable(av);
+        txt_numCilindros.setEditable(av);
+        txt_Color.setEditable(av);
+        cbox_Certificado.setEnabled(av);
+        txtArea_detalle.setEditable(av);
+        txt_Precio.setEditable(av);
+        txt_PrecioNeto.setEditable(av);
+        btn_AgregarAuto.setEnabled(av);
+        btn_AgregarAuto.setVisible(av);
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,7 +75,7 @@ public class JFAgregarAuto extends javax.swing.JFrame {
         panel_image = new javax.swing.JPanel();
         panel_inicio = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel15 = new javax.swing.JLabel();
+        label_title = new javax.swing.JLabel();
         btn_cancelar = new javax.swing.JLabel();
         btn_AgregarAuto = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -82,9 +98,9 @@ public class JFAgregarAuto extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtArea_detalle = new javax.swing.JTextArea();
         txt_Precio = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
+        label_preciocompra = new javax.swing.JLabel();
         label_imgAuto = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        label_precioopt = new javax.swing.JLabel();
         txt_PrecioNeto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -94,9 +110,9 @@ public class JFAgregarAuto extends javax.swing.JFrame {
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel15.setFont(new java.awt.Font("Neou", 0, 14)); // NOI18N
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Agregar auto");
+        label_title.setFont(new java.awt.Font("Neou", 0, 14)); // NOI18N
+        label_title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_title.setText("Información auto");
 
         btn_cancelar.setBackground(new java.awt.Color(255, 102, 102));
         btn_cancelar.setFont(new java.awt.Font("Gulim", 0, 17)); // NOI18N
@@ -131,6 +147,7 @@ public class JFAgregarAuto extends javax.swing.JFrame {
         jLabel8.setText("Certificado mecanico:");
 
         cbox_Certificado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10", "9", "8", "7" }));
+        cbox_Certificado.setToolTipText("");
 
         jLabel9.setText("Detalle:");
 
@@ -139,13 +156,13 @@ public class JFAgregarAuto extends javax.swing.JFrame {
         txtArea_detalle.setRows(5);
         jScrollPane1.setViewportView(txtArea_detalle);
 
-        jLabel10.setText("Precio:");
+        label_preciocompra.setText("Precio:");
 
         label_imgAuto.setBackground(java.awt.Color.lightGray);
         label_imgAuto.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.black, null));
         label_imgAuto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel11.setText("Precio neto:");
+        label_precioopt.setText("Precio neto:");
 
         txt_PrecioNeto.setEditable(false);
 
@@ -157,7 +174,7 @@ public class JFAgregarAuto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createSequentialGroup()
-                        .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(label_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -200,7 +217,7 @@ public class JFAgregarAuto extends javax.swing.JFrame {
                                         .addComponent(label_imgAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                                 .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
+                                    .addComponent(label_preciocompra)
                                     .addGroup(panel_inicioLayout.createSequentialGroup()
                                         .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel1)
@@ -217,14 +234,14 @@ public class JFAgregarAuto extends javax.swing.JFrame {
                                     .addGroup(panel_inicioLayout.createSequentialGroup()
                                         .addGap(100, 100, 100)
                                         .addComponent(txt_PrecioNeto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel11))))
+                                    .addComponent(label_precioopt))))
                         .addGap(0, 18, Short.MAX_VALUE))))
         );
         panel_inicioLayout.setVerticalGroup(
             panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_inicioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel15)
+                .addComponent(label_title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,11 +291,11 @@ public class JFAgregarAuto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
+                            .addComponent(label_preciocompra))
                         .addGap(9, 9, 9)))
                 .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_PrecioNeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
+                    .addComponent(label_precioopt))
                 .addGap(18, 18, 18)
                 .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_AgregarAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -339,21 +356,23 @@ public class JFAgregarAuto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFAgregarAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFInfoAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFAgregarAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFInfoAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFAgregarAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFInfoAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFAgregarAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFInfoAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFAgregarAuto().setVisible(true);
+                new JFInfoAuto().setVisible(true);
             }
         });
     }
@@ -363,9 +382,6 @@ public class JFAgregarAuto extends javax.swing.JFrame {
     public javax.swing.JLabel btn_cancelar;
     public javax.swing.JComboBox cbox_Certificado;
     private javax.swing.JLabel jLabel1;
-    public javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    public javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -377,6 +393,9 @@ public class JFAgregarAuto extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     public javax.swing.JLabel label_imgAuto;
+    public javax.swing.JLabel label_preciocompra;
+    public javax.swing.JLabel label_precioopt;
+    public javax.swing.JLabel label_title;
     private javax.swing.JPanel panel_image;
     private javax.swing.JPanel panel_inicio;
     public javax.swing.JTextArea txtArea_detalle;

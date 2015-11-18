@@ -83,16 +83,6 @@ public class Controller_JFGerenteHome {
             }
         });
         
-        //Boton para consultar clientes
-        this.viewGerenteHome.btn_clientes.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Controller_JFSearchCliente JFSearchCliente = new Controller_JFSearchCliente(login, cn,"Show");
-                viewGerenteHome.dispose();
-                
-            }
-        });
-        
        
         
         //Boton para consultar ventas

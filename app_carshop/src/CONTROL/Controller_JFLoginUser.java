@@ -22,6 +22,7 @@ public class Controller_JFLoginUser {
     JFLoginUser loginUser;
     Connection cn;
     public Controller_JFLoginUser(Connection cn){
+        
         loginUser = new JFLoginUser();
         //Evento de validar usuario
         this.loginUser.btn_validarUser.addMouseListener(new MouseAdapter() {
@@ -62,7 +63,7 @@ public class Controller_JFLoginUser {
                                     }
                                     loginUser.txt_user.setForeground(Color.black);
                                     loginUser.label_Usuario.setText("Usuario:");
-                                    
+                              
                                     
                                 }
                             });

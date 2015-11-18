@@ -5,7 +5,7 @@
  */
 package MODELO;
 
-import VISTA.JFAgregarAuto;
+import VISTA.JFInfoAuto;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.Blob;
@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -161,7 +162,7 @@ public class CAuto {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    public boolean validarAuto(JFAgregarAuto frame, Connection cn){
+    public boolean validarAuto(JFInfoAuto frame, Connection cn){
         String txtErrores = "Verificar datos del auto: \n";
         boolean errores = false;
         String numPas = getNumero_pasajeros() + "";
@@ -295,11 +296,7 @@ public class CAuto {
                 auto.setDetalle(rs.getString("detalle"));
                 auto.setCertificado_mecanico(rs.getInt("certificado_mecanico"));
                 auto.setPrecio_compra(rs.getFloat("precio_compra"));
-                try{
-                    auto.setPrecio_venta(rs.getFloat("precio_compra"));
-                }catch(Exception e){
-                    auto.setPrecio_venta(0);
-                }
+                auto.setPrecio_venta(rs.getFloat("precio_compra"));
                 auto.setImageBlob(rs.getBlob("imagen"));
                 auto.setNombreImagen(rs.getString("nombre_imagen"));
                 auto.setEstado(rs.getString("estado"));
@@ -322,6 +319,155 @@ public class CAuto {
             Logger.getLogger(CAuto.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+    
+    public static ArrayList<CAuto> queryForMarca(Connection cn,String marca){
+        ArrayList<CAuto> autos = new ArrayList<>();
+        try{
+            PreparedStatement pps = cn.prepareStatement("select * from catalogo_autos where marca like ? and estado ='Disponible'");
+            pps.setString(1, "%"+marca+"%");
+            ResultSet rs = pps.executeQuery();
+            while(rs.next()){
+                CAuto auto = new CAuto();
+                auto.setNumero_serie(rs.getString("numero_serie"));
+                auto.setMarca(rs.getString("marca"));
+                auto.setTipo(rs.getString("tipo"));
+                auto.setModelo(rs.getString("modelo"));
+                auto.setNumero_pasajeros(rs.getInt("numero_pasajeros"));
+                auto.setCilindros(rs.getInt("cilindros"));
+                auto.setColor(rs.getString("color"));
+                auto.setDetalle(rs.getString("detalle"));
+                auto.setCertificado_mecanico(rs.getInt("certificado_mecanico"));
+                auto.setPrecio_compra(rs.getFloat("precio_compra"));
+                auto.setPrecio_venta(rs.getFloat("precio_venta"));
+                auto.setImageBlob(rs.getBlob("imagen"));
+                auto.setNombreImagen(rs.getString("nombre_imagen"));
+                auto.setEstado(rs.getString("estado"));
+                autos.add(auto);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CAuto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return autos;
+    }
+    
+    public static ArrayList<CAuto> queryForModelo(Connection cn,String modelo){
+        ArrayList<CAuto> autos = new ArrayList<>();
+        try{
+            PreparedStatement pps = cn.prepareStatement("select * from catalogo_autos where modelo = ?  and estado ='Disponible'");
+            pps.setString(1,modelo);
+            ResultSet rs = pps.executeQuery();
+            while(rs.next()){
+                CAuto auto = new CAuto();
+                auto.setNumero_serie(rs.getString("numero_serie"));
+                auto.setMarca(rs.getString("marca"));
+                auto.setTipo(rs.getString("tipo"));
+                auto.setModelo(rs.getString("modelo"));
+                auto.setNumero_pasajeros(rs.getInt("numero_pasajeros"));
+                auto.setCilindros(rs.getInt("cilindros"));
+                auto.setColor(rs.getString("color"));
+                auto.setDetalle(rs.getString("detalle"));
+                auto.setCertificado_mecanico(rs.getInt("certificado_mecanico"));
+                auto.setPrecio_compra(rs.getFloat("precio_compra"));
+                auto.setPrecio_venta(rs.getFloat("precio_venta"));
+                auto.setImageBlob(rs.getBlob("imagen"));
+                auto.setNombreImagen(rs.getString("nombre_imagen"));
+                auto.setEstado(rs.getString("estado"));
+                autos.add(auto);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CAuto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return autos;
+    }
+    
+    public static ArrayList<CAuto> queryForNumPasajeros(Connection cn,String numPasajeros){
+        ArrayList<CAuto> autos = new ArrayList<>();
+        try{
+            PreparedStatement pps = cn.prepareStatement("select * from catalogo_autos where numero_pasajeros = ? and estado ='Disponible'");
+            pps.setString(1,numPasajeros);
+            ResultSet rs = pps.executeQuery();
+            while(rs.next()){
+                CAuto auto = new CAuto();
+                auto.setNumero_serie(rs.getString("numero_serie"));
+                auto.setMarca(rs.getString("marca"));
+                auto.setTipo(rs.getString("tipo"));
+                auto.setModelo(rs.getString("modelo"));
+                auto.setNumero_pasajeros(rs.getInt("numero_pasajeros"));
+                auto.setCilindros(rs.getInt("cilindros"));
+                auto.setColor(rs.getString("color"));
+                auto.setDetalle(rs.getString("detalle"));
+                auto.setCertificado_mecanico(rs.getInt("certificado_mecanico"));
+                auto.setPrecio_compra(rs.getFloat("precio_compra"));
+                auto.setPrecio_venta(rs.getFloat("precio_venta"));
+                auto.setImageBlob(rs.getBlob("imagen"));
+                auto.setNombreImagen(rs.getString("nombre_imagen"));
+                auto.setEstado(rs.getString("estado"));
+                autos.add(auto);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CAuto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return autos;
+    }
+    public static ArrayList<CAuto> queryForCilindros(Connection cn,String cilindros){
+        ArrayList<CAuto> autos = new ArrayList<>();
+        try{
+            PreparedStatement pps = cn.prepareStatement("select * from catalogo_autos where cilindros = ? and estado ='Disponible'");
+            pps.setString(1,cilindros);
+            ResultSet rs = pps.executeQuery();
+            while(rs.next()){
+                CAuto auto = new CAuto();
+                auto.setNumero_serie(rs.getString("numero_serie"));
+                auto.setMarca(rs.getString("marca"));
+                auto.setTipo(rs.getString("tipo"));
+                auto.setModelo(rs.getString("modelo"));
+                auto.setNumero_pasajeros(rs.getInt("numero_pasajeros"));
+                auto.setCilindros(rs.getInt("cilindros"));
+                auto.setColor(rs.getString("color"));
+                auto.setDetalle(rs.getString("detalle"));
+                auto.setCertificado_mecanico(rs.getInt("certificado_mecanico"));
+                auto.setPrecio_compra(rs.getFloat("precio_compra"));
+                auto.setPrecio_venta(rs.getFloat("precio_venta"));
+                auto.setImageBlob(rs.getBlob("imagen"));
+                auto.setNombreImagen(rs.getString("nombre_imagen"));
+                auto.setEstado(rs.getString("estado"));
+                autos.add(auto);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CAuto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return autos;
+    }
+    
+    public static ArrayList<CAuto> queryForPrecio(Connection cn,String precio){
+        ArrayList<CAuto> autos = new ArrayList<>();
+        try{
+            PreparedStatement pps = cn.prepareStatement("select * from catalogo_autos where precio_venta <= ? and estado ='Disponible'");
+            pps.setString(1,precio);
+            ResultSet rs = pps.executeQuery();
+            while(rs.next()){
+                CAuto auto = new CAuto();
+                auto.setNumero_serie(rs.getString("numero_serie"));
+                auto.setMarca(rs.getString("marca"));
+                auto.setTipo(rs.getString("tipo"));
+                auto.setModelo(rs.getString("modelo"));
+                auto.setNumero_pasajeros(rs.getInt("numero_pasajeros"));
+                auto.setCilindros(rs.getInt("cilindros"));
+                auto.setColor(rs.getString("color"));
+                auto.setDetalle(rs.getString("detalle"));
+                auto.setCertificado_mecanico(rs.getInt("certificado_mecanico"));
+                auto.setPrecio_compra(rs.getFloat("precio_compra"));
+                auto.setPrecio_venta(rs.getFloat("precio_venta"));
+                auto.setImageBlob(rs.getBlob("imagen"));
+                auto.setNombreImagen(rs.getString("nombre_imagen"));
+                auto.setEstado(rs.getString("estado"));
+                autos.add(auto);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CAuto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return autos;
     }
     
 }

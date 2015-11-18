@@ -7,7 +7,7 @@ package CONTROL;
 
 import MODELO.CCliente;
 import MODELO.CLogin;
-import VISTA.JFListarClientes;
+import VISTA.JFListaClientes;
 import app_carshop.App_carshop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,13 +27,13 @@ import javax.swing.table.DefaultTableModel;
  * @author Byter
  */
 public class Controller_AgregarClienteCompra {
-    JFListarClientes clienteCompra;
+    JFListaClientes clienteCompra;
     CCliente cliente;
   
     
     public Controller_AgregarClienteCompra(CLogin login,Connection cn){
         cliente = null;
-        clienteCompra = new JFListarClientes();
+        clienteCompra = new JFListaClientes();
         loadTable(clienteCompra.table_showClientes,CCliente.queryAll(cn));
          //Action when press button seleccionar
         this.clienteCompra.btn_seleccionar.addMouseListener(new MouseAdapter() {

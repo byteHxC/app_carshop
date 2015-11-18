@@ -7,7 +7,6 @@ package CONTROL;
 
 import MODELO.CLogin;
 import VISTA.JFComercioHome;
-import VISTA.JFListarClientes;
 import app_carshop.App_carshop;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -41,7 +40,14 @@ public class Controller_JFComercioHome {
         //Settings view labels identifications
         this.viewComercio.label_usuario.setText("USUARIO: "+login.getUsuario());
         this.viewComercio.label_ImageEmpleado.setIcon(new ImageIcon(getImageWithBlob(login.getImageBlob(), login.getNombreImagen()).getImage().getScaledInstance(viewComercio.label_ImageEmpleado.getWidth(),viewComercio.label_ImageEmpleado.getHeight(),Image.SCALE_SMOOTH)));
-      
+        //Visualziar catalogo de autos
+        this.viewComercio.btn_verAutos.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Controller_ListaAutos listaAutos = new Controller_ListaAutos(login, cn);
+                viewComercio.dispose();
+            }
+        });
         //Button of  addCompra
         this.viewComercio.btn_addCompra.addMouseListener(new MouseAdapter() {
 

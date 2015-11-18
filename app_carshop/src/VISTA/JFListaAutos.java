@@ -15,12 +15,12 @@ import javax.swing.JLabel;
  *
  * @author ByteDrive
  */
-public class JFSearchAuto extends javax.swing.JFrame {
+public class JFListaAutos extends javax.swing.JFrame {
 
     /**
      * Creates new form JFSearchAuto
      */
-    public JFSearchAuto() {
+    public JFListaAutos() {
         initComponents();
         settingsFrame();
     }
@@ -29,12 +29,9 @@ public class JFSearchAuto extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.setSize(820, 650);
+        this.setSize(820, 555);
         this.getContentPane().setBackground(Color.black);
         
-        //Set imageIcon logo
-        ImageIcon logo = new ImageIcon(getClass().getResource("/ASSETS/LogoCARSHOP.png"));
-        label_image.setIcon(new ImageIcon(logo.getImage().getScaledInstance(label_image.getWidth(),label_image.getHeight(),Image.SCALE_SMOOTH)));
         
         //Set image in background panel
         JLabel backImage = new JLabel("");
@@ -61,29 +58,22 @@ public class JFSearchAuto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        label_image = new javax.swing.JLabel();
-        label_usuario = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        label_ImageEmpleado = new javax.swing.JLabel();
         panel_image = new javax.swing.JPanel();
         panel_inicio = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel15 = new javax.swing.JLabel();
         btn_cancelar = new javax.swing.JLabel();
-        btn_guardarUsuario = new javax.swing.JLabel();
+        btn_seleccionar = new javax.swing.JLabel();
+        cbox_searchFor = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        txt_valueSearch = new javax.swing.JTextField();
+        btn_buscar = new javax.swing.JLabel();
+        btn_verDetalles = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla_vAutos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Buscar auto");
-
-        label_usuario.setFont(new java.awt.Font("Neou", 0, 13)); // NOI18N
-        label_usuario.setForeground(new java.awt.Color(255, 255, 255));
-        label_usuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_usuario.setText("Usuario: pedro@carshop");
-
-        jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
-        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        label_ImageEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         panel_inicio.setBackground(java.awt.Color.lightGray);
 
@@ -101,13 +91,47 @@ public class JFSearchAuto extends javax.swing.JFrame {
         btn_cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_cancelar.setOpaque(true);
 
-        btn_guardarUsuario.setBackground(new java.awt.Color(84, 222, 66));
-        btn_guardarUsuario.setFont(new java.awt.Font("Gulim", 0, 17)); // NOI18N
-        btn_guardarUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        btn_guardarUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btn_guardarUsuario.setText("Enviar solicitud");
-        btn_guardarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_guardarUsuario.setOpaque(true);
+        btn_seleccionar.setBackground(new java.awt.Color(84, 222, 66));
+        btn_seleccionar.setFont(new java.awt.Font("Gulim", 0, 17)); // NOI18N
+        btn_seleccionar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_seleccionar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_seleccionar.setText("Seleccionar");
+        btn_seleccionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_seleccionar.setOpaque(true);
+
+        cbox_searchFor.setBackground(java.awt.Color.lightGray);
+        cbox_searchFor.setFont(new java.awt.Font("Gulim", 0, 16)); // NOI18N
+        cbox_searchFor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Marca", "Modelo", "Numero pasajeros", "Cilindros", "Precio menor a" }));
+
+        jLabel2.setFont(new java.awt.Font("Gulim", 0, 16)); // NOI18N
+        jLabel2.setText("Buscar por:");
+
+        btn_buscar.setBackground(new java.awt.Color(51, 153, 255));
+        btn_buscar.setFont(new java.awt.Font("Avenir Next", 0, 18)); // NOI18N
+        btn_buscar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_buscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ASSETS/database22_1.png"))); // NOI18N
+        btn_buscar.setText("Buscar");
+        btn_buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_buscar.setOpaque(true);
+
+        btn_verDetalles.setBackground(new java.awt.Color(51, 153, 255));
+        btn_verDetalles.setFont(new java.awt.Font("Avenir Next", 0, 18)); // NOI18N
+        btn_verDetalles.setForeground(new java.awt.Color(255, 255, 255));
+        btn_verDetalles.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_verDetalles.setText("Ver detalles");
+        btn_verDetalles.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_verDetalles.setOpaque(true);
+
+        tabla_vAutos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tabla_vAutos);
 
         javax.swing.GroupLayout panel_inicioLayout = new javax.swing.GroupLayout(panel_inicio);
         panel_inicio.setLayout(panel_inicioLayout);
@@ -117,7 +141,7 @@ public class JFSearchAuto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 205, Short.MAX_VALUE)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(169, 169, 169))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createSequentialGroup()
@@ -127,8 +151,24 @@ public class JFSearchAuto extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_guardarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_seleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
+            .addGroup(panel_inicioLayout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbox_searchFor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_valueSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_verDetalles)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         panel_inicioLayout.setVerticalGroup(
             panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,9 +177,22 @@ public class JFSearchAuto extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 448, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createSequentialGroup()
+                            .addGap(1, 1, 1)
+                            .addComponent(txt_valueSearch))
+                        .addComponent(cbox_searchFor)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_verDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_guardarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_seleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -158,43 +211,18 @@ public class JFSearchAuto extends javax.swing.JFrame {
             .addGroup(panel_imageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panel_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(label_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(238, 238, 238)
-                        .addComponent(label_image, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(label_ImageEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addComponent(panel_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(label_image, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(label_usuario)))
-                    .addComponent(label_ImageEmpleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel_image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(panel_image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -217,34 +245,40 @@ public class JFSearchAuto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFSearchAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFListaAutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFSearchAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFListaAutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFSearchAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFListaAutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFSearchAuto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFListaAutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFSearchAuto().setVisible(true);
+                new JFListaAutos().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel btn_buscar;
     public javax.swing.JLabel btn_cancelar;
-    public javax.swing.JLabel btn_guardarUsuario;
+    public javax.swing.JLabel btn_seleccionar;
+    public javax.swing.JLabel btn_verDetalles;
+    public javax.swing.JComboBox cbox_searchFor;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    public javax.swing.JLabel label_ImageEmpleado;
-    private javax.swing.JLabel label_image;
-    public javax.swing.JLabel label_usuario;
     private javax.swing.JPanel panel_image;
     private javax.swing.JPanel panel_inicio;
+    public javax.swing.JTable tabla_vAutos;
+    public javax.swing.JTextField txt_valueSearch;
     // End of variables declaration//GEN-END:variables
 }

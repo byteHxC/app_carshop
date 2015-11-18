@@ -9,7 +9,7 @@ import MODELO.CCliente;
 import MODELO.CCompra;
 import MODELO.CLogin;
 import MODELO.CUsuario;
-import VISTA.JFListarClientes;
+import VISTA.JFListaClientes;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,12 +38,12 @@ import javax.swing.table.DefaultTableModel;
  * @author Byter
  */
 public class Controller_JFSearchCliente {
-    JFListarClientes viewSearchCliente;
+    JFListaClientes viewSearchCliente;
     Connection cn;
     CCompra compra;
     
     public Controller_JFSearchCliente(CLogin login,Connection cn,String transc){
-        viewSearchCliente = new JFListarClientes();
+        viewSearchCliente = new JFListaClientes();
         loadTable(viewSearchCliente.table_showClientes,CCliente.queryAll(cn));
         //Action when press button seleccionar
         this.viewSearchCliente.btn_seleccionar.addMouseListener(new MouseAdapter() {
