@@ -11,7 +11,6 @@ import MODELO.CCompra;
 import MODELO.CLogin;
 import MODELO.CUsuario;
 import VISTA.JFAprobarCompra;
-import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -27,6 +26,8 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -35,6 +36,7 @@ import javax.swing.JOptionPane;
 public class Controller_JFAprobarCompra {
     JFAprobarCompra viewAprobarCompra;
     Connection cn;
+    
     CCompra compra;
     CAuto auto;
     CUsuario encargado;
@@ -44,21 +46,41 @@ public class Controller_JFAprobarCompra {
         this.viewAprobarCompra = new JFAprobarCompra();
         this.cn = cn;
         compra = new CCompra();
-        this.viewAprobarCompra.label_usuario.setText("USUARIO: "+login.getUsuario());
-        this.viewAprobarCompra.label_ImageEmpleado.setIcon(new ImageIcon(getImageWithBlob(login.getImageBlob(),login.getNombreImagen()).getImage().getScaledInstance(viewAprobarCompra.label_ImageEmpleado.getWidth(),viewAprobarCompra.label_ImageEmpleado.getHeight() ,Image.SCALE_SMOOTH )));
-        //Action when press button Aprobacion
-        this.viewAprobarCompra.btn_aprobar.addMouseListener(new MouseAdapter() {
+        this.viewAprobarCompra.btn_aceptar.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                if(CCompra.Aprobar(compra.getNumero_factura(), cn)){
+            public void mouseClicked(MouseEvent e) {  
+                    viewAprobarCompra.dialog_aprobo.dispose();
+                float precio_compra = auto.getPrecio_compra();
+
+                if(CCompra.Aprobar(compra.getNumero_factura(),viewAprobarCompra.txt_comentario.getText(), cn) && CAuto.setPrecioVenta(cn,precio_compra+(precio_compra/100*viewAprobarCompra.porcentaje.getValue()) , auto.getNumero_serie())){
                     JOptionPane.showMessageDialog(viewAprobarCompra,"La compra ha sido aprobada, el auto esta disponible para vender!","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-                   Controller_JFFinanciamientoHome JFFinHome = new Controller_JFFinanciamientoHome(login, cn);
-                     viewAprobarCompra.dispose();
+                    Controller_JFFinanciamientoHome JFFinHome = new Controller_JFFinanciamientoHome(login, cn);
+                    viewAprobarCompra.dispose();
+                    
                 }else{
                     JOptionPane.showMessageDialog(viewAprobarCompra,"Error en aprobacion de compra,posiblemente ya la aprobaron","Mensaje",JOptionPane.INFORMATION_MESSAGE);
                     Controller_JFFinanciamientoHome JFFinHome = new Controller_JFFinanciamientoHome(login, cn);
                     viewAprobarCompra.dispose();
                 }
+            }
+        });
+        //Action when press button Aprobacion
+        this.viewAprobarCompra.btn_aprobar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                float precio_compra = auto.getPrecio_compra();
+                viewAprobarCompra.txt_precioCompra.setText(precio_compra+" $");
+                viewAprobarCompra.txt_precioVenta.setText(precio_compra+(precio_compra/100*viewAprobarCompra.porcentaje.getValue())+ " $");
+                viewAprobarCompra.dialog_aprobo.setVisible(true);
+            }
+        });
+        
+       this.viewAprobarCompra.porcentaje.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+               float precio_compra = auto.getPrecio_compra();
+               viewAprobarCompra.txt_precioVenta.setText(precio_compra+(precio_compra/100*viewAprobarCompra.porcentaje.getValue())+ " $");
+               viewAprobarCompra.label_porcentaje.setText(viewAprobarCompra.porcentaje.getValue()+" %");
             }
         });
         
@@ -80,23 +102,21 @@ public class Controller_JFAprobarCompra {
             }
         });
         //See more details for car
-        this.viewAprobarCompra.btn_moreDetailsCar.addMouseListener(new MouseAdapter() {
+        this.viewAprobarCompra.btn_detalles_auto.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Controller_JFAgregarAuto JFViewAuto = new Controller_JFAgregarAuto("FinanciamientoCompra", login, cn);
-                //JFViewAuto.setData(compra, encargado, auto, cliente);
-                JFViewAuto.viewData();
+                Controller_DetallesAuto detalles_auto = new Controller_DetallesAuto(login, cn, "Compra");
+                detalles_auto.setData(compra, encargado, auto, cliente);
                 viewAprobarCompra.dispose();
             }
         });
         //See more details for Custom
-        this.viewAprobarCompra.btn_moreDetailsCustom.addMouseListener(new MouseAdapter() {
+        this.viewAprobarCompra.btn_detalles_cliente.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Controller_JFAgregarCliente JFviewCliente = new Controller_JFAgregarCliente("FinanciamientoCompra", login, cn);
-               
-                JFviewCliente.setData(compra, encargado, auto, cliente);
-                JFviewCliente.viewData();
+                Controller_DetallesCliente detallesCliente = new Controller_DetallesCliente(login, cn,"Compra");
+                detallesCliente.setData(compra, encargado, auto, cliente);
+                detallesCliente.viewData();
                 viewAprobarCompra.dispose();
             }
         });

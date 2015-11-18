@@ -157,74 +157,14 @@ public class Controller_JFAgregarAuto {
     
     
     
-    //_______________________
-    //Constructor for employe Financiamiento Compra/venta, crear nuevo controlador sera pura vista ;)
-    public Controller_JFAgregarAuto(String JFController,CLogin login,Connection cn){
-      
-        this.viewAddAuto = new JFInfoAuto();
-        this.viewAddAuto.setTitle("Detalle auto");
-        this.viewAddAuto.label_title.setText("Vista auto");
-        //Enable false for components that not use
-        this.viewAddAuto.cbox_Certificado.setEnabled(false);
-        this.viewAddAuto.btn_AgregarAuto.setVisible(false);
-        this.viewAddAuto.btn_cancelar.setText("Regresar");
-        lockFields();
-     
-     //Actions for to handle the buttons closing and cancel frame   
-     this.viewAddAuto.btn_cancelar.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                switch(JFController){
-                    case ("FinanciamientoCompra"):
-                        Controller_JFAprobarCompra JFAprobarCompra = new Controller_JFAprobarCompra(login,cn);
-                        //JFAprobarCompra.setData(compra, encargado, auto, cliente);
-                        JFAprobarCompra.viewData();
-                        viewAddAuto.dispose();
-                        break;
-                    case ("FinanciamientoVenta"):
-                        break;
-                }
-                
-            }
-     });
-     this.viewAddAuto.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                 switch(JFController){
-                    case ("FinanciamientoCompra"):
-                        Controller_JFAprobarCompra JFAprobarCompra = new Controller_JFAprobarCompra(login,cn);
-                        //JFAprobarCompra.setData(compra, encargado, auto, cliente);
-                        JFAprobarCompra.viewData();
-                        viewAddAuto.dispose();
-                        break;
-                    case ("FinanciamientoVenta"):
-                        break;
-                }
-            }
-     });
-        
-    }
+   
    
     public void segueData(CAuto auto,CCliente cliente){
         this.auto = auto;
         this.cliente = cliente;
     }
       
-      public void viewData(){
-          this.viewAddAuto.label_imgAuto.setIcon(new ImageIcon(getImageWithBlob(this.auto.getImageBlob(),this.auto.getNombreImagen()).getImage().getScaledInstance(viewAddAuto.label_imgAuto.getWidth(),viewAddAuto.label_imgAuto.getHeight(),Image.SCALE_SMOOTH)));
-          this.viewAddAuto.txt_numeroSerie.setText(auto.getNumero_serie());
-          this.viewAddAuto.txt_marca.setText(auto.getMarca());
-          this.viewAddAuto.txt_Tipo.setText(auto.getTipo());
-          this.viewAddAuto.txt_modelo.setText(auto.getModelo());
-          this.viewAddAuto.txt_numPasajeros.setText(auto.getNumero_pasajeros()+"");
-          this.viewAddAuto.txt_numCilindros.setText(auto.getCilindros()+"");
-          this.viewAddAuto.txt_Color.setText(auto.getColor());
-          this.viewAddAuto.cbox_Certificado.setSelectedItem(auto.getCilindros());
-          this.viewAddAuto.txtArea_detalle.setText(auto.getDetalle());
-          this.viewAddAuto.txt_Precio.setVisible(false);
-          this.viewAddAuto.label_preciocompra.setVisible(false);
-          this.viewAddAuto.txt_PrecioNeto.setText(auto.getPrecio_compra()+"  $");
-      }
+     
     private ImageIcon getImageWithBlob(Blob blob,String nombre){
          ImageIcon image = null;
          BufferedImage img = null;
@@ -254,21 +194,6 @@ public class Controller_JFAgregarAuto {
          }
          return 0;
         
-    }
-
-    private void lockFields() {
-          this.viewAddAuto.txt_numeroSerie.setEditable(false);
-          this.viewAddAuto.txt_marca.setEditable(false);
-          this.viewAddAuto.txt_Tipo.setEditable(false);
-          this.viewAddAuto.txt_modelo.setEditable(false);
-          this.viewAddAuto.txt_numPasajeros.setEditable(false);
-          this.viewAddAuto.txt_numCilindros.setEditable(false);
-          this.viewAddAuto.txt_Color.setEditable(false);
-          this.viewAddAuto.cbox_Certificado.setEditable(false);
-          this.viewAddAuto.txtArea_detalle.setEditable(false);
-          this.viewAddAuto.txt_Precio.setVisible(false);
-          this.viewAddAuto.label_preciocompra.setVisible(false);
-          this.viewAddAuto.txt_PrecioNeto.setEditable(false);
     }
     
 }

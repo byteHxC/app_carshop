@@ -6,7 +6,10 @@
 package CONTROL;
 
 import MODELO.CAuto;
+import MODELO.CCliente;
+import MODELO.CCompra;
 import MODELO.CLogin;
+import MODELO.CUsuario;
 import VISTA.JFInfoAuto;
 import app_carshop.App_carshop;
 import java.awt.Image;
@@ -32,6 +35,11 @@ import javax.swing.JOptionPane;
  */
 public class Controller_DetallesAuto {
     JFInfoAuto infoAuto;
+    
+    CCompra compra;
+    CAuto auto;
+    CUsuario encargado;
+    CCliente cliente;
     
     public Controller_DetallesAuto(CLogin login,Connection cn,CAuto auto){
         infoAuto = new JFInfoAuto();
@@ -60,6 +68,51 @@ public class Controller_DetallesAuto {
         });
         
     }
+    
+     //_______________________
+    //Constructor for employe Financiamiento Compra/venta, crear nuevo controlador sera pura vista ;)
+    public Controller_DetallesAuto(CLogin login,Connection cn,String typeDocto){
+        this.infoAuto = new JFInfoAuto();
+        this.infoAuto.setTitle("Detalles auto");
+         infoAuto.lockFields(false);
+     
+     //Actions for to handle the buttons closing and cancel frame   
+     this.infoAuto.btn_cancelar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                switch(typeDocto){
+                    case ("Compra"):
+                        Controller_JFAprobarCompra JFAprobarCompra = new Controller_JFAprobarCompra(login,cn);
+                        JFAprobarCompra.setData(compra, encargado, auto, cliente);
+                        JFAprobarCompra.viewData();
+                        infoAuto.dispose();
+                        break;
+                    case ("Venta"):
+                        break;
+                }
+                
+            }
+     });
+     this.infoAuto.addWindowListener(new WindowAdapter() {
+             @Override
+            public void windowClosing(WindowEvent e) {
+                int resp = JOptionPane.showConfirmDialog(infoAuto,"¿Desea salir de la app?","Warning",JOptionPane.YES_NO_OPTION);
+                if(resp == JOptionPane.YES_OPTION){
+                    App_carshop.init();
+                    infoAuto.dispose();
+                }
+            }
+     });
+        
+    }
+    public void setData(CCompra compra,CUsuario encargado, CAuto auto,CCliente cliente) {
+            this.compra = compra;
+            this.auto = auto;
+            this.cliente = cliente;
+            this.encargado = encargado;
+            loadAuto(auto);
+    }
+    
     public void loadAuto(CAuto auto){
         infoAuto.txt_numeroSerie.setText(auto.getNumero_serie());
         infoAuto.txt_marca.setText(auto.getMarca());
@@ -95,4 +148,6 @@ public class Controller_DetallesAuto {
             } 
             return image;
          }
+        
+       
 }

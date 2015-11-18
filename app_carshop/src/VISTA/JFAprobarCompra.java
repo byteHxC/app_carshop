@@ -21,20 +21,17 @@ public class JFAprobarCompra extends javax.swing.JFrame {
      * Creates new form JFAprobarVenta
      */
     public JFAprobarCompra() {
-        initComponents();  settingsFrame();
+        initComponents();  
+        settingsFrame();
     }
  private void settingsFrame(){
         //Configuraciones jframe
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.setSize(820, 650);
+        this.setSize(820, 540);
         this.getContentPane().setBackground(Color.black);
-        
-        //Set imageIcon logo
-        ImageIcon logo = new ImageIcon(getClass().getResource("/ASSETS/LogoCARSHOP.png"));
-        label_image.setIcon(new ImageIcon(logo.getImage().getScaledInstance(label_image.getWidth(),label_image.getHeight(),Image.SCALE_SMOOTH)));
-        
+       
         //Set image in background panel
         JLabel backImage = new JLabel("");
         ImageIcon image = new ImageIcon(getClass().getResource("/ASSETS/carrr.jpg"));
@@ -52,12 +49,27 @@ public class JFAprobarCompra extends javax.swing.JFrame {
         panel_cliente.setBackground(color3);
         panel_auto.setBackground(color3);
         
-        //Icon buttons
-//        Image searchU = new ImageIcon(getClass().getResource("/ASSETS/searchU.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-//        this.btn_searchCliente.setIcon(new ImageIcon(searchU));
-//        Image searchA = new ImageIcon(getClass().getResource("/ASSETS/searchA.png")).getImage().getScaledInstance(30,30,Image.SCALE_SMOOTH);
-//        this.btn_AddAuto.setIcon(new ImageIcon(searchA));
-//        
+        Color color4 = new Color(255,255,255,150);
+        panel_backDialog.setBackground(color4);
+        
+         //configuracion jdialog
+        dialog_aprobo.setResizable(false);
+        dialog_aprobo.setLocationRelativeTo(btn_aprobar);
+        dialog_aprobo.setSize(451, 351);
+        dialog_aprobo.dispose();
+        
+       
+        
+          //Set image in background panel
+            JLabel backImage2 = new JLabel("");
+            ImageIcon image2 = new ImageIcon(getClass().getResource("/ASSETS/carrr.jpg"));
+            dialog_aprobo.getContentPane().add(backImage2);
+            
+            backImage2.setIcon(new ImageIcon(image.getImage().getScaledInstance( dialog_aprobo.getWidth()+21,dialog_aprobo.getHeight(),Image.SCALE_SMOOTH)));
+            backImage2.setSize( dialog_aprobo.getWidth()+21,dialog_aprobo.getHeight());
+            backImage2.setLocation(0,0);
+        
+        
         //Cambiar icono
         
         Image icon = Toolkit.getDefaultToolkit().getImage("/ASSETS/LogoCARSHOP.png");
@@ -73,10 +85,19 @@ public class JFAprobarCompra extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        label_image = new javax.swing.JLabel();
-        label_usuario = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        label_ImageEmpleado = new javax.swing.JLabel();
+        dialog_aprobo = new javax.swing.JDialog();
+        panel_backDialog = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        btn_aceptar = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        txt_precioCompra = new javax.swing.JTextField();
+        txt_precioVenta = new javax.swing.JTextField();
+        porcentaje = new javax.swing.JSlider();
+        label_porcentaje = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txt_comentario = new javax.swing.JTextArea();
         panel_image = new javax.swing.JPanel();
         panel_inicio = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -87,7 +108,7 @@ public class JFAprobarCompra extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txt_ClienteNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        btn_moreDetailsCustom = new javax.swing.JLabel();
+        btn_detalles_cliente = new javax.swing.JLabel();
         panel_auto = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         txt_numSerie = new javax.swing.JTextField();
@@ -96,7 +117,7 @@ public class JFAprobarCompra extends javax.swing.JFrame {
         txt_Precio = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtArea_descripcion = new javax.swing.JTextArea();
-        btn_moreDetailsCar = new javax.swing.JLabel();
+        btn_detalles_auto = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txt_encargadoVenta = new javax.swing.JTextField();
         txt_fecha = new javax.swing.JTextField();
@@ -104,18 +125,113 @@ public class JFAprobarCompra extends javax.swing.JFrame {
         btn_NOAprobar = new javax.swing.JLabel();
         btn_aprobar = new javax.swing.JLabel();
 
+        dialog_aprobo.setModal(true);
+
+        jLabel8.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Porcentaje de ganancia");
+        jLabel8.setToolTipText("");
+
+        btn_aceptar.setBackground(new java.awt.Color(84, 222, 66));
+        btn_aceptar.setFont(new java.awt.Font("Gulim", 0, 17)); // NOI18N
+        btn_aceptar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_aceptar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_aceptar.setText("Aceptar");
+        btn_aceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_aceptar.setOpaque(true);
+
+        jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLabel1.setText("Precio Compra:");
+
+        jLabel12.setText("Precio Venta:");
+
+        txt_precioCompra.setEditable(false);
+
+        txt_precioVenta.setEditable(false);
+
+        porcentaje.setMinimum(10);
+        porcentaje.setValue(10);
+
+        label_porcentaje.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        label_porcentaje.setText("10%");
+
+        txt_comentario.setColumns(20);
+        txt_comentario.setLineWrap(true);
+        txt_comentario.setRows(5);
+        txt_comentario.setBorder(javax.swing.BorderFactory.createTitledBorder("Comentario"));
+        jScrollPane2.setViewportView(txt_comentario);
+
+        javax.swing.GroupLayout panel_backDialogLayout = new javax.swing.GroupLayout(panel_backDialog);
+        panel_backDialog.setLayout(panel_backDialogLayout);
+        panel_backDialogLayout.setHorizontalGroup(
+            panel_backDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panel_backDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel_backDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jSeparator4)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_backDialogLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel_backDialogLayout.createSequentialGroup()
+                        .addGroup(panel_backDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel_backDialogLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(12, 12, 12))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_backDialogLayout.createSequentialGroup()
+                                .addComponent(label_porcentaje)
+                                .addGap(18, 18, 18)))
+                        .addGroup(panel_backDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(porcentaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(panel_backDialogLayout.createSequentialGroup()
+                                .addComponent(txt_precioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(jLabel12)
+                                .addGap(12, 12, 12)
+                                .addComponent(txt_precioVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)))))
+                .addContainerGap())
+        );
+        panel_backDialogLayout.setVerticalGroup(
+            panel_backDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_backDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(panel_backDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txt_precioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(txt_precioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel_backDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(porcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_porcentaje))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout dialog_aproboLayout = new javax.swing.GroupLayout(dialog_aprobo.getContentPane());
+        dialog_aprobo.getContentPane().setLayout(dialog_aproboLayout);
+        dialog_aproboLayout.setHorizontalGroup(
+            dialog_aproboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialog_aproboLayout.createSequentialGroup()
+                .addComponent(panel_backDialog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        dialog_aproboLayout.setVerticalGroup(
+            dialog_aproboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panel_backDialog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Aprobar compra");
-
-        label_usuario.setFont(new java.awt.Font("Neou", 0, 13)); // NOI18N
-        label_usuario.setForeground(new java.awt.Color(255, 255, 255));
-        label_usuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_usuario.setText("Usuario: pedro@carshop");
-
-        jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
-        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        label_ImageEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         panel_inicio.setBackground(java.awt.Color.lightGray);
 
@@ -141,13 +257,13 @@ public class JFAprobarCompra extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Gulim", 0, 14)); // NOI18N
         jLabel3.setText("Nombre: ");
 
-        btn_moreDetailsCustom.setBackground(new java.awt.Color(51, 153, 255));
-        btn_moreDetailsCustom.setFont(new java.awt.Font("Avenir Next", 0, 18)); // NOI18N
-        btn_moreDetailsCustom.setForeground(new java.awt.Color(255, 255, 255));
-        btn_moreDetailsCustom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btn_moreDetailsCustom.setText("Más detalles");
-        btn_moreDetailsCustom.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_moreDetailsCustom.setOpaque(true);
+        btn_detalles_cliente.setBackground(new java.awt.Color(51, 153, 255));
+        btn_detalles_cliente.setFont(new java.awt.Font("Avenir Next", 0, 18)); // NOI18N
+        btn_detalles_cliente.setForeground(new java.awt.Color(255, 255, 255));
+        btn_detalles_cliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_detalles_cliente.setText("Más detalles");
+        btn_detalles_cliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_detalles_cliente.setOpaque(true);
 
         javax.swing.GroupLayout panel_clienteLayout = new javax.swing.GroupLayout(panel_cliente);
         panel_cliente.setLayout(panel_clienteLayout);
@@ -165,7 +281,7 @@ public class JFAprobarCompra extends javax.swing.JFrame {
                 .addGap(6, 6, 6))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_clienteLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_moreDetailsCustom, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_detalles_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panel_clienteLayout.setVerticalGroup(
@@ -180,7 +296,7 @@ public class JFAprobarCompra extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(txt_ClienteNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(btn_moreDetailsCustom)
+                .addComponent(btn_detalles_cliente)
                 .addContainerGap())
         );
 
@@ -206,13 +322,13 @@ public class JFAprobarCompra extends javax.swing.JFrame {
         txtArea_descripcion.setRows(5);
         jScrollPane1.setViewportView(txtArea_descripcion);
 
-        btn_moreDetailsCar.setBackground(new java.awt.Color(51, 153, 255));
-        btn_moreDetailsCar.setFont(new java.awt.Font("Avenir Next", 0, 18)); // NOI18N
-        btn_moreDetailsCar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_moreDetailsCar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btn_moreDetailsCar.setText("Más detalles");
-        btn_moreDetailsCar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_moreDetailsCar.setOpaque(true);
+        btn_detalles_auto.setBackground(new java.awt.Color(51, 153, 255));
+        btn_detalles_auto.setFont(new java.awt.Font("Avenir Next", 0, 18)); // NOI18N
+        btn_detalles_auto.setForeground(new java.awt.Color(255, 255, 255));
+        btn_detalles_auto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_detalles_auto.setText("Más detalles");
+        btn_detalles_auto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_detalles_auto.setOpaque(true);
 
         javax.swing.GroupLayout panel_autoLayout = new javax.swing.GroupLayout(panel_auto);
         panel_auto.setLayout(panel_autoLayout);
@@ -232,7 +348,7 @@ public class JFAprobarCompra extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_autoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_moreDetailsCar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_detalles_auto, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panel_autoLayout.setVerticalGroup(
@@ -250,7 +366,7 @@ public class JFAprobarCompra extends javax.swing.JFrame {
                     .addComponent(txt_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_moreDetailsCar)
+                .addComponent(btn_detalles_auto)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -370,16 +486,16 @@ public class JFAprobarCompra extends javax.swing.JFrame {
         panel_imageLayout.setHorizontalGroup(
             panel_imageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_imageLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addComponent(panel_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         panel_imageLayout.setVerticalGroup(
             panel_imageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_imageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panel_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -387,36 +503,12 @@ public class JFAprobarCompra extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panel_image, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(216, 216, 216)
-                        .addComponent(label_image, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(label_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(label_ImageEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addComponent(label_image, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(label_usuario)))
-                    .addComponent(label_ImageEmpleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         pack();
@@ -460,10 +552,14 @@ public class JFAprobarCompra extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel btn_NOAprobar;
+    public javax.swing.JLabel btn_aceptar;
     public javax.swing.JLabel btn_aprobar;
-    public javax.swing.JLabel btn_moreDetailsCar;
-    public javax.swing.JLabel btn_moreDetailsCustom;
+    public javax.swing.JLabel btn_detalles_auto;
+    public javax.swing.JLabel btn_detalles_cliente;
+    public javax.swing.JDialog dialog_aprobo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -471,23 +567,28 @@ public class JFAprobarCompra extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    public javax.swing.JLabel label_ImageEmpleado;
-    private javax.swing.JLabel label_image;
-    public javax.swing.JLabel label_usuario;
+    private javax.swing.JSeparator jSeparator4;
+    public javax.swing.JLabel label_porcentaje;
     private javax.swing.JPanel panel_auto;
+    private javax.swing.JPanel panel_backDialog;
     private javax.swing.JPanel panel_cliente;
     private javax.swing.JPanel panel_detallesCompra;
     private javax.swing.JPanel panel_image;
     private javax.swing.JPanel panel_inicio;
+    public javax.swing.JSlider porcentaje;
     public javax.swing.JTextArea txtArea_descripcion;
     public javax.swing.JTextField txt_ClienteNombre;
     public javax.swing.JTextField txt_Precio;
     public javax.swing.JTextField txt_clienteCveElector;
+    public javax.swing.JTextArea txt_comentario;
     public javax.swing.JTextField txt_encargadoVenta;
     public javax.swing.JTextField txt_fecha;
     public javax.swing.JTextField txt_numSerie;
+    public javax.swing.JTextField txt_precioCompra;
+    public javax.swing.JTextField txt_precioVenta;
     // End of variables declaration//GEN-END:variables
 }

@@ -51,6 +51,19 @@ public class JFInfoCliente extends javax.swing.JFrame {
         this.setIconImage(icon);
     }
 
+      public void lockFields(boolean av){
+        txt_cveElector.setEditable(av);
+        txt_nombre.setEditable(av);
+        txt_apellidoPat.setEditable(av);
+        txt_apellidoMat.setEditable(av);
+        txt_RFC.setEditable(av);
+        txt_ingresoMensual.setEditable(av);
+        txt_direccion.setEditable(av);
+        txt_telefono.setEditable(av);
+        
+        btn_guardarCliente.setVisible(av);
+        //btn_cancelar.setText("Regresar");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

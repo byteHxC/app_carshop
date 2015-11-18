@@ -27,6 +27,15 @@ public class CCompra {
     private String auto_numserie;
     private String encargado_cve;
     private String cliente_cve;
+    private String comentario;
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
 
     public CCompra() {
         cliente_cve = "";
@@ -194,10 +203,11 @@ public class CCompra {
          return compra;
      }
      
-     public static boolean Aprobar(int numero_factura,Connection cn){
+     public static boolean Aprobar(int numero_factura,String comentario,Connection cn){
          try{
-             PreparedStatement pps = cn.prepareStatement("update compras set aprobacion = true where numero_factura = ?");
-             pps.setInt(1, numero_factura);
+             PreparedStatement pps = cn.prepareStatement("update compras set aprobacion = true,comentario= ? where numero_factura = ?");
+             pps.setString(1, comentario);
+             pps.setInt(2, numero_factura);
              pps.executeUpdate();
              return true;
          } catch (SQLException ex) {

@@ -470,4 +470,16 @@ public class CAuto {
         return autos;
     }
     
+    public static boolean setPrecioVenta(Connection cn,float precio_Venta,String numero_serie){
+        try{
+            PreparedStatement pps = cn.prepareStatement("update catalogo_autos set precio_venta= ?, estado='Disponible' where numero_serie = ?");
+            pps.setFloat(1, precio_Venta);
+            pps.setString(2,numero_serie);
+            pps.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(CAuto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 }
