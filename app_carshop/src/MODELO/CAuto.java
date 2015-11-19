@@ -206,7 +206,7 @@ public class CAuto {
         }
         else{
             int anio = Integer.parseInt(modelo);
-            if((anioAct - anio) > 5){
+            if((anioAct - anio) > 5 && anio<=anioAct){
                 txtErrores += "\tEl vehiculo no puede ser agregado. Modelo retrazado\n";
                 errores = true;
             }
@@ -296,7 +296,7 @@ public class CAuto {
                 auto.setDetalle(rs.getString("detalle"));
                 auto.setCertificado_mecanico(rs.getInt("certificado_mecanico"));
                 auto.setPrecio_compra(rs.getFloat("precio_compra"));
-                auto.setPrecio_venta(rs.getFloat("precio_compra"));
+                auto.setPrecio_venta(rs.getFloat("precio_venta"));
                 auto.setImageBlob(rs.getBlob("imagen"));
                 auto.setNombreImagen(rs.getString("nombre_imagen"));
                 auto.setEstado(rs.getString("estado"));
@@ -482,4 +482,16 @@ public class CAuto {
         }
         return false;
     }
+   public static boolean setEstado(Connection cn,String numero_serie,String estado){
+       try{
+           PreparedStatement pps = cn.prepareStatement("update catalogo_autos set estado = ? where numero_serie = ?");
+           pps.setString(1, estado);
+           pps.setString(2, numero_serie);
+           pps.executeUpdate();
+           return true;
+       } catch (SQLException ex) {
+            Logger.getLogger(CAuto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return false;
+   }
 }

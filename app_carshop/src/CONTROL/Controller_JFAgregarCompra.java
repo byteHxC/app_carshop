@@ -61,8 +61,6 @@ public class Controller_JFAgregarCompra {
             public void mouseClicked(MouseEvent e) {
                 //Validar compra y guardar compra en estado de proceso
                 CCompra compra = new CCompra();
-                //Agregar valor de compra por defualt sin aprobar
-                compra.setAprobacion(false);
                 //Agregar datos del encargado a la compra
                 compra.setEncargado_cve(login.getClave_elector());
                 //Agregar datos del auto a la compra

@@ -99,13 +99,12 @@ public class CCompra {
     }
     public void saveObject(Connection cn){
         try{
-            PreparedStatement pps = cn.prepareStatement("INSERT INTO compras(fecha,precio,aprobacion,auto_numserie,encargado_cve,cliente_cve) values (?,?,?,?,?,?)");
+            PreparedStatement pps = cn.prepareStatement("INSERT INTO compras(fecha,precio,auto_numserie,encargado_cve,cliente_cve) values (?,?,?,?,?,?)");
             pps.setString(1, DateTime.getNow().toString());
             pps.setFloat(2, precio);
-            pps.setBoolean(3,aprobacion);
-            pps.setString(4,auto_numserie);
-            pps.setString(5,encargado_cve);
-            pps.setString(6,cliente_cve);
+            pps.setString(3,auto_numserie);
+            pps.setString(4,encargado_cve);
+            pps.setString(5,cliente_cve);
             pps.executeUpdate();
             System.out.println("Compra.saveObject() successful");
         } catch (SQLException ex) {
@@ -163,8 +162,8 @@ public class CCompra {
      public static ArrayList<CCompra> getCompras(Connection cn){
          ArrayList<CCompra> compras = new ArrayList<>();
          try{
-             PreparedStatement pps = cn.prepareStatement("SELECT * FROM compras where aprobacion = ?");
-             pps.setBoolean(1,false);
+             PreparedStatement pps = cn.prepareStatement("SELECT * FROM compras where aprobacion is null");
+             
              ResultSet rs = pps.executeQuery();
              while(rs.next()){
                  CCompra compra = new CCompra();
@@ -209,17 +208,20 @@ public class CCompra {
              pps.setString(1, comentario);
              pps.setInt(2, numero_factura);
              pps.executeUpdate();
+             System.out.println("compra aprobada");
              return true;
          } catch (SQLException ex) {
             Logger.getLogger(CCompra.class.getName()).log(Level.SEVERE, null, ex);
         }
          return false;
      }
-     public static boolean noAprobar(String numero_serie,Connection cn){
+     public static boolean noAprobar(int numero_factura,String comentario,Connection cn){
           try{
-             PreparedStatement pps = cn.prepareStatement("delete from catalogo_autos where numero_serie = ?");
-             pps.setString(1, numero_serie);
+             PreparedStatement pps = cn.prepareStatement("update compras set aprobacion = false,comentario = ?  where numero_factura = ?");
+             pps.setString(1, comentario);
+             pps.setInt(2, numero_factura);
              pps.executeUpdate();
+              System.out.println("compra no aprobada");
              return true;
          } catch (SQLException ex) {
             Logger.getLogger(CCompra.class.getName()).log(Level.SEVERE, null, ex);

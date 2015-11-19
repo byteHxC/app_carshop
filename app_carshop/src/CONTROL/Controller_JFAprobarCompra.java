@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -36,6 +37,7 @@ import javax.swing.event.ChangeListener;
 public class Controller_JFAprobarCompra {
     JFAprobarCompra viewAprobarCompra;
     Connection cn;
+    float precio_compra = 0;
     
     CCompra compra;
     CAuto auto;
@@ -49,9 +51,7 @@ public class Controller_JFAprobarCompra {
         this.viewAprobarCompra.btn_aceptar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {  
-                    viewAprobarCompra.dialog_aprobo.dispose();
-                float precio_compra = auto.getPrecio_compra();
-
+                viewAprobarCompra.dialog_aprobo.dispose();
                 if(CCompra.Aprobar(compra.getNumero_factura(),viewAprobarCompra.txt_comentario.getText(), cn) && CAuto.setPrecioVenta(cn,precio_compra+(precio_compra/100*viewAprobarCompra.porcentaje.getValue()) , auto.getNumero_serie())){
                     JOptionPane.showMessageDialog(viewAprobarCompra,"La compra ha sido aprobada, el auto esta disponible para vender!","Mensaje",JOptionPane.INFORMATION_MESSAGE);
                     Controller_JFFinanciamientoHome JFFinHome = new Controller_JFFinanciamientoHome(login, cn);
@@ -68,7 +68,7 @@ public class Controller_JFAprobarCompra {
         this.viewAprobarCompra.btn_aprobar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                float precio_compra = auto.getPrecio_compra();
+                precio_compra = auto.getPrecio_compra();
                 viewAprobarCompra.txt_precioCompra.setText(precio_compra+" $");
                 viewAprobarCompra.txt_precioVenta.setText(precio_compra+(precio_compra/100*viewAprobarCompra.porcentaje.getValue())+ " $");
                 viewAprobarCompra.dialog_aprobo.setVisible(true);
@@ -78,7 +78,6 @@ public class Controller_JFAprobarCompra {
        this.viewAprobarCompra.porcentaje.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-               float precio_compra = auto.getPrecio_compra();
                viewAprobarCompra.txt_precioVenta.setText(precio_compra+(precio_compra/100*viewAprobarCompra.porcentaje.getValue())+ " $");
                viewAprobarCompra.label_porcentaje.setText(viewAprobarCompra.porcentaje.getValue()+" %");
             }
@@ -88,13 +87,19 @@ public class Controller_JFAprobarCompra {
         this.viewAprobarCompra.btn_NOAprobar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                int resp = JOptionPane.showConfirmDialog(viewAprobarCompra,"¿Esta seguro que NO quiere aprobar esta compra?\n*Al hacer esto se borrara el registro del auto y compra.","Mensaje de advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+                int resp = JOptionPane.showConfirmDialog(viewAprobarCompra,"¿Esta seguro que NO quiere aprobar esta compra?","Mensaje de advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
                 if(resp == JOptionPane.YES_OPTION){
-                    if(!CCompra.noAprobar(compra.getAuto_numserie(), cn)){
+                    JTextArea area = new JTextArea();
+   
+                    String comentario = "";
+                    JOptionPane.showMessageDialog(area,"Comentario porque NO aprobo la compra:");
+                    comentario += area.getText();
+                    if(!CCompra.noAprobar(compra.getNumero_factura(),comentario, cn)){
                         JOptionPane.showMessageDialog(viewAprobarCompra,"Error en aprobacion de compra,posiblemente ya la aprobaron","Mensaje",JOptionPane.INFORMATION_MESSAGE);
                          Controller_JFFinanciamientoHome JFFinHome = new Controller_JFFinanciamientoHome(login, cn);
                          viewAprobarCompra.dispose();
                     }else{
+                    CAuto.setEstado(cn,compra.getAuto_numserie(),"No disponible");
                     Controller_JFFinanciamientoHome JFFinHome = new Controller_JFFinanciamientoHome(login, cn);
                     viewAprobarCompra.dispose();
                     }
