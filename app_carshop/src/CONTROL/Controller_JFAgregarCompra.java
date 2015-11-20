@@ -36,7 +36,6 @@ import javax.swing.JOptionPane;
  */
 public class Controller_JFAgregarCompra {
     JFAgregarCompra viewAddCompra;
-    Connection cn;
     Thread time;
     
     CAuto auto;
@@ -46,7 +45,6 @@ public class Controller_JFAgregarCompra {
         this.viewAddCompra = new JFAgregarCompra();
         auto = new CAuto();
         cliente = new CCliente();
-        this.cn = cn;
         CUsuario usuario = CUsuario.getObject(login.getClave_elector(), cn);
         actualizarTime();
         this.viewAddCompra.label_usuario.setText("USUARIOS: "+login.getUsuario());
@@ -101,7 +99,7 @@ public class Controller_JFAgregarCompra {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(viewAddCompra.btn_searchCliente.isEnabled()){
-                   Controller_AgregarClienteCompra addClienteCompra = new Controller_AgregarClienteCompra(login, cn);
+                   Controller_SeleccionarClienteCompra addClienteCompra = new Controller_SeleccionarClienteCompra(login, cn);
                     viewAddCompra.dispose();
                 }
             }
@@ -141,7 +139,8 @@ public class Controller_JFAgregarCompra {
         //update date auto
           if(auto!=null){
               this.viewAddCompra.txt_numSerie.setText(auto.getNumero_serie());
-              this.viewAddCompra.txtArea_descripcion.setText(auto.getDetalle());
+              String descripcion = "Marca: "+auto.getMarca()+"\nTipo: "+auto.getTipo()+"\n Modelo: "+auto.getModelo();
+              this.viewAddCompra.txtArea_descripcion.setText(descripcion);
               this.viewAddCompra.txt_Precio.setText(auto.getPrecio_compra()+"");
             
           }

@@ -90,9 +90,12 @@ public class Controller_JFAprobarCompra {
                 int resp = JOptionPane.showConfirmDialog(viewAprobarCompra,"¿Esta seguro que NO quiere aprobar esta compra?","Mensaje de advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
                 if(resp == JOptionPane.YES_OPTION){
                     JTextArea area = new JTextArea();
-   
+                    area.setLineWrap(true);
+                    area.setColumns(20);
+                    area.setRows(10);
+                    //area.setSize(400, 200);
                     String comentario = "";
-                    JOptionPane.showMessageDialog(area,"Comentario porque NO aprobo la compra:");
+                    JOptionPane.showMessageDialog(viewAprobarCompra,area,"Comentario porque NO aprobo la compra:",JOptionPane.INFORMATION_MESSAGE);
                     comentario += area.getText();
                     if(!CCompra.noAprobar(compra.getNumero_factura(),comentario, cn)){
                         JOptionPane.showMessageDialog(viewAprobarCompra,"Error en aprobacion de compra,posiblemente ya la aprobaron","Mensaje",JOptionPane.INFORMATION_MESSAGE);

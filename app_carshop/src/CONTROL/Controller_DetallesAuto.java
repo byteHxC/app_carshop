@@ -69,6 +69,40 @@ public class Controller_DetallesAuto {
         
     }
     
+    //Metodo para mostrar detalles al agregar venta
+    public void Controller_DetallesAuto(CLogin login,Connection cn,CAuto auto,CCliente cliente) {
+        infoAuto = new JFInfoAuto();
+        infoAuto.lockFields(false);
+        infoAuto.setTitle("Detalles auto");
+        loadAuto(auto);
+        //Al dar en cancelar
+        this.infoAuto.btn_cancelar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Controller_SeleccionarAuto seleccionarAutos = new Controller_SeleccionarAuto(login, cn,cliente);
+       
+                infoAuto.dispose();
+            }
+        });
+        //Al cerrar el frame
+        this.infoAuto.addWindowListener(new WindowAdapter() {
+                @Override
+            public void windowClosing(WindowEvent e) {
+                int resp = JOptionPane.showConfirmDialog(infoAuto,"¿Desea salir de la app?","Warning",JOptionPane.YES_NO_OPTION);
+                if(resp == JOptionPane.YES_OPTION){
+                    App_carshop.init();
+                    infoAuto.dispose();
+                }
+            }
+            
+        });
+        
+    }
+    public  Controller_DetallesAuto(){
+        
+    }
+    
+    
      //_______________________
     //Constructor for employe Financiamiento Compra/venta, crear nuevo controlador sera pura vista ;)
     public Controller_DetallesAuto(CLogin login,Connection cn,String typeDocto){

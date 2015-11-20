@@ -62,7 +62,7 @@ public class Controller_JFComercioHome {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-            Controller_JFAddVenta JFAddVenta = new Controller_JFAddVenta(login,cn);
+            Controller_JFAgregarVenta JFAddVenta = new Controller_JFAgregarVenta(login,cn);
             viewComercio.dispose();
             
             }

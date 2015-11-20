@@ -72,6 +72,7 @@ public class Controller_JFConfiguracionInicial {
                     int resp = JOptionPane.showConfirmDialog(viewSettingsDB,"¿Para realizar este proceso necesita cerrar sesion, esta de acuerdo? ","Mensaje",JOptionPane.YES_OPTION);
                     if(resp == JOptionPane.YES_OPTION){
                     userRoot.saveObject();
+                    viewSettingsDB.dialog_settingBD.dispose();
                     viewSettingsDB.dispose();  
                     App_carshop.init();
                     }

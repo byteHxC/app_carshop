@@ -320,14 +320,14 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txt_numFactura1" pref="201" max="32767" attributes="0"/>
-                                  <Component id="txt_numFactura2" max="32767" attributes="0"/>
+                                  <Component id="txt_clienteCveElector" pref="201" max="32767" attributes="0"/>
+                                  <Component id="txt_ClienteNombre" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btn_searchCliente" min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="btn_searchCliente" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -338,12 +338,12 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txt_numFactura1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_clienteCveElector" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txt_numFactura2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_ClienteNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="31" max="32767" attributes="0"/>
                               <Component id="btn_searchCliente" min="-2" max="-2" attributes="0"/>
@@ -352,7 +352,7 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JTextField" name="txt_numFactura1">
+                    <Component class="javax.swing.JTextField" name="txt_clienteCveElector">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                       </Properties>
@@ -368,7 +368,7 @@
                         <Property name="text" type="java.lang.String" value="Clave elector:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txt_numFactura2">
+                    <Component class="javax.swing.JTextField" name="txt_ClienteNombre">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                       </Properties>
@@ -396,7 +396,7 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="Buscar cliente"/>
+                        <Property name="text" type="java.lang.String" value="Seleccionar cliente"/>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                           <Color id="Cursor de Mano"/>
                         </Property>
@@ -432,15 +432,15 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txt_numFactura3" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Component id="txt_numFactura5" min="-2" pref="150" max="-2" attributes="0"/>
+                                  <Component id="txt_numeroSerie" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                  <Component id="txt_precio" min="-2" pref="150" max="-2" attributes="0"/>
                                   <Component id="jScrollPane1" min="-2" pref="244" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btn_AddAuto" min="-2" pref="121" max="-2" attributes="0"/>
+                              <Component id="btn_AddAuto" min="-2" pref="168" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -450,7 +450,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txt_numFactura3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_numeroSerie" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -459,7 +459,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txt_numFactura5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_precio" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
@@ -477,7 +477,7 @@
                         <Property name="text" type="java.lang.String" value="Numero serie:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txt_numFactura3">
+                    <Component class="javax.swing.JTextField" name="txt_numeroSerie">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                       </Properties>
@@ -501,7 +501,7 @@
                         <Property name="text" type="java.lang.String" value="Precio: "/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txt_numFactura5">
+                    <Component class="javax.swing.JTextField" name="txt_precio">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                       </Properties>
@@ -516,7 +516,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextArea" name="jTextArea1">
+                        <Component class="javax.swing.JTextArea" name="txt_descripcion">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                             <Property name="columns" type="int" value="20"/>
@@ -541,7 +541,7 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="Agregar auto"/>
+                        <Property name="text" type="java.lang.String" value="Seleccionar auto"/>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                           <Color id="Cursor de Mano"/>
                         </Property>

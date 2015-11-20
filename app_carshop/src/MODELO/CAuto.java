@@ -175,11 +175,12 @@ public class CAuto {
         if(existNumSerie(cn, numero_serie)){
             txtErrores += "Numero de serie ya existe, verificar\n";
         }
-        
-        if(!(numero_serie.matches("[a-zA-Z0-9]{5}"))){
+         if(!(numero_serie.matches("[a-zA-Z0-9]{5}")) || numero_serie.length() == 0){
             txtErrores += "\tNumero de serie invalido [5] caracteres\n";
             errores = true;
         }
+         
+         
         if(marca.length() >= 20){
             txtErrores += "\tMarca invalida [20] caracteres\n";
             errores = true;
@@ -203,15 +204,18 @@ public class CAuto {
         if(!(modelo.matches("[2][0][0-9][0-9]"))){
             txtErrores += "\tModelo del vehiculo invalido.\n";
             errores = true;
-        }
-        else{
+        }else{
             int anio = Integer.parseInt(modelo);
-            if((anioAct - anio) > 5 && anio<=anioAct){
+            if((anioAct - anio) > 5){
                 txtErrores += "\tEl vehiculo no puede ser agregado. Modelo retrazado\n";
                 errores = true;
             }
+            if(anio>anioAct){
+                txtErrores += "\tModelo del vehiculo invalido";
+                errores = true;
+            }
         }
-        if(!(numPas.matches("[2-8]{1}"))){
+        if(!(numPas.matches("[2-8]{1}")) || numPas.length() == 0){
             txtErrores += "\tCantidad de pasajeros invalida. [2] - [8]\n";
             errores = true;
         }

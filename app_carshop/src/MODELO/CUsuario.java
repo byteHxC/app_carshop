@@ -6,7 +6,6 @@
 package MODELO;
 
 import VISTA.JFGerenteHome;
-import VISTA.JFRootHome;
 import VISTA.JFInfoEmpelado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

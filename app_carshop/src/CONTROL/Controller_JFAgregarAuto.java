@@ -87,9 +87,11 @@ public class Controller_JFAgregarAuto {
                 auto.setColor(viewAddAuto.txt_Color.getText());
                 auto.setDetalle(viewAddAuto.txtArea_detalle.getText());
                 auto.setCertificado_mecanico(Integer.parseInt(viewAddAuto.cbox_Certificado.getSelectedItem().toString()));
-          
+                try{
                 viewAddAuto.txt_PrecioNeto.setText(calcularPrecioNeto(Float.parseFloat(viewAddAuto.txt_Precio.getText()+""))+"");
-                
+                }catch(NumberFormatException er){
+                    
+                }
                 
                 try{
                 auto.setPrecio_compra(Float.parseFloat(viewAddAuto.txt_PrecioNeto.getText()));
@@ -140,6 +142,7 @@ public class Controller_JFAgregarAuto {
                 jfAddCompra.segueData(null, cliente);
                 jfAddCompra.viewAddCompra.btn_searchCliente.setEnabled(false);
                 viewAddAuto.dispose();
+               
             }
      });
      this.viewAddAuto.addWindowListener(new WindowAdapter() {

@@ -97,8 +97,12 @@ public class Controller_JFFinanciamientoHome {
         this.viewFinanHome.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                App_carshop.init();
-                viewFinanHome.dispose();
+                int resp = JOptionPane.showConfirmDialog(viewFinanHome,"¿Si sale de aqui, se cerrara su sesion?","Salir",JOptionPane.YES_NO_OPTION);
+                if(resp == JOptionPane.YES_OPTION){
+                    App_carshop.init();
+                    viewFinanHome.dispose();
+                }
+                
             }
         });
     }

@@ -26,12 +26,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Byter
  */
-public class Controller_AgregarClienteCompra {
+public class Controller_SeleccionarClienteCompra {
     JFListaClientes clienteCompra;
     CCliente cliente;
   
     
-    public Controller_AgregarClienteCompra(CLogin login,Connection cn){
+    public Controller_SeleccionarClienteCompra(CLogin login,Connection cn){
         cliente = null;
         clienteCompra = new JFListaClientes();
         loadTable(clienteCompra.table_showClientes,CCliente.queryAll(cn));

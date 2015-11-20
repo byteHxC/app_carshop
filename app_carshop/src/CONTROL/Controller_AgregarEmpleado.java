@@ -31,6 +31,7 @@ public class Controller_AgregarEmpleado {
     
     public Controller_AgregarEmpleado(CLogin login,Connection cn){
         info_empleado = new JFInfoEmpelado();
+        info_empleado.label_prop.setText("Agregar Empleado");
         //Chooser image for the  empleado
         this.info_empleado.ChooserImageGerente.addMouseListener(new MouseAdapter(){
             @Override
@@ -69,6 +70,9 @@ public class Controller_AgregarEmpleado {
                 String txtUsuario = info_empleado.txtUsuario.getText();
                 String txtPass = info_empleado.txtP_Password.getText();
                 String txtPassC = info_empleado.txtP_PasswordConfirm.getText();
+                
+                
+                
                 float salario;
                 try{
                 salario = Float.parseFloat((info_empleado.txtSalarioG.getText().equals(""))?"0":info_empleado.txtSalarioG.getText());
@@ -100,13 +104,17 @@ public class Controller_AgregarEmpleado {
                 //Verify data login & user
                   
                  if (usuario.validarDatos(info_empleado,cn) & login.validarDatos(info_empleado, txtPass,cn) ) {
-                       usuario.saveObject(cn);
-                       usuario = CUsuario.getObject(usuario.getClave_elector(), cn);
-                       //Crear su login  y guardar
-                       login.setClave_elector(usuario.getClave_elector());
-                       login.saveObject(cn);
-                       JOptionPane.showMessageDialog(info_empleado,"Empleado agregado", "Mensaje de informacion", JOptionPane.INFORMATION_MESSAGE);
-                       cleanFields();
+                       if(!txtPass.equals(txtPassC)){
+                            JOptionPane.showMessageDialog(info_empleado,"Confirmacion de contraseña invalida","Mensaje de error",JOptionPane.ERROR_MESSAGE);
+                        }else{
+                           usuario.saveObject(cn);
+                           usuario = CUsuario.getObject(usuario.getClave_elector(), cn);
+                           //Crear su login  y guardar
+                           login.setClave_elector(usuario.getClave_elector());
+                           login.saveObject(cn);
+                           JOptionPane.showMessageDialog(info_empleado,"Empleado agregado", "Mensaje de informacion", JOptionPane.INFORMATION_MESSAGE);
+                           cleanFields();
+                       }
                       
                 }
             }               

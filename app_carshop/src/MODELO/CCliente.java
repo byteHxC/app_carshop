@@ -30,6 +30,7 @@ public class CCliente {
    private float ingresoMensual;
 
     public CCliente() {
+        claveElector = "";
     }
 
     public String getClaveElector() {

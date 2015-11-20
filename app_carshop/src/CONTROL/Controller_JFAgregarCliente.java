@@ -42,9 +42,10 @@ public class Controller_JFAgregarCliente {
                 try{
                     ing = Float.parseFloat(viewAddCliente.txt_ingresoMensual.getText());
                 }catch(NumberFormatException err){
-                    ing = 0;
+                    ing = -1;
                 }
                 cliente.setIngresoMensual(ing);
+                
                 if(cliente.validarDatos(viewAddCliente, cn)){
                     cliente.saveObject(cn);
                     JOptionPane.showMessageDialog(viewAddCliente,"El cliente fue agregado satisfactoriamente","Mensaje de informacion",JOptionPane.INFORMATION_MESSAGE);

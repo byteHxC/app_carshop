@@ -99,7 +99,7 @@ public class CCompra {
     }
     public void saveObject(Connection cn){
         try{
-            PreparedStatement pps = cn.prepareStatement("INSERT INTO compras(fecha,precio,auto_numserie,encargado_cve,cliente_cve) values (?,?,?,?,?,?)");
+            PreparedStatement pps = cn.prepareStatement("INSERT INTO compras(fecha,precio,auto_numserie,encargado_cve,cliente_cve) values (?,?,?,?,?)");
             pps.setString(1, DateTime.getNow().toString());
             pps.setFloat(2, precio);
             pps.setString(3,auto_numserie);
@@ -113,7 +113,7 @@ public class CCompra {
     }
     
     public boolean validarCompra(JFAgregarCompra frame, Connection cn){
-        String txtError = "Verificar los siguientes datos de la venta\n";
+        String txtError = "Verificar los siguientes datos de la compra\n";
         boolean errores = false;
          String sAux = getPrecio() + "";
         if(!sAux.matches("([1-9])[0-9]+(([.])([0-9]{1,2})?)?")){

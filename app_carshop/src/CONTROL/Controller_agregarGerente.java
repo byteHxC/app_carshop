@@ -103,11 +103,32 @@ public class Controller_agregarGerente {
                 //Verify data login & user
                   
                  if (usuario.validarDatos(infoEmpleado,cn) & login.validarDatos(infoEmpleado, txtPass,cn) ) {
-                        if(CUsuario.ifExistsTipo(cn,"Gerente")){
+                      if(!txtPass.equals(txtPassC)){
+                                        JOptionPane.showMessageDialog(infoEmpleado,"Confirmacion de contraseña invalida","Mensaje de error",JOptionPane.ERROR_MESSAGE);
+                      }else{   
+                             if(CUsuario.ifExistsTipo(cn,"Gerente")){
 
-                           int resp = JOptionPane.showConfirmDialog(infoEmpleado, "¿Ya existe un gerente,dar de baja y poner este como nuevo gerente?","Informacion",JOptionPane.WARNING_MESSAGE,JOptionPane.YES_NO_OPTION);
-                               if(resp == JOptionPane.YES_OPTION){
-                                   CUsuario.bajaEstado(cn,"Gerente");
+                                   int resp = JOptionPane.showConfirmDialog(infoEmpleado, "¿Ya existe un gerente,dar de baja y poner este como nuevo gerente?","Informacion",JOptionPane.WARNING_MESSAGE,JOptionPane.YES_NO_OPTION);
+                                       if(resp == JOptionPane.YES_OPTION){
+
+                                               CUsuario.bajaEstado(cn,"Gerente");
+                                               usuario.saveObject(cn);
+                                               usuario = CUsuario.getObject(usuario.getClave_elector(), cn);
+                                               //Crear su login  y guardar
+                                               login.setClave_elector(usuario.getClave_elector());
+                                               login.saveObject(cn);
+                                               JOptionPane.showMessageDialog(infoEmpleado,"El gerente fue agregado satisfactoriamente","Mensaje de informacion",JOptionPane.INFORMATION_MESSAGE);
+                                               Controller_JFConfiguracionInicial controllerJFSettingsDB = new Controller_JFConfiguracionInicial(cn,root);
+                                               infoEmpleado.dispose();
+
+                                       }else{
+                                           JOptionPane.showMessageDialog(infoEmpleado,"No hubo modificaciones en el sistema!","Mensaje de informacion",JOptionPane.INFORMATION_MESSAGE);
+                                           infoEmpleado.cleanFields();
+                                           fileSelected = null;
+                                       }
+
+                                }else{
+
                                    usuario.saveObject(cn);
                                    usuario = CUsuario.getObject(usuario.getClave_elector(), cn);
                                    //Crear su login  y guardar
@@ -116,23 +137,7 @@ public class Controller_agregarGerente {
                                    JOptionPane.showMessageDialog(infoEmpleado,"El gerente fue agregado satisfactoriamente","Mensaje de informacion",JOptionPane.INFORMATION_MESSAGE);
                                    Controller_JFConfiguracionInicial controllerJFSettingsDB = new Controller_JFConfiguracionInicial(cn,root);
                                    infoEmpleado.dispose();
-                               }else{
-                                   JOptionPane.showMessageDialog(infoEmpleado,"No hubo modificaciones en el sistema!","Mensaje de informacion",JOptionPane.INFORMATION_MESSAGE);
-                                   infoEmpleado.cleanFields();
-                                   fileSelected = null;
-                               }
-
-                        }else{
-                            
-                           usuario.saveObject(cn);
-                           usuario = CUsuario.getObject(usuario.getClave_elector(), cn);
-                           //Crear su login  y guardar
-                           login.setClave_elector(usuario.getClave_elector());
-                           login.saveObject(cn);
-                           JOptionPane.showMessageDialog(infoEmpleado,"El gerente fue agregado satisfactoriamente","Mensaje de informacion",JOptionPane.INFORMATION_MESSAGE);
-                           Controller_JFConfiguracionInicial controllerJFSettingsDB = new Controller_JFConfiguracionInicial(cn,root);
-                           infoEmpleado.dispose();
-
+                             }
                      }
                 }
             }
