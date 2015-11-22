@@ -177,7 +177,8 @@ public class Controller_JFSettingsUser {
                             viewSettingsUser.dispose();
                         break;
                     case ("ControllerFinanciamiento"):
-                         
+                         Controller_JFFinanciamientoHome JFFinanHome = new Controller_JFFinanciamientoHome(login, cn);
+                         viewSettingsUser.dispose();
                         break;                        
                         
                 }
@@ -200,7 +201,8 @@ public class Controller_JFSettingsUser {
                             viewSettingsUser.dispose();
                         break;
                     case ("ControllerFinanciamiento"):
-                         
+                         Controller_JFFinanciamientoHome JFFinanHome = new Controller_JFFinanciamientoHome(login, cn);
+                         viewSettingsUser.dispose();
                         break;                        
                         
                 }

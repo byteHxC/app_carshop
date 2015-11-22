@@ -112,13 +112,13 @@ public class JFRootHome extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         txtUSERNAME = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        txtPASSWORD = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         txtIP = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         txtPORT = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         btn_guardarBD = new javax.swing.JLabel();
+        txtPASSWORD = new javax.swing.JPasswordField();
         label_image = new javax.swing.JLabel();
         label_usuario = new javax.swing.JLabel();
         btn_settings = new javax.swing.JLabel();
@@ -177,11 +177,11 @@ public class JFRootHome extends javax.swing.JFrame {
                                         .addComponent(jLabel19)
                                         .addComponent(jLabel18)))
                                 .addGap(29, 29, 29)
-                                .addGroup(panel_backDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPORT, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPASSWORD, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtUSERNAME, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtIP, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panel_backDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtPORT, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                                    .addComponent(txtUSERNAME, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                                    .addComponent(txtIP, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                                    .addComponent(txtPASSWORD))
                                 .addGap(137, 137, 137))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_backDialogLayout.createSequentialGroup()
                                 .addGroup(panel_backDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -470,7 +470,7 @@ public class JFRootHome extends javax.swing.JFrame {
     private javax.swing.JPanel panel_image;
     private javax.swing.JPanel panel_imgDialog;
     public javax.swing.JTextField txtIP;
-    public javax.swing.JTextField txtPASSWORD;
+    public javax.swing.JPasswordField txtPASSWORD;
     public javax.swing.JTextField txtPORT;
     public javax.swing.JTextField txtUSERNAME;
     // End of variables declaration//GEN-END:variables

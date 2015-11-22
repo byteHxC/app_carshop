@@ -74,11 +74,11 @@
                                               </Group>
                                           </Group>
                                           <EmptySpace min="29" pref="29" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="txtPORT" min="-2" pref="151" max="-2" attributes="0"/>
-                                              <Component id="txtPASSWORD" min="-2" pref="151" max="-2" attributes="0"/>
-                                              <Component id="txtUSERNAME" min="-2" pref="151" max="-2" attributes="0"/>
-                                              <Component id="txtIP" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="txtPORT" pref="151" max="32767" attributes="0"/>
+                                              <Component id="txtUSERNAME" pref="151" max="32767" attributes="0"/>
+                                              <Component id="txtIP" alignment="0" pref="151" max="32767" attributes="0"/>
+                                              <Component id="txtPASSWORD" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
                                       </Group>
@@ -156,11 +156,6 @@
                     <Property name="text" type="java.lang.String" value="USERNAME:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtPASSWORD">
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-                  </AuxValues>
-                </Component>
                 <Component class="javax.swing.JLabel" name="jLabel18">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="PASSWORD:"/>
@@ -204,6 +199,11 @@
                     </Property>
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JPasswordField" name="txtPASSWORD">
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>

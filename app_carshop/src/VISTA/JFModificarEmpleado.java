@@ -66,7 +66,7 @@ public class JFModificarEmpleado extends javax.swing.JFrame {
         txtDireccion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Ediat datos de empleado");
+        setTitle("Editar datos de empleado");
 
         panelD_image.setBackground(new java.awt.Color(0, 0, 0));
 
