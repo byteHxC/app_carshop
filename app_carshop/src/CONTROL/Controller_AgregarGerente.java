@@ -26,11 +26,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Byter
  */
-public class Controller_agregarGerente {
+public class Controller_AgregarGerente {
      JFInfoEmpelado infoEmpleado;
      
     File fileSelected;
-    public Controller_agregarGerente(Connection cn,UserROOT root){
+    public Controller_AgregarGerente(Connection cn,UserROOT root){
           fileSelected = null;
           infoEmpleado = new JFInfoEmpelado();
           infoEmpleado.label_prop.setText("Agregar gerente");

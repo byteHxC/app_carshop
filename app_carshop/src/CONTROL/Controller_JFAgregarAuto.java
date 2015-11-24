@@ -95,6 +95,7 @@ public class Controller_JFAgregarAuto {
                 
                 try{
                 auto.setPrecio_compra(Float.parseFloat(viewAddAuto.txt_PrecioNeto.getText()));
+                
                 }catch(NumberFormatException erPrecio){
                     auto.setPrecio_compra(0);
                 }

@@ -5,12 +5,12 @@
  */
 package MODELO;
 
-import VISTA.JFAgregarCompra;
 import VISTA.JFAgregarVenta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -174,6 +174,81 @@ public class CVenta {
         }
         return false;
     }
+     public static ArrayList<CVenta> getVentas(Connection cn){
+         ArrayList<CVenta> ventas = new ArrayList<>();
+         try{
+             PreparedStatement pps = cn.prepareStatement("SELECT * FROM ventas where aprobacion is null");
+             
+             ResultSet rs = pps.executeQuery();
+             while(rs.next()){
+                 CVenta venta = new CVenta();
+                 venta.setNumero_factura(rs.getInt("numero_factura"));
+                 venta.setFecha(rs.getString("fecha"));
+                 venta.setTotal(rs.getFloat("total"));
+                 venta.setTipo_pago(rs.getString("tipo_pago"));
+                 venta.setAprobacion(rs.getBoolean("aprobacion"));
+                 venta.setAuto_numserie(rs.getString("auto_numserie"));
+                 venta.setEncargado_cve(rs.getString("encargado_cve"));
+                 venta.setCliente_cve(rs.getString("cliente_cve"));
+                 venta.setComentario(rs.getString("comentario"));
+                ventas.add(venta);
+             }
+             
+         } catch (SQLException ex) {
+            Logger.getLogger(CCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return ventas;
+     }
+     public static CVenta getVenta(int numero_factura, Connection cn){
+         CVenta venta = new CVenta();
+         try{
+             PreparedStatement pps = cn.prepareStatement("SELECT * FROM ventas where numero_factura = ?");
+             pps.setInt(1, numero_factura);
+             ResultSet rs = pps.executeQuery();
+             if(rs.next()){
+                 venta.setNumero_factura(rs.getInt("numero_factura"));
+                 venta.setFecha(rs.getString("fecha"));
+                 venta.setTotal(rs.getFloat("total"));
+                 venta.setTipo_pago(rs.getString("tipo_pago"));
+                 venta.setAprobacion(rs.getBoolean("aprobacion"));
+                 venta.setAuto_numserie(rs.getString("auto_numserie"));
+                 venta.setEncargado_cve(rs.getString("encargado_cve"));
+                 venta.setCliente_cve(rs.getString("cliente_cve"));
+                 venta.setComentario(rs.getString("comentario"));
+             }
+         } catch (SQLException ex) {
+            Logger.getLogger(CCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return venta;
+     }
      
+     
+      public static boolean Aprobar(int numero_factura,String comentario,Connection cn){
+         try{
+             PreparedStatement pps = cn.prepareStatement("update ventas set aprobacion = true,comentario= ? where numero_factura = ?");
+             pps.setString(1, comentario);
+             pps.setInt(2, numero_factura);
+             pps.executeUpdate();
+             System.out.println("venta aprobada");
+             return true;
+         } catch (SQLException ex) {
+            Logger.getLogger(CCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return false;
+     }
+     public static boolean noAprobar(int numero_factura,String comentario,Connection cn){
+          try{
+             PreparedStatement pps = cn.prepareStatement("update ventas set aprobacion = false,comentario = ?  where numero_factura = ?");
+             pps.setString(1, comentario);
+             pps.setInt(2, numero_factura);
+             pps.executeUpdate();
+              System.out.println("venta no aprobada");
+             return true;
+         } catch (SQLException ex) {
+            Logger.getLogger(CCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return false;
+     }
+    
     
 }

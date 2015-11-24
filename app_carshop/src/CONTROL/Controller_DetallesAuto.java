@@ -10,6 +10,7 @@ import MODELO.CCliente;
 import MODELO.CCompra;
 import MODELO.CLogin;
 import MODELO.CUsuario;
+import MODELO.CVenta;
 import VISTA.JFInfoAuto;
 import app_carshop.App_carshop;
 import java.awt.Image;
@@ -37,6 +38,7 @@ public class Controller_DetallesAuto {
     JFInfoAuto infoAuto;
     
     CCompra compra;
+    CVenta venta;
     CAuto auto;
     CUsuario encargado;
     CCliente cliente;
@@ -122,6 +124,10 @@ public class Controller_DetallesAuto {
                         infoAuto.dispose();
                         break;
                     case ("Venta"):
+                        Controller_JFAprobarVenta JFAprobarVenta = new Controller_JFAprobarVenta(login,cn);
+                        JFAprobarVenta.setData(venta, encargado, auto, cliente);
+                        JFAprobarVenta.viewData();
+                        infoAuto.dispose();
                         break;
                 }
                 
@@ -141,6 +147,13 @@ public class Controller_DetallesAuto {
     }
     public void setData(CCompra compra,CUsuario encargado, CAuto auto,CCliente cliente) {
             this.compra = compra;
+            this.auto = auto;
+            this.cliente = cliente;
+            this.encargado = encargado;
+            loadAuto(auto);
+    }
+     public void setData(CVenta venta,CUsuario encargado, CAuto auto,CCliente cliente) {
+            this.venta = venta;
             this.auto = auto;
             this.cliente = cliente;
             this.encargado = encargado;

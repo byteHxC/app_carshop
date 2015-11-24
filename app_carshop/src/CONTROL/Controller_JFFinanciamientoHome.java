@@ -7,6 +7,7 @@ package CONTROL;
 
 import MODELO.CCompra;
 import MODELO.CLogin;
+import MODELO.CVenta;
 import VISTA.JFFinanciamientoHome;
 import app_carshop.App_carshop;
 import java.awt.Image;
@@ -45,7 +46,8 @@ public class Controller_JFFinanciamientoHome {
         //Settings view labels identifications
         this.viewFinanHome.label_usuario.setText("USUARIO: "+login.getUsuario());
         this.viewFinanHome.label_ImageEmpleado.setIcon(new ImageIcon(getImageWithBlob(login.getImageBlob(), login.getNombreImagen()).getImage().getScaledInstance(viewFinanHome.label_ImageEmpleado.getWidth(),viewFinanHome.label_ImageEmpleado.getHeight(),Image.SCALE_SMOOTH)));
-        reloadTable();
+        //reloadTable();
+        loadTable(viewFinanHome.table_doctos,cn);
         this.viewFinanHome.btn_reload.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -63,13 +65,17 @@ public class Controller_JFFinanciamientoHome {
                     String typeDocto = viewFinanHome.table_doctos.getValueAt(rowSelected,1).toString();
                     if(typeDocto.equals("Compra")){
                        CCompra compra = CCompra.getCompra(Integer.parseInt(viewFinanHome.table_doctos.getValueAt(rowSelected,0).toString()), cn);
-                        Controller_JFAprobarCompra JFAprobarCompra = new Controller_JFAprobarCompra(login, cn);
-                        JFAprobarCompra.loadData(compra);
-                        JFAprobarCompra.viewData();
-                        viewFinanHome.dispose();
+                       Controller_JFAprobarCompra JFAprobarCompra = new Controller_JFAprobarCompra(login, cn);
+                       JFAprobarCompra.loadData(compra);
+                       JFAprobarCompra.viewData();
+                       viewFinanHome.dispose();
                         
-                    }else{
-                        //Venta
+                    }else if (typeDocto.equals("Venta")){
+                       CVenta venta = CVenta.getVenta(Integer.parseInt(viewFinanHome.table_doctos.getValueAt(rowSelected,0).toString()), cn);
+                       Controller_JFAprobarVenta JFAprobarVenta = new Controller_JFAprobarVenta(login, cn);
+                       JFAprobarVenta.loadData(venta);
+                       JFAprobarVenta.viewData();
+                       viewFinanHome.dispose();
                     }
                 }
             }
@@ -109,6 +115,7 @@ public class Controller_JFFinanciamientoHome {
     
     private void loadTable(JTable tabla,Connection cn){
         ArrayList<CCompra> compras = CCompra.getCompras(cn);
+        ArrayList<CVenta> ventas = CVenta.getVentas(cn);
         DefaultTableModel model = new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -122,6 +129,14 @@ public class Controller_JFFinanciamientoHome {
         model.addColumn("Compra/Venta");
         model.addColumn("Total");
         model.addColumn("Fecha");
+        for(CVenta venta: ventas){
+            Object[] oVenta = new Object[4];
+            oVenta[0] = venta.getNumero_factura()+"";
+            oVenta[1] = "Venta";
+            oVenta[2] = venta.getTotal()+"$";
+            oVenta[3] = venta.getFecha();
+            model.addRow(oVenta);
+        }
         for(CCompra compra: compras){
             Object[] oCompra = new Object[4];
             oCompra[0] = compra.getNumero_factura()+"";

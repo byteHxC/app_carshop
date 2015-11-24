@@ -218,6 +218,7 @@ public class CUsuario {
             errores = true;
         }
         if(errores){
+            txtError+=" !NO SE PERMITEN ESPACIOS VACIOS¡ ";
             JOptionPane.showMessageDialog(frame, txtError, "Validacion de datos de usuarios", JOptionPane.WARNING_MESSAGE);
             return false;
         }

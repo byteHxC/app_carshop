@@ -27,10 +27,11 @@ public class ConnectionMySQL {
         }catch(SQLException sqle){
             System.out.println("Error: getConnection()->SQLException"+sqle.getMessage());
             JOptionPane.showMessageDialog(null,"Posibles errores: \n\t-Datos de configuracion de la base de datos incorrectos.\n\t-Checar conexión del servidor","Mensaje de error",JOptionPane.WARNING_MESSAGE);
+            cn =null;
         }catch(Exception e){
             System.out.println("Error: getConnection()->Exception"+e.getMessage());
             JOptionPane.showMessageDialog(null,"Posibles errores: \n\t-Datos de configuracion de la base de datos incorrectos.\n\t-Checar conexión del servidor","Mensaje de error",JOptionPane.WARNING_MESSAGE);
-
+            cn =null;
         }
         return cn;
     }

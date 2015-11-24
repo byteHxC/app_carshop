@@ -91,8 +91,13 @@ public class Controller_JFAgregarVenta {
         this.viewAddVenta.btn_AddAuto.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(cliente!=null){
                 Controller_SeleccionarAuto seleccionarAuto = new Controller_SeleccionarAuto(login, cn,cliente);
-               viewAddVenta.dispose();
+                viewAddVenta.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(viewAddVenta,"Primero agregue a el cliente","Mensaje de informacion",JOptionPane.INFORMATION_MESSAGE);
+
+                }
             }
         });
         //Agregar descuento al carro
@@ -189,18 +194,13 @@ public class Controller_JFAgregarVenta {
                 case 0:
                     float descuento03 = (float) (auto.getPrecio_venta()*0.03);
                     descuento =descuento03;
-                    System.out.println("contado");
                     break;
                 case 1:
                     float descuento02 = (float) (auto.getPrecio_venta()*0.02);
                     descuento = descuento02;
-                    System.out.println("6 meses");
-
                     break;
                 case 2: 
                     descuento = 0;
-                    System.out.println("12 meses");
-
                     break;
             }
          return descuento;

@@ -45,8 +45,12 @@ public class Controller_JFConfiguracionInicial {
         this.viewSettingsDB.btn_addGerente.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-              Controller_agregarGerente addGerente = new Controller_agregarGerente(cn, root);
-              viewSettingsDB.dispose();
+                if(cn != null){
+                      Controller_AgregarGerente addGerente = new Controller_AgregarGerente(cn, root);
+                      viewSettingsDB.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(viewSettingsDB,"Primero configure la base de datos","Mensaje",JOptionPane.WARNING_MESSAGE);
+                }
             }
         });
         

@@ -10,6 +10,7 @@ import MODELO.CCliente;
 import MODELO.CCompra;
 import MODELO.CLogin;
 import MODELO.CUsuario;
+import MODELO.CVenta;
 import VISTA.JFInfoCliente;
 import app_carshop.App_carshop;
 import java.awt.event.MouseAdapter;
@@ -27,6 +28,7 @@ public class Controller_DetallesCliente {
     JFInfoCliente infoCliente;
     
     CCompra compra;
+    CVenta venta;
     CAuto auto;
     CUsuario encargado;
     CCliente cliente;
@@ -49,7 +51,10 @@ public class Controller_DetallesCliente {
                         infoCliente.dispose();
                         break;
                     case("Venta"):
-                            //JFrame aprobarCompra
+                        Controller_JFAprobarVenta JFAprobarVenta = new Controller_JFAprobarVenta(login,cn);
+                        JFAprobarVenta.setData(venta, encargado, auto, cliente);
+                        JFAprobarVenta.viewData();
+                        infoCliente.dispose();
                         break;
                 }
               
@@ -70,6 +75,12 @@ public class Controller_DetallesCliente {
     
     public void setData(CCompra compra,CUsuario encargado, CAuto auto,CCliente cliente) {
             this.compra = compra;
+            this.auto = auto;
+            this.cliente = cliente;
+            this.encargado = encargado;
+    }
+    public void setData(CVenta venta,CUsuario encargado, CAuto auto,CCliente cliente) {
+            this.venta = venta;
             this.auto = auto;
             this.cliente = cliente;
             this.encargado = encargado;

@@ -211,7 +211,7 @@ public class CAuto {
                 errores = true;
             }
             if(anio>anioAct){
-                txtErrores += "\tModelo del vehiculo invalido";
+                txtErrores += "\tModelo del vehiculo invalido\n";
                 errores = true;
             }
         }
@@ -243,12 +243,12 @@ public class CAuto {
             txtErrores += "\tDetalle del vehiculo erroneo [200] caracteres\n";
             errores = true;
         }
-        if(!(precCompra.equals("0.0"))){
-            if(!precCompra.matches("([1-9])[0-9]+(([.])([0-9]{1,2})?)?") ){
-                txtErrores += "\t-Precio invalido\n";
-                errores = true;
-            }
+        
+        if(!precCompra.matches("([1-9])[0-9]+(([.])([0-9]{1,2})?)?") ){
+            txtErrores += "\t-Precio invalido\n";
+            errores = true;
         }
+        
         if(errores){
             JOptionPane.showMessageDialog(frame, txtErrores, "Validacion de datos del autos", JOptionPane.WARNING_MESSAGE);
             return false;

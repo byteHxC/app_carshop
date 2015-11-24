@@ -170,9 +170,11 @@ public class CCompra {
                  compra.setNumero_factura(rs.getInt("numero_factura"));
                  compra.setFecha(rs.getString("fecha"));
                  compra.setPrecio(rs.getFloat("precio"));
+                 compra.setAprobacion(rs.getBoolean("aprobacion"));
                  compra.setAuto_numserie(rs.getString("auto_numserie"));
                  compra.setEncargado_cve(rs.getString("encargado_cve"));
-                 compra.setEncargado_cve(rs.getString("cliente_cve"));
+                 compra.setCliente_cve(rs.getString("cliente_cve"));
+                 compra.setComentario(rs.getString("comentario"));
                compras.add(compra);
              }
              
@@ -192,9 +194,11 @@ public class CCompra {
                  compra.setNumero_factura(rs.getInt("numero_factura"));
                  compra.setFecha(rs.getString("fecha"));
                  compra.setPrecio(rs.getFloat("precio"));
+                 compra.setAprobacion(rs.getBoolean("aprobacion"));
                  compra.setAuto_numserie(rs.getString("auto_numserie"));
                  compra.setEncargado_cve(rs.getString("encargado_cve"));
                  compra.setCliente_cve(rs.getString("cliente_cve"));
+                 compra.setComentario(rs.getString("comentario"));
              }
          } catch (SQLException ex) {
             Logger.getLogger(CCompra.class.getName()).log(Level.SEVERE, null, ex);

@@ -144,7 +144,8 @@ public class Controller_JFAprobarCompra {
         this.viewAprobarCompra.txt_clienteCveElector.setText(cliente.getClaveElector());
       //Set data auto
         this.viewAprobarCompra.txt_numSerie.setText(auto.getNumero_serie());
-        this.viewAprobarCompra.txtArea_descripcion.setText(auto.getDetalle());
+        String descripcion = "Marca: "+auto.getMarca()+"\nTipo: "+auto.getTipo()+"\n Modelo: "+auto.getModelo();
+        this.viewAprobarCompra.txtArea_descripcion.setText(descripcion);
         this.viewAprobarCompra.txt_Precio.setText(auto.getPrecio_compra()+"  $");
       //Set data encargado
         this.viewAprobarCompra.txt_encargadoVenta.setText(encargado.getNombre()+" "+encargado.getApellido_pat()+" "+encargado.getApellido_mat());
@@ -162,9 +163,9 @@ public class Controller_JFAprobarCompra {
     }
     public void loadData(CCompra compra){
         this.compra = compra;
-        this.auto = CAuto.getObject(cn, compra.getAuto_numserie());
         this.encargado = CUsuario.getObject(compra.getEncargado_cve(), cn);
         this.cliente = CCliente.getObject(cn,compra.getCliente_cve());
+        this.auto = CAuto.getObject(cn, compra.getAuto_numserie());
     }
    
     

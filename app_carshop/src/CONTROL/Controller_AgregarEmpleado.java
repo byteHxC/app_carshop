@@ -113,7 +113,10 @@ public class Controller_AgregarEmpleado {
                            login.setClave_elector(usuario.getClave_elector());
                            login.saveObject(cn);
                            JOptionPane.showMessageDialog(info_empleado,"Empleado agregado", "Mensaje de informacion", JOptionPane.INFORMATION_MESSAGE);
-                           cleanFields();
+                          
+                            Controller_JFGerenteHome gerenteHome = new Controller_JFGerenteHome(login, cn);
+                            info_empleado.dispose();
+                           
                        }
                       
                 }
