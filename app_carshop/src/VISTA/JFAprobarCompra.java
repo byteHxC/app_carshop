@@ -54,7 +54,7 @@ public class JFAprobarCompra extends javax.swing.JFrame {
         
          //configuracion jdialog
         dialog_aprobo.setResizable(false);
-        dialog_aprobo.setLocationRelativeTo(btn_aprobar);
+        dialog_aprobo.setLocationRelativeTo(null);
         dialog_aprobo.setSize(451, 351);
         dialog_aprobo.dispose();
         

@@ -57,7 +57,7 @@ public class Controller_JFAprobarCompra {
                     Object [] options = {"Generar factura","Ir al menu principal"};
                     int optS = JOptionPane.showOptionDialog(viewAprobarCompra, "La compra ha sido aprobada, el auto esta disponible para vender!", "Mensaje",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
                     if(optS==0){
-                        AbsJasperReports.createReportCompra(cn,"Reports/FacturaCompra/reporteCompra.jasper",compra.getNumero_factura());
+                        AbsJasperReports.createReportCompra(cn,"/Reports/FacturaCompra/reporteCompra.jasper",compra.getNumero_factura());
                         AbsJasperReports.showViewer();
                     } 
                     Controller_JFFinanciamientoHome JFFinHome = new Controller_JFFinanciamientoHome(login, cn);
