@@ -5,6 +5,7 @@
  */
 package CONTROL;
 
+import MODELO.AbsJasperReports;
 import MODELO.CAuto;
 import MODELO.CCliente;
 import MODELO.CCompra;
@@ -53,7 +54,12 @@ public class Controller_JFAprobarCompra {
             public void mouseClicked(MouseEvent e) {  
                 viewAprobarCompra.dialog_aprobo.dispose();
                 if(CCompra.Aprobar(compra.getNumero_factura(),viewAprobarCompra.txt_comentario.getText(), cn) && CAuto.setPrecioVenta(cn,precio_compra+(precio_compra/100*viewAprobarCompra.porcentaje.getValue()) , auto.getNumero_serie())){
-                    JOptionPane.showMessageDialog(viewAprobarCompra,"La compra ha sido aprobada, el auto esta disponible para vender!","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                    Object [] options = {"Generar factura","Ir al menu principal"};
+                    int optS = JOptionPane.showOptionDialog(viewAprobarCompra, "La compra ha sido aprobada, el auto esta disponible para vender!", "Mensaje",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
+                    if(optS==0){
+                        AbsJasperReports.createReportCompra(cn,"Reports/FacturaCompra/reporteCompra.jasper",compra.getNumero_factura());
+                        AbsJasperReports.showViewer();
+                    } 
                     Controller_JFFinanciamientoHome JFFinHome = new Controller_JFFinanciamientoHome(login, cn);
                     viewAprobarCompra.dispose();
                     
@@ -71,6 +77,7 @@ public class Controller_JFAprobarCompra {
                 precio_compra = auto.getPrecio_compra();
                 viewAprobarCompra.txt_precioCompra.setText(precio_compra+" $");
                 viewAprobarCompra.txt_precioVenta.setText(precio_compra+(precio_compra/100*viewAprobarCompra.porcentaje.getValue())+ " $");
+        
                 viewAprobarCompra.dialog_aprobo.setVisible(true);
             }
         });

@@ -5,6 +5,7 @@
  */
 package CONTROL;
 
+import MODELO.AbsJasperReports;
 import MODELO.CAuto;
 import MODELO.CCliente;
 import MODELO.CLogin;
@@ -49,7 +50,13 @@ public class Controller_JFAprobarVenta {
                     comentario += area.getText();
                 if(CVenta.Aprobar(venta.getNumero_factura(), comentario, cn)){
                     CAuto.setEstado(cn,venta.getAuto_numserie(),"Vendido");
-                    JOptionPane.showMessageDialog(viewAprobarVenta,"Venta aprobada,!Auto vendido!","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                     Object [] options = {"Generar factura","Ir al menu principal"};
+                    int optS = JOptionPane.showOptionDialog(viewAprobarVenta, "Venta aprobada,!Auto vendido!", "Mensaje",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
+                    if(optS==0){
+                        //Detalle en reporte
+                        AbsJasperReports.createReportVenta(cn,"Reports/FacturaCompra/reporteVenta.jasper",venta.getNumero_factura(),cal_pagoMensual(venta.getTipo_pago(),venta.getTotal()));
+                        AbsJasperReports.showViewer();
+                    } 
                     Controller_JFFinanciamientoHome JFFinHome = new Controller_JFFinanciamientoHome(login, cn);
                          viewAprobarVenta.dispose();
                 }else{
@@ -164,4 +171,18 @@ public class Controller_JFAprobarVenta {
             }
          return descuento;
     }
+      public String cal_pagoMensual(String tipo,float precio){
+              String pago = "";
+         switch(tipo){
+                case ("Contado"):
+                    pago = ""+precio+" $";
+                    break;
+                case ("6 meses"):
+                    pago = ""+precio/6+" $";
+                    break;
+                case ("12 meses"): 
+                    pago = ""+precio/12+" $";
+            }
+         return pago;
+      }
 }

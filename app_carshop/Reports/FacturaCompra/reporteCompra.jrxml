@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2015-11-30T20:29:05 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteCompra" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1eceab50-4d23-437b-b1a8-100610f8bce6">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataMySQL"/>
+	<parameter name="pFactura" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT *
+FROM vCompras
+WHERE 
+	 vCompras.numero_factura = $P{pFactura}]]>
+	</queryString>
+	<field name="numero_factura" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precio" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numero_serie" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="marca" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modelo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cilindros" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="color" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="us_cve" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre_empleado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cli_cve" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre_cliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band height="800" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement mode="Transparent" x="15" y="290" width="525" height="200" forecolor="rgba(0, 0, 0, 0.67058825)" backcolor="rgba(255, 255, 255, 0.08627451)" uuid="7b8d906b-2ab6-4c5a-86f6-f498142b62e7"/>
+				<graphicElement fill="Solid"/>
+				<imageExpression><![CDATA["/Users/Byter/JaspersoftWorkspace/FacturaCompra/LogoCARSHOPBack.png"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="6" y="288" width="534" height="198" backcolor="rgba(255, 255, 255, 0.8627451)" uuid="f57917d9-7d65-4de5-902b-eff27d0943c8"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</background>
+	<title>
+		<band height="92" splitType="Stretch">
+			<frame>
+				<reportElement x="1" y="-20" width="552" height="110" uuid="3f811876-8610-4122-addc-a9fec1cd9dfd"/>
+				<staticText>
+					<reportElement x="180" y="10" width="200" height="20" uuid="05629d2f-59c7-41f3-aaf0-5e63d663f6ba"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Neou" size="16"/>
+					</textElement>
+					<text><![CDATA[FACTURA DE COMPRA]]></text>
+				</staticText>
+				<image hAlign="Center" vAlign="Middle">
+					<reportElement x="410" y="10" width="140" height="40" uuid="ba82d466-27b7-4fa9-9e2c-ea86d4cce405"/>
+					<imageExpression><![CDATA["/Users/Byter/JaspersoftWorkspace/FacturaCompra/LogoCARSHOP.png"]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="67" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="20" width="553" height="29" uuid="d464d62a-1319-4e7e-9c18-1938afe11d21"/>
+				<box>
+					<topPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textField>
+					<reportElement x="104" y="4" width="103" height="20" uuid="7026102f-dda9-4369-a96f-5f411297ddcb"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{numero_factura}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1" y="4" width="103" height="20" uuid="c86fd706-8e88-4c4c-a54c-0e368d2ee73d"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Numero factura:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="344" y="4" width="60" height="20" uuid="132950e1-6469-4ce7-8a27-be510c264629"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Fecha:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="404" y="4" width="149" height="20" uuid="493e8470-b385-4db3-9896-158ff4687b8e"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="152" splitType="Stretch">
+			<frame borderSplitType="DrawBorders">
+				<reportElement x="5" y="29" width="268" height="86" uuid="640e0917-dd0b-43d2-93cc-7a3f3ba4763d"/>
+				<box>
+					<topPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="21" y="66" width="114" height="20" uuid="a08ff6ba-301a-4bf0-8470-a3d9d45cec44"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nombre encargado:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="19" y="34" width="100" height="20" uuid="e0e29d3d-b53b-4cdc-8c33-19cd44355da3"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Clave de elector:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="141" y="36" width="122" height="20" uuid="cfd4a451-d2ff-439a-b39f-4d22e22af180"/>
+					<textFieldExpression><![CDATA[$F{us_cve}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="142" y="66" width="122" height="20" uuid="4c905a4a-81e8-45b3-ac25-4f059b3ec5be"/>
+					<textFieldExpression><![CDATA[$F{nombre_empleado}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="-94" width="100" height="20" uuid="5d9110c1-b6ed-4bf6-8af2-2a2321ff9fa3"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[Detalle factura]]></text>
+				</staticText>
+			</frame>
+			<frame borderSplitType="DrawBorders">
+				<reportElement x="294" y="29" width="262" height="86" uuid="9b1a7ec4-6813-489f-9abf-215f51d01410"/>
+				<box>
+					<topPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.3" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="17" y="65" width="100" height="20" uuid="2d08ef6b-693e-4720-886a-c0c826b6b5c4"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nombre cliente:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="16" y="35" width="100" height="20" uuid="6c189898-5841-4b2a-9b93-0f112d17613d"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Clave de elector:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="141" y="35" width="114" height="20" uuid="8c907ea8-c74d-495b-ba39-30f53752e8f0"/>
+					<textFieldExpression><![CDATA[$F{cli_cve}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="142" y="67" width="113" height="20" uuid="f9f6e19f-f4d5-42d0-b14b-5f709d169a10"/>
+					<textFieldExpression><![CDATA[$F{nombre_cliente}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="234" splitType="Stretch">
+			<frame>
+				<reportElement x="6" y="17" width="549" height="217" uuid="b80265fc-829e-4d13-b529-c2994c324206"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="8" y="21" width="104" height="28" uuid="e9a3e113-2393-4e68-aae6-0716c9bbdde1"/>
+					<box leftPadding="0" bottomPadding="0" rightPadding="0">
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Neou"/>
+					</textElement>
+					<text><![CDATA[ Numero de serie:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="9" y="61" width="103" height="28" uuid="5c9c23ed-a61c-476c-accb-ece3f90a5a0e"/>
+					<box leftPadding="0" bottomPadding="0" rightPadding="0">
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Neou"/>
+					</textElement>
+					<text><![CDATA[ Marca:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="281" y="62" width="100" height="28" uuid="36b16722-8112-4243-b088-550ecb5c1069"/>
+					<box leftPadding="0" bottomPadding="0" rightPadding="0">
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Neou"/>
+					</textElement>
+					<text><![CDATA[ Tipo:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="11" y="101" width="100" height="28" uuid="4dc21684-f649-4e30-9aa3-8c4b299f9337"/>
+					<box leftPadding="0" bottomPadding="0" rightPadding="0">
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Neou"/>
+					</textElement>
+					<text><![CDATA[ Modelo:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="282" y="102" width="99" height="28" uuid="5a281d2a-5a19-4a9b-b6c5-885d1bfc230e"/>
+					<box leftPadding="0" bottomPadding="0" rightPadding="0">
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Neou"/>
+					</textElement>
+					<text><![CDATA[ Cilindros:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="12" y="141" width="97" height="28" uuid="f2a597bc-4c44-4a49-801d-015a885a9798"/>
+					<box leftPadding="0" bottomPadding="0" rightPadding="0">
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Neou"/>
+					</textElement>
+					<text><![CDATA[ Color:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="281" y="181" width="100" height="28" uuid="a354cca0-e46d-44b5-89d1-559b3bf53993"/>
+					<box leftPadding="0" bottomPadding="0" rightPadding="0">
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Neou"/>
+					</textElement>
+					<text><![CDATA[ Precio]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="12" y="1" width="100" height="13" uuid="bfaf92a9-b385-40df-822c-5acbc376220e"/>
+					<text><![CDATA[Datos del auto]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="118" y="19" width="143" height="31" uuid="c70e1112-568d-4c11-854a-6c6de5ba51e5"/>
+					<box leftPadding="3">
+						<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{numero_serie}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="118" y="62" width="143" height="31" uuid="2b55a29e-b38e-4d7c-9adb-8d8fc150caf1"/>
+					<box leftPadding="3">
+						<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="119" y="101" width="142" height="31" uuid="a2201482-f486-494c-a16f-02a0192d317d"/>
+					<box leftPadding="3">
+						<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="118" y="141" width="143" height="31" uuid="bc2b5fc6-1341-43e5-8989-1871cfc8b906"/>
+					<box leftPadding="3">
+						<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{color}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="399" y="61" width="141" height="31" uuid="f34d686a-b11c-4dfe-9876-3194a6e96daf"/>
+					<box leftPadding="3">
+						<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="400" y="101" width="141" height="31" uuid="88ee9850-d5f3-4f71-9645-160c62144bf9"/>
+					<box leftPadding="3">
+						<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{cilindros}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="399" y="181" width="141" height="31" uuid="47c07877-47bc-46e3-9efc-6cf7948b7862"/>
+					<box leftPadding="3">
+						<topPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="7" y="-139" width="100" height="13" uuid="44a00749-3f19-439e-a101-6306c95f25ab"/>
+					<text><![CDATA[Datos del empleado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="299" y="-138" width="100" height="13" uuid="131438dc-9b4a-4818-aa12-6331b0cbacab"/>
+					<text><![CDATA[Datos del cliente]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

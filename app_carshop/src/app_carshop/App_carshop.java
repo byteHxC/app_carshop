@@ -1,5 +1,6 @@
 package app_carshop;
 import CONTROL.Controller_JFLoginUser;
+import MODELO.AbsJasperReports;
 import MODELO.ConnectionMySQL;
 import MODELO.UserROOT;
 import VISTA.JFLoginUser;
@@ -41,7 +42,12 @@ public class App_carshop{
       // UserROOT.escribirDefaultROOTDB("123456","localhost","3306","root","#%mysql/1");
        getConnection(UserROOT.getROOTDB());
        controladorLogin = new Controller_JFLoginUser(cn);
-        
+       //Prueba reporte
+       //AbsJasperReports.createReportCompra(cn,"Reports/FacturaCompra/reporteCompra.jasper", 9);
+       //AbsJasperReports.showViewer();
+      
+      //AbsJasperReports.createReportVenta(cn,"Reports/FacturaCompra/reporteVenta.jasper",5,"300 $");
+      //AbsJasperReports.showViewer();
     }
     public static void  init(){
        getConnection(UserROOT.getROOTDB());
