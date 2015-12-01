@@ -60,7 +60,7 @@ public class Controller_AgregarEmpleado {
             @Override
             public void mouseClicked(MouseEvent e) {
                 CUsuario usuario = new CUsuario();
-                CLogin login = new CLogin();
+                CLogin loginU = new CLogin();
                 // DATOS OBTENIDOS DE LA VENTANA DE AGREGAR GERENTE
                 String nombre = info_empleado.txtNombreG.getText();
                 String apellido_pat = info_empleado.txtApellidoPG.getText();
@@ -97,21 +97,21 @@ public class Controller_AgregarEmpleado {
                     usuario.setEstado(true);
                     usuario.setClave_elector(info_empleado.txtClaveElector.getText());
                 //Set data in object Login
-                    login.setUsuario(txtUsuario);
-                    login.setPassword(txtPass);
-                    login.setAbsolutePathimagen(fileSelected.getAbsolutePath());
-                    login.setNombreImagen(fileSelected.getName());
+                    loginU.setUsuario(txtUsuario);
+                    loginU.setPassword(txtPass);
+                    loginU.setAbsolutePathimagen(fileSelected.getAbsolutePath());
+                    loginU.setNombreImagen(fileSelected.getName());
                 //Verify data login & user
                   
-                 if (usuario.validarDatos(info_empleado,cn) & login.validarDatos(info_empleado, txtPass,cn) ) {
+                 if (usuario.validarDatos(info_empleado,cn) & loginU.validarDatos(info_empleado, txtPass,cn) ) {
                        if(!txtPass.equals(txtPassC)){
                             JOptionPane.showMessageDialog(info_empleado,"Confirmacion de contraseña invalida","Mensaje de error",JOptionPane.ERROR_MESSAGE);
                         }else{
                            usuario.saveObject(cn);
                            usuario = CUsuario.getObject(usuario.getClave_elector(), cn);
                            //Crear su login  y guardar
-                           login.setClave_elector(usuario.getClave_elector());
-                           login.saveObject(cn);
+                           loginU.setClave_elector(usuario.getClave_elector());
+                           loginU.saveObject(cn);
                            JOptionPane.showMessageDialog(info_empleado,"Empleado agregado", "Mensaje de informacion", JOptionPane.INFORMATION_MESSAGE);
                           
                             Controller_JFGerenteHome gerenteHome = new Controller_JFGerenteHome(login, cn);
