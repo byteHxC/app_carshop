@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-11-30T21:28:33 -->
+<!-- 2015-12-01T22:29:33 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteVenta" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="02081dc3-fc68-4116-a803-b8937225391b">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataMySQL"/>
@@ -57,11 +57,6 @@ WHERE
 	<background>
 		<band height="800" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-			<image hAlign="Center" vAlign="Middle">
-				<reportElement mode="Transparent" x="15" y="290" width="525" height="200" forecolor="rgba(0, 0, 0, 0.67058825)" backcolor="rgba(255, 255, 255, 0.08627451)" uuid="22eccb75-231a-43d4-851b-d8e7abf34550"/>
-				<graphicElement fill="Solid"/>
-				<imageExpression><![CDATA["/Users/Byter/JaspersoftWorkspace/FacturaCompra/LogoCARSHOPBack.png"]]></imageExpression>
-			</image>
 			<rectangle>
 				<reportElement x="6" y="288" width="534" height="198" backcolor="rgba(255, 255, 255, 0.8627451)" uuid="f1e73f71-fbb2-424a-bf18-a9837398d6bc"/>
 				<graphicElement>
@@ -81,10 +76,6 @@ WHERE
 					</textElement>
 					<text><![CDATA[FACTURA DE Venta]]></text>
 				</staticText>
-				<image hAlign="Center" vAlign="Middle">
-					<reportElement x="410" y="10" width="140" height="40" uuid="bfcf341f-b760-4fde-89b3-d7d29924b5b9"/>
-					<imageExpression><![CDATA["/Users/Byter/JaspersoftWorkspace/FacturaCompra/LogoCARSHOP.png"]]></imageExpression>
-				</image>
 				<frame>
 					<reportElement x="5" y="141" width="547" height="29" uuid="3a0f52d0-0a19-4d24-a26d-524aa59f2bdc"/>
 					<box>

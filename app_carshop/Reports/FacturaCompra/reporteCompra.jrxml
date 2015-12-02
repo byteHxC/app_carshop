@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-11-30T20:29:05 -->
+<!-- 2015-12-01T22:30:09 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteCompra" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1eceab50-4d23-437b-b1a8-100610f8bce6">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataMySQL"/>
@@ -52,11 +52,6 @@ WHERE
 	</field>
 	<background>
 		<band height="800" splitType="Stretch">
-			<image hAlign="Center" vAlign="Middle">
-				<reportElement mode="Transparent" x="15" y="290" width="525" height="200" forecolor="rgba(0, 0, 0, 0.67058825)" backcolor="rgba(255, 255, 255, 0.08627451)" uuid="7b8d906b-2ab6-4c5a-86f6-f498142b62e7"/>
-				<graphicElement fill="Solid"/>
-				<imageExpression><![CDATA["/Users/Byter/JaspersoftWorkspace/FacturaCompra/LogoCARSHOPBack.png"]]></imageExpression>
-			</image>
 			<rectangle>
 				<reportElement x="6" y="288" width="534" height="198" backcolor="rgba(255, 255, 255, 0.8627451)" uuid="f57917d9-7d65-4de5-902b-eff27d0943c8"/>
 				<graphicElement>
@@ -76,10 +71,6 @@ WHERE
 					</textElement>
 					<text><![CDATA[FACTURA DE COMPRA]]></text>
 				</staticText>
-				<image hAlign="Center" vAlign="Middle">
-					<reportElement x="410" y="10" width="140" height="40" uuid="ba82d466-27b7-4fa9-9e2c-ea86d4cce405"/>
-					<imageExpression><![CDATA["/Users/Byter/JaspersoftWorkspace/FacturaCompra/LogoCARSHOP.png"]]></imageExpression>
-				</image>
 			</frame>
 		</band>
 	</title>
