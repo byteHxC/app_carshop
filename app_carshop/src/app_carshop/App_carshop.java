@@ -57,7 +57,7 @@ public class App_carshop{
        */
        
           
-       
+       /*
         String pathVenta = App_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
        File aux =new File(pathVenta);
         if (aux.isDirectory())
@@ -67,7 +67,7 @@ public class App_carshop{
        
         AbsJasperReports.createReportVenta(cn,pathVenta,5,"300 $");
         AbsJasperReports.showViewer();
-        
+        */
       
    
     }

@@ -12,12 +12,14 @@ import MODELO.CCompra;
 import MODELO.CLogin;
 import MODELO.CUsuario;
 import VISTA.JFAprobarCompra;
+import app_carshop.App_carshop;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -57,8 +59,15 @@ public class Controller_JFAprobarCompra {
                     Object [] options = {"Generar factura","Ir al menu principal"};
                     int optS = JOptionPane.showOptionDialog(viewAprobarCompra, "La compra ha sido aprobada, el auto esta disponible para vender!", "Mensaje",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
                     if(optS==0){
-                        AbsJasperReports.createReportCompra(cn,"/Reports/FacturaCompra/reporteCompra.jasper",compra.getNumero_factura());
-                        AbsJasperReports.showViewer();
+                        String pathCompra = App_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+                           File aux =new File(pathCompra);
+                            if (aux.isDirectory())
+                                pathCompra = pathCompra + "/Reportes/ReporteComprajrxml.jasper";
+                            else
+                                pathCompra = aux.getParent() + "/Reportes/ReporteComprajrxml.jasper";
+
+                           AbsJasperReports.createReportCompra(cn,pathCompra, compra.getNumero_factura());
+                           AbsJasperReports.showViewer();
                     } 
                     Controller_JFFinanciamientoHome JFFinHome = new Controller_JFFinanciamientoHome(login, cn);
                     viewAprobarCompra.dispose();

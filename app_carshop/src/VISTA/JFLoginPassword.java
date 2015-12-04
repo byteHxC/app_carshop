@@ -28,7 +28,7 @@ public class JFLoginPassword extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.setSize(338, 500);
+        this.setSize(338, 480);
         
         //Set imageIcon logo CARSHOP
         Color colorpa = new Color(0,0,0,130);

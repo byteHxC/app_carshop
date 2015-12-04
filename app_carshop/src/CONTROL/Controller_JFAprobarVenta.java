@@ -12,10 +12,12 @@ import MODELO.CLogin;
 import MODELO.CUsuario;
 import MODELO.CVenta;
 import VISTA.JFAprobarVenta;
+import app_carshop.App_carshop;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -54,7 +56,14 @@ public class Controller_JFAprobarVenta {
                     int optS = JOptionPane.showOptionDialog(viewAprobarVenta, "Venta aprobada,!Auto vendido!", "Mensaje",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
                     if(optS==0){
                         //Detalle en reporte
-                        AbsJasperReports.createReportVenta(cn,"Reports/FacturaCompra/reporteVenta.jasper",venta.getNumero_factura(),cal_pagoMensual(venta.getTipo_pago(),venta.getTotal()));
+                         String pathVenta = App_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+                       File aux =new File(pathVenta);
+                        if (aux.isDirectory())
+                            pathVenta = pathVenta + "/Reportes/ReporteVenta.jasper";
+                        else
+                            pathVenta = aux.getParent() + "/Reportes/ReporteVenta.jasper";
+
+                        AbsJasperReports.createReportVenta(cn,pathVenta,venta.getNumero_factura(),cal_pagoMensual(venta.getTipo_pago(),venta.getTotal()));
                         AbsJasperReports.showViewer();
                     } 
                     Controller_JFFinanciamientoHome JFFinHome = new Controller_JFFinanciamientoHome(login, cn);
