@@ -41,11 +41,14 @@ public abstract class AbsJasperReports {
     }
       public static void createReportVenta(Connection cn,String path,int pNum,String pagoMens){
         try {
-            Map parametro = new HashMap();
-            parametro.put("pFactura", pNum);
-            parametro.put("pago_mensual", pagoMens);
+            Map parametros = new HashMap();
+            parametros.put("num_fact", pNum);
+            parametros.put("pago_mensual", pagoMens);
+            
             report = (JasperReport) JRLoader.loadObjectFromFile(path);
-            reportFilled = JasperFillManager.fillReport(report,parametro, cn);
+            
+            reportFilled = JasperFillManager.fillReport(report,parametros, cn);
+            
         } catch (JRException ex) {
             ex.printStackTrace();
             Logger.getLogger(AbsJasperReports.class.getName()).log(Level.SEVERE, null, ex);

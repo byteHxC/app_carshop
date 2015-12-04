@@ -4,6 +4,7 @@ import MODELO.AbsJasperReports;
 import MODELO.ConnectionMySQL;
 import MODELO.UserROOT;
 import VISTA.JFLoginUser;
+import java.io.File;
 import java.sql.Connection;
 
 /*
@@ -43,11 +44,32 @@ public class App_carshop{
        getConnection(UserROOT.getROOTDB());
        controladorLogin = new Controller_JFLoginUser(cn);
        //Prueba reporte
-       //AbsJasperReports.createReportCompra(cn,"Reports/FacturaCompra/reporteCompra.jasper", 9);
-       //AbsJasperReports.showViewer();
+       /*
+       String pathCompra = App_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+       File aux =new File(pathCompra);
+        if (aux.isDirectory())
+            pathCompra = pathCompra + "/Reportes/ReporteComprajrxml.jasper";
+        else
+            pathCompra = aux.getParent() + "/Reportes/ReporteComprajrxml.jasper";
+            
+       AbsJasperReports.createReportCompra(cn,pathCompra, 9);
+       AbsJasperReports.showViewer();
+       */
+       
+          
+       
+        String pathVenta = App_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+       File aux =new File(pathVenta);
+        if (aux.isDirectory())
+            pathVenta = pathVenta + "/Reportes/ReporteVenta.jasper";
+        else
+            pathVenta = aux.getParent() + "/Reportes/ReporteVenta.jasper";
+       
+        AbsJasperReports.createReportVenta(cn,pathVenta,5,"300 $");
+        AbsJasperReports.showViewer();
+        
       
-      //AbsJasperReports.createReportVenta(cn,"Reports/FacturaCompra/reporteVenta.jasper",5,"300 $");
-      //AbsJasperReports.showViewer();
+   
     }
     public static void  init(){
        getConnection(UserROOT.getROOTDB());
@@ -58,5 +80,6 @@ public class App_carshop{
     
     private static void getConnection(UserROOT userObj){
         cn = ConnectionMySQL.getConnection(userObj.getIp(),userObj.getPort(),userObj.getUserDB(),userObj.getPassDB());
+     
     }
 }
