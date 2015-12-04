@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-02T14:50:44 -->
+<!-- 2015-12-04T13:34:09 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteComprajrxml" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3a3b57e1-f2cc-4ad9-8e1d-09bf0dd39fe9">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataMySQL"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
@@ -60,7 +60,7 @@ WHERE
 				<staticText>
 					<reportElement x="180" y="30" width="200" height="20" uuid="6474dfca-ac7b-4fec-b282-f258bd78133a"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Neou" size="16"/>
+						<font fontName="Arial" size="16"/>
 					</textElement>
 					<text><![CDATA[FACTURA DE COMPRA]]></text>
 				</staticText>
@@ -80,30 +80,38 @@ WHERE
 				<textField>
 					<reportElement x="104" y="4" width="103" height="20" uuid="a70fd8fc-ef6a-43c6-948f-4e5f334b024c"/>
 					<box leftPadding="3"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{numero_factura}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement x="1" y="4" width="103" height="20" uuid="addc7724-3150-4837-b36c-17f004835ec3"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
 					<text><![CDATA[Numero factura:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="344" y="4" width="60" height="20" uuid="7ab03b9c-d383-41e4-bbc2-f93dd01192df"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
 					<text><![CDATA[Fecha:]]></text>
 				</staticText>
 				<textField>
 					<reportElement x="404" y="4" width="136" height="20" uuid="3bdca973-c3db-4e25-9474-a3a659982ccb"/>
 					<box leftPadding="3"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<staticText>
 				<reportElement x="10" y="10" width="100" height="20" uuid="a2694b6c-ee22-43fc-a4b8-187d744dea27"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="8"/>
+					<font fontName="Arial" size="8"/>
 				</textElement>
 				<text><![CDATA[Detalle factura]]></text>
 			</staticText>
@@ -122,29 +130,35 @@ WHERE
 				<staticText>
 					<reportElement x="21" y="66" width="114" height="20" uuid="57fd2801-784c-41c6-a875-d3d4b02d031d"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font isBold="true"/>
+						<font fontName="Arial" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Nombre encargado:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="19" y="34" width="100" height="20" uuid="2de8e8e0-393c-4188-8461-e772ab1a012e"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font isBold="true"/>
+						<font fontName="Arial" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Clave de elector:]]></text>
 				</staticText>
 				<textField>
 					<reportElement x="141" y="36" width="122" height="20" uuid="0e549f81-e9a9-4c91-9a0c-1cb49dac1aa7"/>
+					<textElement>
+						<font fontName="Arial"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{us_cve}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="142" y="66" width="122" height="20" uuid="ac89d425-8f68-4198-817c-4b30d7ddf5fd"/>
+					<textElement>
+						<font fontName="Arial"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{nombre_empleado}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement x="1" y="2" width="100" height="20" uuid="dc11ba60-a45d-42bf-860b-9958c3b87f16"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font size="8"/>
+						<font fontName="Arial" size="8"/>
 					</textElement>
 					<text><![CDATA[Datos empleado]]></text>
 				</staticText>
@@ -160,29 +174,35 @@ WHERE
 				<staticText>
 					<reportElement x="17" y="65" width="100" height="20" uuid="40dca0b9-13e3-4ed1-8034-06d5960d3dc7"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font isBold="true"/>
+						<font fontName="Arial" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Nombre cliente:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="16" y="35" width="100" height="20" uuid="9db0f02f-78ce-4815-9bf5-8b59b9432dee"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font isBold="true"/>
+						<font fontName="Arial" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Clave de elector:]]></text>
 				</staticText>
 				<textField>
 					<reportElement x="141" y="35" width="114" height="20" uuid="4ffb7572-bb5c-4df5-b191-a3d6ce32e56d"/>
+					<textElement>
+						<font fontName="Arial"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{cli_cve}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="142" y="67" width="113" height="20" uuid="b99c9988-c72f-403a-bec0-e2d586561d4d"/>
+					<textElement>
+						<font fontName="Arial"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{nombre_cliente}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement x="0" y="2" width="100" height="20" uuid="b462e6e6-de73-44bc-b9be-f59eb88e76be"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font size="8"/>
+						<font fontName="Arial" size="8"/>
 					</textElement>
 					<text><![CDATA[Datos cliente]]></text>
 				</staticText>
@@ -208,7 +228,7 @@ WHERE
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Neou"/>
+						<font fontName="Arial"/>
 					</textElement>
 					<text><![CDATA[ Numero de serie:]]></text>
 				</staticText>
@@ -221,7 +241,7 @@ WHERE
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Neou"/>
+						<font fontName="Arial"/>
 					</textElement>
 					<text><![CDATA[ Marca:]]></text>
 				</staticText>
@@ -234,7 +254,7 @@ WHERE
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Neou"/>
+						<font fontName="Arial"/>
 					</textElement>
 					<text><![CDATA[ Tipo:]]></text>
 				</staticText>
@@ -247,7 +267,7 @@ WHERE
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Neou"/>
+						<font fontName="Arial"/>
 					</textElement>
 					<text><![CDATA[ Modelo:]]></text>
 				</staticText>
@@ -260,7 +280,7 @@ WHERE
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Neou"/>
+						<font fontName="Arial"/>
 					</textElement>
 					<text><![CDATA[ Cilindros:]]></text>
 				</staticText>
@@ -273,7 +293,7 @@ WHERE
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Neou"/>
+						<font fontName="Arial"/>
 					</textElement>
 					<text><![CDATA[ Color:]]></text>
 				</staticText>
@@ -286,12 +306,15 @@ WHERE
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font fontName="Neou"/>
+						<font fontName="Arial"/>
 					</textElement>
 					<text><![CDATA[ Precio]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="12" y="1" width="100" height="13" uuid="3622d804-e2f9-4444-aef6-a8f7b8be7dcf"/>
+					<textElement>
+						<font fontName="Arial"/>
+					</textElement>
 					<text><![CDATA[Datos del auto]]></text>
 				</staticText>
 				<textField>
@@ -302,7 +325,9 @@ WHERE
 						<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
 						<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
 					</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{numero_serie}]]></textFieldExpression>
 				</textField>
 				<textField>
@@ -313,7 +338,9 @@ WHERE
 						<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
 						<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
 					</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
 				</textField>
 				<textField>
@@ -324,7 +351,9 @@ WHERE
 						<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
 						<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
 					</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
 				</textField>
 				<textField>
@@ -335,7 +364,9 @@ WHERE
 						<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
 						<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
 					</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{color}]]></textFieldExpression>
 				</textField>
 				<textField>
@@ -346,7 +377,9 @@ WHERE
 						<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
 						<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
 					</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
 				</textField>
 				<textField>
@@ -357,7 +390,9 @@ WHERE
 						<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
 						<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
 					</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{cilindros}]]></textFieldExpression>
 				</textField>
 				<textField>
@@ -368,7 +403,9 @@ WHERE
 						<bottomPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
 						<rightPen lineWidth="0.2" lineStyle="Solid" lineColor="#000000"/>
 					</box>
-					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
 				</textField>
 			</frame>
