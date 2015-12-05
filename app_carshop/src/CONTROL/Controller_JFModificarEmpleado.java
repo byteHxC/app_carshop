@@ -8,7 +8,7 @@ package CONTROL;
 import MODELO.CLogin;
 import MODELO.CUsuario;
 import VISTA.JFModificarEmpleado;
-import app_carshop.App_carshop;
+import app_carshop.app_carshop;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -56,7 +56,7 @@ public class Controller_JFModificarEmpleado {
             public void windowClosing(WindowEvent e) {
                 int resp = JOptionPane.showConfirmDialog(viewUpdateEmpleado,"¿Desea salir de la app?","Warning",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
-                    App_carshop.init();
+                    app_carshop.init();
                     viewUpdateEmpleado.dispose();
                 }
             }

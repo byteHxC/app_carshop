@@ -7,9 +7,9 @@ package CONTROL;
 
 import MODELO.CLogin;
 import MODELO.ConnectionMySQL;
-import MODELO.UserROOT;
+import SourceDB.UserROOT;
 import VISTA.JFRootHome;
-import app_carshop.App_carshop;
+import app_carshop.app_carshop;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -78,7 +78,7 @@ public class Controller_JFConfiguracionInicial {
                     userRoot.saveObject();
                     viewSettingsDB.dialog_settingBD.dispose();
                     viewSettingsDB.dispose();  
-                    App_carshop.init();
+                    app_carshop.init();
                     }
                 }
             }
@@ -99,7 +99,7 @@ public class Controller_JFConfiguracionInicial {
             public void mouseClicked(MouseEvent e) {
                 int resp = JOptionPane.showConfirmDialog(viewSettingsDB,"¿Confirmar cierre de sesion?","Warning",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
-                    App_carshop.init();
+                    app_carshop.init();
                     viewSettingsDB.dispose();
                     
                 }
@@ -112,7 +112,7 @@ public class Controller_JFConfiguracionInicial {
             public void windowClosing(WindowEvent e) {
                 int resp = JOptionPane.showConfirmDialog(viewSettingsDB,"¿Desea salir de la app?","Warning",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
-                    App_carshop.init();
+                    app_carshop.init();
                     viewSettingsDB.dispose();
                 }
             }

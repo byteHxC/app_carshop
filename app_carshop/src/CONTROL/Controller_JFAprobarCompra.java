@@ -12,7 +12,7 @@ import MODELO.CCompra;
 import MODELO.CLogin;
 import MODELO.CUsuario;
 import VISTA.JFAprobarCompra;
-import app_carshop.App_carshop;
+import app_carshop.app_carshop;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -59,7 +59,7 @@ public class Controller_JFAprobarCompra {
                     Object [] options = {"Generar factura","Ir al menu principal"};
                     int optS = JOptionPane.showOptionDialog(viewAprobarCompra, "La compra ha sido aprobada, el auto esta disponible para vender!", "Mensaje",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
                     if(optS==0){
-                        String pathCompra = App_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+                        String pathCompra = app_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
                            File aux =new File(pathCompra);
                             if (aux.isDirectory())
                                 pathCompra = pathCompra + "/Reportes/ReporteComprajrxml.jasper";

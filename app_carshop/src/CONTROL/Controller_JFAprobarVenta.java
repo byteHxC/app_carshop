@@ -12,7 +12,7 @@ import MODELO.CLogin;
 import MODELO.CUsuario;
 import MODELO.CVenta;
 import VISTA.JFAprobarVenta;
-import app_carshop.App_carshop;
+import app_carshop.app_carshop;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -56,7 +56,7 @@ public class Controller_JFAprobarVenta {
                     int optS = JOptionPane.showOptionDialog(viewAprobarVenta, "Venta aprobada,!Auto vendido!", "Mensaje",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
                     if(optS==0){
                         //Detalle en reporte
-                         String pathVenta = App_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+                         String pathVenta = app_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
                        File aux =new File(pathVenta);
                         if (aux.isDirectory())
                             pathVenta = pathVenta + "/Reportes/ReporteVenta.jasper";

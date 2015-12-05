@@ -8,7 +8,7 @@ package CONTROL;
 import MODELO.CLogin;
 import MODELO.CUsuario;
 import VISTA.JFListaEmpleados;
-import app_carshop.App_carshop;
+import app_carshop.app_carshop;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -155,7 +155,7 @@ public class Controller_JFListarEmpleados {
             public void windowClosing(WindowEvent e) {
                 int resp = JOptionPane.showConfirmDialog(viewEmpleados,"¿Si sale de aqui, se cerrara su sesion?","Salir",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
-                    App_carshop.init();
+                    app_carshop.init();
                     viewEmpleados.dispose();
                 }
                 

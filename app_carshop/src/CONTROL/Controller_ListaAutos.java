@@ -8,7 +8,7 @@ package CONTROL;
 import MODELO.CAuto;
 import MODELO.CLogin;
 import VISTA.JFListaAutos;
-import app_carshop.App_carshop;
+import app_carshop.app_carshop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -112,7 +112,7 @@ public class Controller_ListaAutos {
             public void windowClosing(WindowEvent e) {
                 int resp = JOptionPane.showConfirmDialog(listaAutos,"¿Desea salir de la app?","Warning",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
-                    App_carshop.init();
+                    app_carshop.init();
                     listaAutos.dispose();
                 }
             }

@@ -8,7 +8,7 @@ package CONTROL;
 import MODELO.CCliente;
 import MODELO.CLogin;
 import VISTA.JFListaClientes;
-import app_carshop.App_carshop;
+import app_carshop.app_carshop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -67,12 +67,12 @@ public class Controller_SeleccionarClienteCompra {
             }
         });
         //Al cerrar el frame 
-        this.clienteCompra.addWindowListener( new WindowAdapter() {
+        this.clienteCompra.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 int resp = JOptionPane.showConfirmDialog(clienteCompra,"¿Si sale de aqui, se cerrara su sesion?","Salir",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
-                    App_carshop.init();
+                    app_carshop.init();
                    clienteCompra.dispose();
                 }
                 

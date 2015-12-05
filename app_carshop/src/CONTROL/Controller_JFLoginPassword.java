@@ -7,8 +7,8 @@ package CONTROL;
 
 import MODELO.CUsuario;
 import MODELO.CLogin;
-import MODELO.UserROOT;
-import app_carshop.App_carshop;
+import SourceDB.UserROOT;
+import app_carshop.app_carshop;
 import VISTA.JFLoginPassword;
 import java.awt.Color;
 import java.awt.Image;
@@ -83,7 +83,7 @@ public class Controller_JFLoginPassword {
         this.loginPassword.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                App_carshop.init();
+                app_carshop.init();
                 loginPassword.dispose();
             }
         });
@@ -157,7 +157,7 @@ public class Controller_JFLoginPassword {
         this.loginPassword.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                App_carshop.init();
+                app_carshop.init();
                 loginPassword.dispose();
             }
         });

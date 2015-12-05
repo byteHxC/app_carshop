@@ -12,7 +12,7 @@ import MODELO.CLogin;
 import MODELO.CUsuario;
 import MODELO.DateTime;
 import VISTA.JFAgregarCompra;
-import app_carshop.App_carshop;
+import app_carshop.app_carshop;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -110,7 +110,7 @@ public class Controller_JFAgregarCompra {
             public void windowClosing(WindowEvent e) {
                 int resp = JOptionPane.showConfirmDialog(viewAddCompra,"¿Desea salir de la app?","Warning",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
-                    App_carshop.init();
+                    app_carshop.init();
                     viewAddCompra.dispose();
                 }
             }

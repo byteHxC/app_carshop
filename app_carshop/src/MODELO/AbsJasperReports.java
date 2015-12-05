@@ -33,6 +33,7 @@ public abstract class AbsJasperReports {
             parametro.put("pFactura", pNum);
             report = (JasperReport) JRLoader.loadObjectFromFile(path);
             reportFilled = JasperFillManager.fillReport(report,parametro, cn);
+           
         } catch (JRException ex) {
             ex.printStackTrace();
             Logger.getLogger(AbsJasperReports.class.getName()).log(Level.SEVERE, null, ex);
@@ -55,10 +56,42 @@ public abstract class AbsJasperReports {
         }
         
     }
+      
+      public static void createReporteListaV(Connection cn,String path,int year,int month){
+        try {
+            Map parametros = new HashMap();
+            parametros.put("year", year);
+            parametros.put("month", month);
+            
+            report = (JasperReport) JRLoader.loadObjectFromFile(path);
+            
+            reportFilled = JasperFillManager.fillReport(report,parametros, cn);
+            
+            
+        } catch (JRException ex) {
+            ex.printStackTrace();
+            Logger.getLogger(AbsJasperReports.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+      public static void createReporteListaC(Connection cn,String path,int year,int month){
+        try {
+            Map parametros = new HashMap();
+            parametros.put("year", year);
+            parametros.put("month", month);
+            
+            report = (JasperReport) JRLoader.loadObjectFromFile(path);
+            
+            reportFilled = JasperFillManager.fillReport(report,parametros, cn);
+            
+        } catch (JRException ex) {
+            ex.printStackTrace();
+            Logger.getLogger(AbsJasperReports.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     public static void showViewer(){
         viewer = new JasperViewer(reportFilled,false);
-      
         viewer.setVisible(true);
-        
     }
 }

@@ -7,7 +7,7 @@ package CONTROL;
 
 import MODELO.CLogin;
 import VISTA.JFComercioHome;
-import app_carshop.App_carshop;
+import app_carshop.app_carshop;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -71,8 +71,10 @@ public class Controller_JFComercioHome {
         this.viewComercio.btn_cliente.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-               viewComercio.dialog_opcionesCliente.setVisible(true);
-               
+               //viewComercio.dialog_opcionesCliente.setVisible(true);
+                 viewComercio.dialog_opcionesCliente.dispose();
+                Controller_JFAgregarCliente agregarCliente = new Controller_JFAgregarCliente(login, cn);
+                viewComercio.dispose();
             }
         });
         //Button cancel options cliente
@@ -113,7 +115,7 @@ public class Controller_JFComercioHome {
             int resp = JOptionPane.showConfirmDialog(viewComercio,"¿Confirmar cierre de sesion?","Cerrar sesion",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
                     viewComercio.dispose();
-                    App_carshop.init();
+                    app_carshop.init();
                 }
             }
         });
@@ -123,7 +125,7 @@ public class Controller_JFComercioHome {
              public void windowClosing(WindowEvent e) {
                 int resp = JOptionPane.showConfirmDialog(viewComercio,"¿Si sale de aqui, se cerrara su sesion?","Salir",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
-                    App_carshop.init();
+                    app_carshop.init();
                     viewComercio.dispose();
                 }
                 

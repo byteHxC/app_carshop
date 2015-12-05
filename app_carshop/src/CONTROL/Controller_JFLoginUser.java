@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 public class Controller_JFLoginUser {
     JFLoginUser loginUser;
     Connection cn;
+    
     public Controller_JFLoginUser(Connection cn){
         
         loginUser = new JFLoginUser();

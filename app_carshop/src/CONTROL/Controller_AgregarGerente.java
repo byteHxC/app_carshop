@@ -7,9 +7,9 @@ package CONTROL;
 
 import MODELO.CLogin;
 import MODELO.CUsuario;
-import MODELO.UserROOT;
+import SourceDB.UserROOT;
 import VISTA.JFInfoEmpelado;
-import app_carshop.App_carshop;
+import app_carshop.app_carshop;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -149,7 +149,7 @@ public class Controller_AgregarGerente {
             public void windowClosing(WindowEvent e) {
                 int resp = JOptionPane.showConfirmDialog(infoEmpleado,"¿Desea salir de la app?","Warning",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
-                    App_carshop.init();
+                    app_carshop.init();
                     infoEmpleado.dispose();
                 }
             }

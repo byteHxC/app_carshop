@@ -9,7 +9,7 @@ import MODELO.CAuto;
 import MODELO.CCliente;
 import MODELO.CLogin;
 import VISTA.JFInfoAuto;
-import app_carshop.App_carshop;
+import app_carshop.app_carshop;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -151,7 +151,7 @@ public class Controller_JFAgregarAuto {
             public void windowClosing(WindowEvent e) {
                 int resp = JOptionPane.showConfirmDialog(viewAddAuto,"¿Desea salir de la app?","Warning",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
-                    App_carshop.init();
+                    app_carshop.init();
                     viewAddAuto.dispose();
                 }
             }

@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MODELO;
+package SourceDB;
 
 import CONTROL.Controller_JFLoginUser;
-import app_carshop.App_carshop;
+import app_carshop.app_carshop;
+import com.itextpdf.xmp.impl.Utils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,6 +16,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -89,6 +92,7 @@ public class UserROOT implements Serializable{
     }
     
     public void saveObject(){
+                            
         FileOutputStream fileOut = null;
         ObjectOutputStream objectOut = null;
         File fileDB = new File("src//SourceDB//settingsDBROOT.dat");
@@ -117,29 +121,33 @@ public class UserROOT implements Serializable{
         UserROOT userObj = null;
         ObjectInputStream objectIn = null;
         try {
+           
             File file = new File("src//SourceDB//settingsDBROOT.dat");
             FileInputStream fileIn = new FileInputStream(file);
             objectIn = new ObjectInputStream(fileIn);
-             userObj = (UserROOT) objectIn.readObject();
+            
+            userObj = (UserROOT) objectIn.readObject();
             return userObj;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Controller_JFLoginUser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Controller_JFLoginUser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(App_carshop.class.getName()).log(Level.SEVERE, null, ex);
-        } finally{
+            Logger.getLogger(app_carshop.class.getName()).log(Level.SEVERE, null, ex);
+        }  finally{
             try {
                 if(objectIn!=null)
                      objectIn.close();
             } catch (IOException ex) {
-                Logger.getLogger(App_carshop.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(app_carshop.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return userObj;
     }
     
      public  static void escribirDefaultROOTDB(String password,String ip,String port,String userdb,String passdb){
+       
+            
         FileOutputStream fileOut = null;
         ObjectOutputStream objectOut = null;
         UserROOT objSave = new UserROOT(password,ip,port,userdb,passdb);
@@ -151,9 +159,9 @@ public class UserROOT implements Serializable{
             System.out.println("Default's settingsDBROOT.dat :D");
             
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(App_carshop.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(app_carshop.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(App_carshop.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(app_carshop.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 if( fileOut !=null & objectOut!=null ){
@@ -161,7 +169,7 @@ public class UserROOT implements Serializable{
                 objectOut.close();
                 }
             } catch (IOException ex) {
-                Logger.getLogger(App_carshop.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(app_carshop.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

@@ -6,9 +6,9 @@
 package CONTROL;
 
 import MODELO.CLogin;
-import MODELO.UserROOT;
+import SourceDB.UserROOT;
 import VISTA.JFSettingsUser;
-import app_carshop.App_carshop;
+import app_carshop.app_carshop;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -62,7 +62,7 @@ public class Controller_JFSettingsUser {
                            root.setPassword(pass);
                            root.saveObject();
                            viewSettingsUser.dispose();   
-                           App_carshop.init();
+                           app_carshop.init();
                     }
                }else if (pass.length()<6){
                    
@@ -153,7 +153,7 @@ public class Controller_JFSettingsUser {
                                login.updateObject(cn);
                               
                                viewSettingsUser.dispose();   
-                               App_carshop.init();
+                               app_carshop.init();
                         }
                 }
                 

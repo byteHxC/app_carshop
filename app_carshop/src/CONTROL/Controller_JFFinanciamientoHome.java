@@ -9,7 +9,7 @@ import MODELO.CCompra;
 import MODELO.CLogin;
 import MODELO.CVenta;
 import VISTA.JFFinanciamientoHome;
-import app_carshop.App_carshop;
+import app_carshop.app_carshop;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -95,7 +95,7 @@ public class Controller_JFFinanciamientoHome {
                 int resp = JOptionPane.showConfirmDialog(viewFinanHome,"¿Confirmar cierre de sesion?","Cerrar sesion",JOptionPane.YES_NO_OPTION);
 
                 if(resp == JOptionPane.YES_OPTION){
-                    App_carshop.init();
+                    app_carshop.init();
                     viewFinanHome.dispose();
                 }
             }
@@ -105,7 +105,7 @@ public class Controller_JFFinanciamientoHome {
             public void windowClosing(WindowEvent e) {
                 int resp = JOptionPane.showConfirmDialog(viewFinanHome,"¿Si sale de aqui, se cerrara su sesion?","Salir",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
-                    App_carshop.init();
+                    app_carshop.init();
                     viewFinanHome.dispose();
                 }
                 

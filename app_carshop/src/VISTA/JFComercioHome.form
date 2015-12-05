@@ -550,7 +550,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Gestionar clientes"/>
+                    <Property name="text" type="java.lang.String" value="Agregar cliente"/>
                   </Properties>
                 </Component>
               </SubComponents>

@@ -5,9 +5,12 @@
  */
 package CONTROL;
 
+import MODELO.AbsJasperReports;
 import MODELO.CLogin;
+import MODELO.CVenta;
 import VISTA.JFGerenteHome;
-import app_carshop.App_carshop;
+import app_carshop.app_carshop;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -89,7 +92,46 @@ public class Controller_JFGerenteHome {
         this.viewGerenteHome.btn_ventas.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
-            
+                Object [] options = {"Generar factura mensual","Generar factura especifica"};
+                    int optS = JOptionPane.showOptionDialog(viewGerenteHome, "Seleccione el tipo de factura: ", "Mensaje",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
+                    if(optS==0){
+                        //Factura mensual
+                        try{
+                         int month = Integer.parseInt(JOptionPane.showInputDialog(viewGerenteHome,"Ingrese el mes","Reportes",JOptionPane.INFORMATION_MESSAGE));
+                         int year = Integer.parseInt(JOptionPane.showInputDialog(viewGerenteHome,"Ingrese el anio ","Reportes",JOptionPane.INFORMATION_MESSAGE));
+                         String path = app_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+                             File aux =new File(path);
+                            if (aux.isDirectory())
+                                path = path + "/Reportes/ListaVentas.jasper";
+                            else
+                                path = aux.getParent() + "/Reportes/ListaVentas.jasper";
+
+                            AbsJasperReports.createReporteListaV(cn, path, year, month);
+                            AbsJasperReports.showViewer();
+                            
+                        }catch(HeadlessException | NumberFormatException err){
+                            JOptionPane.showMessageDialog(viewGerenteHome,"Datos ingresados invalidos","Mensaje",JOptionPane.WARNING_MESSAGE);
+                        }
+                    }else if(optS==1){
+                        //Factura especifica
+                        try{
+                         int num_fact =Integer.parseInt(JOptionPane.showInputDialog(viewGerenteHome,"Ingrese el numero de factura: ","Reportes",JOptionPane.INFORMATION_MESSAGE));
+                        CVenta venta = CVenta.getVenta(num_fact, cn); 
+                        //Detalle en reporte
+                             String pathVenta = app_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+                             File aux =new File(pathVenta);
+                            if (aux.isDirectory())
+                                pathVenta = pathVenta + "/Reportes/ReporteVenta.jasper";
+                            else
+                                pathVenta = aux.getParent() + "/Reportes/ReporteVenta.jasper";
+
+                            AbsJasperReports.createReportVenta(cn,pathVenta,venta.getNumero_factura(),cal_pagoMensual(venta.getTipo_pago(),venta.getTotal()));
+                            AbsJasperReports.showViewer();
+                            
+                        }catch(HeadlessException | NumberFormatException err){
+                            JOptionPane.showMessageDialog(viewGerenteHome,"No se encontro el numero de factura,verificar","Mensaje",JOptionPane.WARNING_MESSAGE);
+                        }
+                    }
             }
         });
         
@@ -98,6 +140,44 @@ public class Controller_JFGerenteHome {
             @Override
             public void mouseClicked(MouseEvent e) {
             
+                Object [] options = {"Generar factura mensual","Generar factura especifica"};
+                    int optS = JOptionPane.showOptionDialog(viewGerenteHome, "Seleccione el tipo de factura: ", "Mensaje",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
+                    if(optS==0){
+                        //Factura mensual
+                        try{
+                         int month = Integer.parseInt(JOptionPane.showInputDialog(viewGerenteHome,"Ingrese el mes","Reportes",JOptionPane.INFORMATION_MESSAGE));
+                         int year = Integer.parseInt(JOptionPane.showInputDialog(viewGerenteHome,"Ingrese el anio ","Reportes",JOptionPane.INFORMATION_MESSAGE));
+                         String path = app_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+                             File aux =new File(path);
+                            if (aux.isDirectory())
+                                path = path + "/Reportes/ListaCompras.jasper";
+                            else
+                                path = aux.getParent() + "/Reportes/ListaCompras.jasper";
+
+                            AbsJasperReports.createReporteListaC(cn, path, year, month);
+                            AbsJasperReports.showViewer();
+                            
+                        }catch(HeadlessException | NumberFormatException err){
+                            JOptionPane.showMessageDialog(viewGerenteHome,"Datos ingresados invalidos","Mensaje",JOptionPane.WARNING_MESSAGE);
+                        }
+                    }else if(optS==1){
+                        //Factura especifica
+                        try{
+                         int num_fact =Integer.parseInt(JOptionPane.showInputDialog(viewGerenteHome,"Ingrese el numero de factura: ","Reportes",JOptionPane.INFORMATION_MESSAGE));
+                         String pathCompra = app_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+                           File aux =new File(pathCompra);
+                            if (aux.isDirectory())
+                                pathCompra = pathCompra + "/Reportes/ReporteComprajrxml.jasper";
+                            else
+                                pathCompra = aux.getParent() + "/Reportes/ReporteComprajrxml.jasper";
+
+                           AbsJasperReports.createReportCompra(cn,pathCompra, num_fact);
+                           AbsJasperReports.showViewer();
+                            
+                        }catch(HeadlessException | NumberFormatException err){
+                            JOptionPane.showMessageDialog(viewGerenteHome,"No se encontro el numero de factura,verificar","Mensaje",JOptionPane.WARNING_MESSAGE);
+                        }
+                    }
             }
         });
         //Boton de cerrar cesion
@@ -107,7 +187,7 @@ public class Controller_JFGerenteHome {
                 int resp = JOptionPane.showConfirmDialog(viewGerenteHome,"¿Confirmar cierre de sesion?","Cerrar sesion",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
                     viewGerenteHome.dispose();
-                    App_carshop.init();
+                    app_carshop.init();
                 }
             }
         });
@@ -118,7 +198,7 @@ public class Controller_JFGerenteHome {
             public void windowClosing(WindowEvent e) {
                 int resp = JOptionPane.showConfirmDialog(viewGerenteHome,"¿Si sale de aqui, se cerrara su sesion?","Salir",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
-                    App_carshop.init();
+                    app_carshop.init();
                     viewGerenteHome.dispose();
                 }
                 
@@ -143,4 +223,18 @@ public class Controller_JFGerenteHome {
         } 
         return image;
      }
+      public String cal_pagoMensual(String tipo,float precio){
+              String pago = "";
+         switch(tipo){
+                case ("Contado"):
+                    pago = ""+precio+" $";
+                    break;
+                case ("6 meses"):
+                    pago = ""+precio/6+" $";
+                    break;
+                case ("12 meses"): 
+                    pago = ""+precio/12+" $";
+            }
+         return pago;
+      }
 }

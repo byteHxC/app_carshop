@@ -58,7 +58,7 @@ public class JFComercioHome extends javax.swing.JFrame {
         panel_verAutos.setBackground(colorBlack);
         
         //Set icons in labels btn
-        Image clienteIcon = new ImageIcon(getClass().getResource("/ASSETS/group44.png")).getImage().getScaledInstance(80,80,Image.SCALE_SMOOTH);
+        Image clienteIcon = new ImageIcon(getClass().getResource("/ASSETS//add110.png")).getImage().getScaledInstance(80,80,Image.SCALE_SMOOTH);
         Image ventaIcon = new ImageIcon(getClass().getResource("/ASSETS/commercial18(1).png")).getImage().getScaledInstance(120,100,Image.SCALE_SMOOTH);
         Image compraIcon = new ImageIcon(getClass().getResource("/ASSETS/receipt10.png")).getImage().getScaledInstance(80,80,Image.SCALE_SMOOTH);
         Image vAutos = new ImageIcon(getClass().getResource("/ASSETS/vAuto.png")).getImage().getScaledInstance(80,80,Image.SCALE_SMOOTH);
@@ -67,27 +67,6 @@ public class JFComercioHome extends javax.swing.JFrame {
         btn_addVenta.setIcon(new ImageIcon(ventaIcon));
         btn_addCompra.setIcon(new ImageIcon(compraIcon));
         btn_verAutos.setIcon(new ImageIcon(vAutos));
-        
-//        JLabel lcliente = new JLabel("Clientes",SwingConstants.CENTER);
-//        lcliente.setForeground(Color.white);
-//        lcliente.setFont(new Font("Gulim",Font.PLAIN, 16));
-//        panel_addCliente.add(lcliente);
-//        lcliente.setSize(panel_addCliente.getWidth(), 50);
-//        lcliente.setLocation(0,120);
-//        
-//        JLabel lventa = new JLabel("Agregar venta",SwingConstants.CENTER);
-//        lventa.setForeground(Color.white);
-//        lventa.setFont(new Font("Gulim",Font.PLAIN, 16));
-//        panel_addVenta.add(lventa);
-//        lventa.setSize(panel_addVenta.getWidth(), 50);
-//        lventa.setLocation(0,120);
-//        
-//        JLabel lcompra = new JLabel("Agregar compra",SwingConstants.CENTER);
-//        lcompra.setForeground(Color.white);
-//        lcompra.setFont(new Font("Gulim",Font.PLAIN, 16));
-//        panel_addCompra.add(lcompra);
-//        lcompra.setSize(panel_addCompra.getWidth(), 50);
-//        lcompra.setLocation(0,120);
         
         
         
@@ -334,7 +313,7 @@ public class JFComercioHome extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Gestionar clientes");
+        jLabel2.setText("Agregar cliente");
 
         javax.swing.GroupLayout panel_addClienteLayout = new javax.swing.GroupLayout(panel_addCliente);
         panel_addCliente.setLayout(panel_addClienteLayout);

@@ -8,7 +8,7 @@ package CONTROL;
 import MODELO.CCliente;
 import MODELO.CLogin;
 import VISTA.JFInfoCliente;
-import app_carshop.App_carshop;
+import app_carshop.app_carshop;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -68,7 +68,7 @@ public class Controller_JFAgregarCliente {
             public void windowClosing(WindowEvent e) {
                 int resp = JOptionPane.showConfirmDialog(viewAddCliente,"¿Desea salir de la app?","Warning",JOptionPane.YES_NO_OPTION);
                 if(resp == JOptionPane.YES_OPTION){
-                    App_carshop.init();
+                    app_carshop.init();
                     viewAddCliente.dispose();
                 }
             }
