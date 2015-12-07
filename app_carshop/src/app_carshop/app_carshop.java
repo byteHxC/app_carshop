@@ -1,9 +1,15 @@
 package app_carshop;
 import CONTROL.Controller_JFLoginUser;
 import MODELO.ConnectionMySQL;
-import SourceDB.UserROOT;
+import MODELO.DateTime;
+import MODELO.UserROOT;
 import VISTA.JFLoginUser;
+import java.io.File;
 import java.sql.Connection;
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+import java.time.MonthDay;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -33,9 +39,22 @@ public class app_carshop{
          
          
       //UserROOT.escribirDefaultROOTDB("123456","localhost","3306","root","#%mysql/1");
-       
-       getConnection(UserROOT.getROOTDB());
-       controladorLogin = new Controller_JFLoginUser(cn);
+      //DateTime.getDiaNow()
+        System.out.println("hora "+DateTime.getHour());
+      if(DateTime.getDiaNow().equals("Domingo")){
+          JOptionPane.showMessageDialog(null,"Los dias domingo no se puede acceder al sistema","Mensaje de error",JOptionPane.ERROR_MESSAGE);
+          System.exit(0);
+      }else{
+         int hourDay = DateTime.getHour();
+         if(hourDay>=9 && hourDay<20 ){  
+            getConnection(UserROOT.getROOTDB());
+            controladorLogin = new Controller_JFLoginUser(cn);
+         }else{
+          JOptionPane.showMessageDialog(null,"El horario de uso es de 08:00 - 20:00 horas","Mensaje de error",JOptionPane.ERROR_MESSAGE);
+          System.exit(0);
+         }
+      }
+    
     }
     public static void  init(){
        getConnection(UserROOT.getROOTDB());

@@ -102,9 +102,9 @@ public class Controller_JFGerenteHome {
                          String path = app_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
                              File aux =new File(path);
                             if (aux.isDirectory())
-                                path = path + "/Reportes/ListaVentas.jasper";
+                                path = path + "/Resources/Reportes/ListaVentas.jasper";
                             else
-                                path = aux.getParent() + "/Reportes/ListaVentas.jasper";
+                                path = aux.getParent() + "/Resources/Reportes/ListaVentas.jasper";
 
                             AbsJasperReports.createReporteListaV(cn, path, year, month);
                             AbsJasperReports.showViewer();
@@ -121,9 +121,9 @@ public class Controller_JFGerenteHome {
                              String pathVenta = app_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
                              File aux =new File(pathVenta);
                             if (aux.isDirectory())
-                                pathVenta = pathVenta + "/Reportes/ReporteVenta.jasper";
+                                pathVenta = pathVenta + "/Resources/Reportes/ReporteVenta.jasper";
                             else
-                                pathVenta = aux.getParent() + "/Reportes/ReporteVenta.jasper";
+                                pathVenta = aux.getParent() + "/Resources/Reportes/ReporteVenta.jasper";
 
                             AbsJasperReports.createReportVenta(cn,pathVenta,venta.getNumero_factura(),cal_pagoMensual(venta.getTipo_pago(),venta.getTotal()));
                             AbsJasperReports.showViewer();
@@ -150,9 +150,9 @@ public class Controller_JFGerenteHome {
                          String path = app_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
                              File aux =new File(path);
                             if (aux.isDirectory())
-                                path = path + "/Reportes/ListaCompras.jasper";
+                                path = path + "/Resources/Reportes/ListaCompras.jasper";
                             else
-                                path = aux.getParent() + "/Reportes/ListaCompras.jasper";
+                                path = aux.getParent() + "/Resources/Reportes/ListaCompras.jasper";
 
                             AbsJasperReports.createReporteListaC(cn, path, year, month);
                             AbsJasperReports.showViewer();
@@ -167,9 +167,9 @@ public class Controller_JFGerenteHome {
                          String pathCompra = app_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
                            File aux =new File(pathCompra);
                             if (aux.isDirectory())
-                                pathCompra = pathCompra + "/Reportes/ReporteComprajrxml.jasper";
+                                pathCompra = pathCompra + "/Resources/Reportes/ReporteComprajrxml.jasper";
                             else
-                                pathCompra = aux.getParent() + "/Reportes/ReporteComprajrxml.jasper";
+                                pathCompra = aux.getParent() + "/Resources/Reportes/ReporteComprajrxml.jasper";
 
                            AbsJasperReports.createReportCompra(cn,pathCompra, num_fact);
                            AbsJasperReports.showViewer();

@@ -62,9 +62,9 @@ public class Controller_JFAprobarCompra {
                         String pathCompra = app_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
                            File aux =new File(pathCompra);
                             if (aux.isDirectory())
-                                pathCompra = pathCompra + "/Reportes/ReporteComprajrxml.jasper";
+                                pathCompra = pathCompra + "/Resources/Reportes/ReporteComprajrxml.jasper";
                             else
-                                pathCompra = aux.getParent() + "/Reportes/ReporteComprajrxml.jasper";
+                                pathCompra = aux.getParent() + "/Resources/Reportes/ReporteComprajrxml.jasper";
 
                            AbsJasperReports.createReportCompra(cn,pathCompra, compra.getNumero_factura());
                            AbsJasperReports.showViewer();

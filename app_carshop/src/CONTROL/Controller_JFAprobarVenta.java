@@ -59,9 +59,9 @@ public class Controller_JFAprobarVenta {
                          String pathVenta = app_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
                        File aux =new File(pathVenta);
                         if (aux.isDirectory())
-                            pathVenta = pathVenta + "/Reportes/ReporteVenta.jasper";
+                            pathVenta = pathVenta + "/Resources/Reportes/ReporteVenta.jasper";
                         else
-                            pathVenta = aux.getParent() + "/Reportes/ReporteVenta.jasper";
+                            pathVenta = aux.getParent() + "/Resources/Reportes/ReporteVenta.jasper";
 
                         AbsJasperReports.createReportVenta(cn,pathVenta,venta.getNumero_factura(),cal_pagoMensual(venta.getTipo_pago(),venta.getTotal()));
                         AbsJasperReports.showViewer();

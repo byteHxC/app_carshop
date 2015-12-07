@@ -225,7 +225,7 @@ public class CVenta {
      
       public static boolean Aprobar(int numero_factura,String comentario,Connection cn){
          try{
-             PreparedStatement pps = cn.prepareStatement("update ventas set aprobacion = true,comentario= ? where numero_factura = ?");
+             PreparedStatement pps = cn.prepareStatement("update ventas set aprobacion = true,comentario= ? where numero_factura = ? and aprobacion is null;");
              pps.setString(1, comentario);
              pps.setInt(2, numero_factura);
              pps.executeUpdate();
@@ -238,7 +238,7 @@ public class CVenta {
      }
      public static boolean noAprobar(int numero_factura,String comentario,Connection cn){
           try{
-             PreparedStatement pps = cn.prepareStatement("update ventas set aprobacion = false,comentario = ?  where numero_factura = ?");
+             PreparedStatement pps = cn.prepareStatement("update ventas set aprobacion = false,comentario = ?  where numero_factura = ? and aprobacion is null;");
              pps.setString(1, comentario);
              pps.setInt(2, numero_factura);
              pps.executeUpdate();

@@ -58,7 +58,7 @@ public class JFComercioHome extends javax.swing.JFrame {
         panel_verAutos.setBackground(colorBlack);
         
         //Set icons in labels btn
-        Image clienteIcon = new ImageIcon(getClass().getResource("/ASSETS//add110.png")).getImage().getScaledInstance(80,80,Image.SCALE_SMOOTH);
+        Image clienteIcon = new ImageIcon(getClass().getResource("/ASSETS/add110.png")).getImage().getScaledInstance(80,80,Image.SCALE_SMOOTH);
         Image ventaIcon = new ImageIcon(getClass().getResource("/ASSETS/commercial18(1).png")).getImage().getScaledInstance(120,100,Image.SCALE_SMOOTH);
         Image compraIcon = new ImageIcon(getClass().getResource("/ASSETS/receipt10.png")).getImage().getScaledInstance(80,80,Image.SCALE_SMOOTH);
         Image vAutos = new ImageIcon(getClass().getResource("/ASSETS/vAuto.png")).getImage().getScaledInstance(80,80,Image.SCALE_SMOOTH);
