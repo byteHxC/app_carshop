@@ -52,7 +52,7 @@ public class Controller_JFAgregarVenta {
         this.viewAddVenta.label_usuario.setText("USUARIOS: "+login.getUsuario());
         this.viewAddVenta.label_ImageEmpleado.setIcon(new ImageIcon(getImageWithBlob(login.getImageBlob(), login.getNombreImagen()).getImage().getScaledInstance(viewAddVenta.label_ImageEmpleado.getWidth(),viewAddVenta.label_ImageEmpleado.getHeight(), Image.SCALE_SMOOTH)));
         if(usuario!=null){
-        this.viewAddVenta.txt_encargadoVenta.setText(usuario.getNombre()+" "+usuario.getApellido_pat()+" "+usuario.getApellido_pat());        
+        this.viewAddVenta.txt_encargadoVenta.setText(usuario.getNombre()+" "+usuario.getApellido_pat()+" "+usuario.getApellido_mat());        
         }
         //Enviar solicitud de venta 
         this.viewAddVenta.btn_enviarSolicitud.addMouseListener(new MouseAdapter() {

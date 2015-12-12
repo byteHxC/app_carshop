@@ -92,7 +92,7 @@ public class UserROOT implements Serializable{
               String path = app_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
            File aux =new File(path);
             if (aux.isDirectory())
-                path = path + "";
+                path = path + "/Resources/SourceDB/settingsDBROOT.dat";
             else
                 path = aux.getParent() + "/Resources/SourceDB/settingsDBROOT.dat";
             
@@ -127,7 +127,7 @@ public class UserROOT implements Serializable{
              String path = app_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
            File aux =new File(path);
             if (aux.isDirectory())
-                path = path + "";
+                path = path + "/Resources/SourceDB/settingsDBROOT.dat";
             else
                 path = aux.getParent() + "/Resources/SourceDB/settingsDBROOT.dat";
             File file = new File(path);
@@ -160,7 +160,7 @@ public class UserROOT implements Serializable{
               String path = app_carshop.class.getProtectionDomain().getCodeSource().getLocation().getPath();
            File aux =new File(path);
             if (aux.isDirectory())
-                path = path + "";
+                path = path + "/Resources/SourceDB/settingsDBROOT.dat";
             else
                 path = aux.getParent() + "/Resources/SourceDB/settingsDBROOT.dat";
             

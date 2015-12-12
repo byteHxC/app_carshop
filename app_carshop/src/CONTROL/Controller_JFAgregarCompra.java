@@ -51,7 +51,7 @@ public class Controller_JFAgregarCompra {
         this.viewAddCompra.label_ImageEmpleado.setIcon(new ImageIcon(getImageWithBlob(login.getImageBlob(), login.getNombreImagen()).getImage().getScaledInstance(viewAddCompra.label_ImageEmpleado.getWidth(),viewAddCompra.label_ImageEmpleado.getHeight(), Image.SCALE_SMOOTH)));
         
         if(usuario!=null){
-            this.viewAddCompra.txt_encargadoVenta.setText(usuario.getNombre()+" "+usuario.getApellido_pat()+" "+usuario.getApellido_pat());
+            this.viewAddCompra.txt_encargadoVenta.setText(usuario.getNombre()+" "+usuario.getApellido_pat()+" "+usuario.getApellido_mat());
             
         }
         this.viewAddCompra.btn_enviarSolicitud.addMouseListener(new MouseAdapter(){
