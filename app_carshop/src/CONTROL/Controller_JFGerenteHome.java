@@ -224,8 +224,10 @@ public class Controller_JFGerenteHome {
         return image;
      }
       public String cal_pagoMensual(String tipo,float precio){
-              String pago = "";
-         switch(tipo){
+        
+          String pago = "";
+          try{
+               switch(tipo){
                 case ("Contado"):
                     pago = ""+precio+" $";
                     break;
@@ -235,6 +237,10 @@ public class Controller_JFGerenteHome {
                 case ("12 meses"): 
                     pago = ""+precio/12+" $";
             }
+          }catch (NullPointerException er){
+              
+          }
+        
          return pago;
       }
 }
