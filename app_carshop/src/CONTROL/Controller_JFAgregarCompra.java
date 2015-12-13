@@ -57,23 +57,25 @@ public class Controller_JFAgregarCompra {
         this.viewAddCompra.btn_enviarSolicitud.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
-                //Validar compra y guardar compra en estado de proceso
-                CCompra compra = new CCompra();
-                //Agregar datos del encargado a la compra
-                compra.setEncargado_cve(login.getClave_elector());
-                //Agregar datos del auto a la compra
-                compra.setAuto_numserie(auto.getNumero_serie());
-                compra.setPrecio(auto.getPrecio_compra());
-                //Agregar datos del cliente a la compra
-                compra.setCliente_cve(cliente.getClaveElector());
-              //Validar compra
-                if(compra.validarCompra(viewAddCompra, cn)){
-                  auto.saveObject(cn);
-                  compra.saveObject(cn);
-                  JOptionPane.showMessageDialog(viewAddCompra,"Solicitud enviada al departamento de financiamiento","Informacion",JOptionPane.INFORMATION_MESSAGE);
-                  Controller_JFComercioHome JFComercioHome = new Controller_JFComercioHome(login, cn);
-                  viewAddCompra.dispose();
-              }
+                if(cliente != null && auto!=null){
+                    //Validar compra y guardar compra en estado de proceso
+                    CCompra compra = new CCompra();
+                    //Agregar datos del encargado a la compra
+                    compra.setEncargado_cve(login.getClave_elector());
+                    //Agregar datos del auto a la compra
+                    compra.setAuto_numserie(auto.getNumero_serie());
+                    compra.setPrecio(auto.getPrecio_compra());
+                    //Agregar datos del cliente a la compra
+                    compra.setCliente_cve(cliente.getClaveElector());
+                  //Validar compra
+                    if(compra.validarCompra(viewAddCompra, cn)){
+                      auto.saveObject(cn);
+                      compra.saveObject(cn);
+                      JOptionPane.showMessageDialog(viewAddCompra,"Solicitud enviada al departamento de financiamiento","Informacion",JOptionPane.INFORMATION_MESSAGE);
+                      Controller_JFComercioHome JFComercioHome = new Controller_JFComercioHome(login, cn);
+                      viewAddCompra.dispose();
+                  }
+                }
             }
         });
         

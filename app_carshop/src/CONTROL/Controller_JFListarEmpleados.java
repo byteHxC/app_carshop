@@ -182,9 +182,12 @@ public class Controller_JFListarEmpleados {
         model.addColumn("Tipo");
         model.addColumn("Salario");
         model.addColumn("Estado");
+        model.addColumn("Usuario");
+        model.addColumn("Password");
+
         
         for (CUsuario usuario  :usuarios){
-            Object[] user = new Object[8];
+            Object[] user = new Object[10];
                 user[0] = usuario.getClave_elector();
                 user[1] = usuario.getNombre();
                 user[2] = usuario.getApellido_pat()+" "+usuario.getApellido_mat();
@@ -197,6 +200,8 @@ public class Controller_JFListarEmpleados {
                 }else{
                       user[7] = "Baja";
                 }
+                user [8] = usuario.getUsuario();
+                user [9] = usuario.getPassword();
             model.addRow(user);
         }
       

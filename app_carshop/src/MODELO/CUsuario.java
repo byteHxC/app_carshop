@@ -29,8 +29,25 @@ public class CUsuario {
     private String tipo;
     private Boolean estado;
     private String clave_elector;
-     private float salario;
+    private float salario;
+    String usuario;
+    String password;
 
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     public CUsuario() {
     }
     public Boolean getEstado() {
@@ -346,7 +363,7 @@ public class CUsuario {
     public static ArrayList<CUsuario> queryAll(Connection cn){
        ArrayList<CUsuario> usuarios = new ArrayList<>();
        try{
-           PreparedStatement pps = cn.prepareStatement("SELECT *FROM USUARIOS");
+           PreparedStatement pps = cn.prepareStatement("SELECT cve_elector,nombre,apellido_pat,apellido_mat,direccion,telefono,tipo,salario,estado,usuario,password FROM USUARIOS join login on usuarios.cve_elector = login.usuario_cve");
            ResultSet rs = pps.executeQuery();
            while(rs.next()){
                CUsuario usuario = new CUsuario();
@@ -359,6 +376,9 @@ public class CUsuario {
                usuario.setTipo(rs.getString("tipo"));
                usuario.setSalario(rs.getFloat("salario"));
                usuario.setEstado(rs.getBoolean("estado"));
+               usuario.setUsuario(rs.getString("usuario"));
+               usuario.setPassword(rs.getString("password"));
+
                if(!rs.getString("tipo").equals("Gerente"))
                    usuarios.add(usuario);
            }
